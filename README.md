@@ -1,8 +1,11 @@
-# Compilation, objects, linking
+# Shared and static libraries
 
-In this example, `main.cpp` depends on the function `addNumbers` defined in `mylib.cpp`. The linking process involves the following steps:
+Now, let's compile and use these files to create both a static and shared library.
 
-1. Compilation: Each source file (`main.cpp` and `mylib.cpp`) is separately compiled into object files (`main.o` and `mylib.o`) using a `C++` compiler. This step generates the object code for each source file. The object files contain the compiled machine code specific to each source file.
+1. Create a static library:
+```cpp
+gc -c mylib_static.cpp -o mylib_static.o
+```
 1. Linking: The object files are then linked together to create the final executable. During the linking process, the linker resolves the symbol reference to `addNumbers` in `main.o` with the actual implementation in `mylib.o`. The linker also includes any necessary system libraries or other dependencies.
 1. The linking process can be performed using a `C++` compiler or a dedicated linker, such as `ld` on Unix-like systems. When you compile and link your code using the `gcc` command, it internally invokes the `ld` linker to perform the final linking step. The output of the linking process is typically an executable file (e.g., `program`). This executable can then be executed to run the program and produce the desired output.
 1. The linking process occurs when you compile and build the final executable. The linking happens behind the scenes and is performed by the `C++` compiler or the dedicated linker. When you compile the program by invoking the C++ compiler, such as g++, with the source files, the compiler handles both the compilation and linking stages. In this case, the linking process is transparent to you as the programmer.
