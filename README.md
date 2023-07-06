@@ -15,6 +15,16 @@ Now, let's compile and use these files to create both a static and shared librar
         - `c`: Create the archive if it doesn't exist.
         - `s`: Write an index into the archive, which helps with faster symbol lookup during linking
     - `libmylib_static.a` is the name of the static library that will be created. The prefix `lib` is commonly used for libraries, followed by the name of the library (`mylib_static` in this case), and **the extension `.a` indicating it's a static library**.
+    - The reason you needed to use the `ar` command separately is that creating a static library involves an additional step of archiving the object files into a single library file. When you compile a source file with `g++`, it produces an object file (e.g., `mylib_static.o`) that contains the compiled machine code for the functions in that source file. To create a static library, you may need to combine multiple object files into a single library file, which can be achieved using the `ar` command. Let's say you have two source files: `foo.cpp` and `bar.cpp`. You want to create a static library that includes the functions defined in both files. First, compile each source file into object files:
+    ```
+    g++ -c foo.cpp -o foo.o
+    g++ -c bar.cpp -o bar.o
+    ```
+    Next, use the ar command to combine the object files into a static library:
+    ```
+    ar rcs libmylib.a foo.o bar.o
+    ```
+    After running the above commands, you will have a static library file `libmylib.a` that contains the compiled functions from both `foo.cpp` and `bar.cpp`. You can then link this library with your main program during the compilation process. On the other hand, when creating a shared library, you typically compile each source file separately into object files and then link them together to create the shared library file.
 1. **Create a shared library** (uncomment the `mylib.h` for the shared header). When creating a shared library, you typically compile the source files into object files (`*.o`) first, and then use the linker to combine these object files into a shared library.
     ```
     g++ -shared -fPIC mylib_shared.cpp -o libmylib_shared.so
@@ -44,10 +54,9 @@ In terms of workflow, the process of compiling and linking your program is gener
 
 Overall, the choice between using a shared library or a static library depends on various factors, including the specific requirements of your program, considerations for memory usage, ease of deployment, and potential library versioning issues.
 
+A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously. A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies. However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
+
 ---
+`iostream` is a C++ library that provides input and output functionality, including standard streams such as `std::cout`, `std::cin`, and `std::cerr`. It is part of the C++ Standard Library and is commonly used for console input and output operations.
 
-A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously.
-
-A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies.
-
-However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
+In terms of categorization, `iostream` can be considered as a library within the broader C++ Standard Library. It provides functionality for handling input and output operations, making it an essential component for console-based programs. However, it's important to note that `iostream` is typically provided as part of the C++ compiler and standard library implementation, so you don't need to explicitly link against it like you would with external libraries.
