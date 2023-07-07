@@ -1,4 +1,9 @@
-# Shared and static libraries
+# Libraries
+
+When using a library, whether static or shared, it is common practice to provide a corresponding header file (`.h`) that contains the necessary declarations for the library's functions, classes, structures, and other entities. This allows users of the library to include the header file in their own code and access the functionality provided by the library. In `C++`, the `#include` directive is used to include header files. Header files typically contain function declarations, class definitions, constants, and other declarations that are needed for the compilation and usage of functions and types defined in the external source file (`.cpp` file). It is a common convention to give them the same base name (e.g., `mylib.h` and `mylib.cpp`) for clarity and organization, but it is not a strict requirement. Header files serve as a way to communicate the interface of the library to users, enabling them to properly use and interact with the library's features.
+
+---
+## Example
 
 In this example, we have a main program (`main.cpp`) that includes the header file `mylib.h`. The header file provides the function prototype for `printMessage()`. The actual implementation of `printMessage()` is defined in separate source files `mylib_static.cpp` and `mylib_shared.cpp`, which are compiled into static (`libmylib_static.a`) and shared (`libmylib_shared.so`) libraries, respectively.
 
@@ -59,4 +64,4 @@ A shared library is often referred to as a runtime library because it is loaded 
 ---
 `iostream` is a C++ library that provides input and output functionality, including standard streams such as `std::cout`, `std::cin`, and `std::cerr`. It is part of the C++ Standard Library and is commonly used for console input and output operations.
 
-In terms of categorization, `iostream` can be considered as a library within the broader C++ Standard Library. It provides functionality for handling input and output operations, making it an essential component for console-based programs. However, it's important to note that `iostream` is typically provided as part of the C++ compiler and standard library implementation, so you don't need to explicitly link against it like you would with external libraries.
+In terms of categorization, `iostream` can be considered as a library within the broader **C++ Standard Library**. It provides functionality for handling input and output operations, making it an essential component for console-based programs. However, it's important to note that `iostream` is typically provided as part of the C++ compiler and standard library implementation, so you don't need to explicitly link against it like you would with external libraries.
