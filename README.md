@@ -1,16 +1,17 @@
 # Libraries
 
-*What is a library?*
+**What is a library?**
 A C/C++ library is a collection of precompiled code modules that can be used to perform common tasks or provide reusable functionality within C or C++ programs. 
 
-*How does a library look like on my computer?*
+**How does a library look like on my computer?**
+
 Libraries on your computer are typically stored as binary files. The exact file format and organization can vary depending on the programming language, the platform.
 - *Shared Libraries (Dynamic Link Libraries - DLLs on Windows, Shared Objects - SO files on Linux, Dylibs on macOS)*: These are libraries that are loaded at runtime when a program is executed. They have a file extension like `.dll`, `.so`, or `.dylib`. These files contain compiled code that multiple programs can use simultaneously. They are typically stored in system directories or directories specified in the system's library search path.
 - *Static Libraries (Libraries - LIB files on Windows, Archive files - A files on Linux)*: These are libraries that are linked with the program at compile-time. They contain precompiled object code. On Windows, they have a `.lib` extension, and on Linux, they are often archive files with a `.a` extension. Static libraries are linked directly into the executable, increasing the size of the resulting binary.
 - *Standard Libraries*: The standard libraries for C and C++ are typically provided as part of the compiler installation. These libraries include the C Standard Library (libc on Unix-like systems), the C++ Standard Library (libstdc++ or libc++ on Unix-like systems), and others. They are typically located in system directories.
 - *Header Files*: In addition to the binary library files, libraries often provide header files (with extensions like `.h`, `.hpp`, or `.hxx`) that contain declarations of functions, classes, and data structures provided by the library. Header files are typically included in your source code to use the library's functionality.
 
-*Main categories for a C/C++ library*
+**Main categories for a C/C++ library**
 - *Functionality and Purpose*:
     - *Standard Libraries*: Bundled with the programming language or platform (e.g., C Standard Library, C++ Standard Library).
     - *Utility Libraries*: Provide general-purpose functions and utilities (e.g., string manipulation, data structures).
@@ -31,7 +32,8 @@ Libraries on your computer are typically stored as binary files. The exact file 
     - *Open Source Libraries*: Released under open-source licenses (e.g., MIT, GPL).
     - *Proprietary Libraries*: Owned and licensed by a specific organization or company.
 
-- *What is the header file?*
+**What is the header file?**
+
 Header files are human-readable files that serve to communicate the interface of the library to users, enabling them to properly use and interact with the library's features. When using a library, whether static or shared, it is common practice to provide a corresponding header file that contains the necessary declarations for the library's functions, classes, structures, and other entities. This allows users of the library to include the header file in their own code and access the functionality provided by the library. In `C++`, the `#include` directive is used to include header files. Directives are commands or instructions that are processed by the preprocessor before the actual compilation of the code. Directives are typically preceded by the `#` symbol. Header files typically contain function declarations, class definitions, constants, and other declarations that are needed for the compilation and usage of functions and types defined in the external source file (`.cpp` file).
 - User-Defined Header Files:
     - These files are typically given a `.h` extension, and sometimes a `.hpp` extension in `C++` to indicate that they are header files.
@@ -44,7 +46,8 @@ Header files are human-readable files that serve to communicate the interface of
     - These headers provide standardized interfaces to `C++` language features and standard library components.
 It is important to note that while these conventions are common, they are not strict rules enforced by the language itself. The presence or absence of the extension doesn't affect how the compiler or preprocessor treats the file. The choice of file extension and inclusion method is ultimately defined by the project's convention.
 
-- *What is the difference between a shared and a static library?*
+**What is the difference between a shared and a static library?**
+
 Shared Libraries (Dynamic Link Libraries on Windows, Shared Objects on Linux, and Dylibs on macOS) and Static Libraries serve different purposes in software development and are linked with programs in different ways. The main difference between using a shared library and a static library lies in how the library is linked to your program at runtime. When you link against a static library, the library code is physically copied into your executable file during the linking process. This means that your program becomes self-contained and can be run independently without relying on the presence of the static library at runtime. The library code becomes part of your program's binary.
 
 On the other hand, when you link against a shared library, your program only contains references to the functions or symbols provided by the library. The actual library code resides in a separate shared library file (`.so` file on Linux, `.dll` file on Windows). At runtime, the operating system dynamically loads the shared library and resolves the references from your program to the corresponding functions in the library. This allows multiple programs to share the same instance of the library in memory, reducing memory usage.
@@ -55,7 +58,8 @@ Overall, the choice between using a shared library or a static library depends o
 
 A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously. A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies. However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
 
-- *When I include the header file by using the directive `#include` in my project, how does the system know where to find it?*
+**When I include the header file by using the directive `#include` in my project, how does the system know where to find it?**
+
 When you include a header file using the #include directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
 1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are predefined and include paths like `/usr/include` on Linux and macOS or `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include` on Windows, depending on your development environment.
 1. *User-Defined Paths*: If the header file is not found in the system directories, the compiler checks additional paths that you can specify. These paths can be set in several ways:
