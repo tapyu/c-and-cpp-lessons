@@ -32,7 +32,17 @@ Libraries on your computer are typically stored as binary files. The exact file 
     - *Proprietary Libraries*: Owned and licensed by a specific organization or company.
 
 - *What is the header file?*
-When using a library, whether static or shared, it is common practice to provide a corresponding header file (`.h`) that contains the necessary declarations for the library's functions, classes, structures, and other entities. This allows users of the library to include the header file in their own code and access the functionality provided by the library. In `C++`, the `#include` directive is used to include header files. Header files typically contain function declarations, class definitions, constants, and other declarations that are needed for the compilation and usage of functions and types defined in the external source file (`.cpp` file). It is a common convention to give them the same base name (e.g., `mylib.h` and `mylib.cpp`) for clarity and organization, but it is not a strict requirement. Header files serve as a way to communicate the interface of the library to users, enabling them to properly use and interact with the library's features.
+Header files are human-readable files that serve to communicate the interface of the library to users, enabling them to properly use and interact with the library's features. When using a library, whether static or shared, it is common practice to provide a corresponding header file that contains the necessary declarations for the library's functions, classes, structures, and other entities. This allows users of the library to include the header file in their own code and access the functionality provided by the library. In `C++`, the `#include` directive is used to include header files. Directives are commands or instructions that are processed by the preprocessor before the actual compilation of the code. Directives are typically preceded by the `#` symbol. Header files typically contain function declarations, class definitions, constants, and other declarations that are needed for the compilation and usage of functions and types defined in the external source file (`.cpp` file).
+- User-Defined Header Files:
+    - These files are typically given a `.h` extension, and sometimes a `.hpp` extension in `C++` to indicate that they are header files.
+    - When including user-defined header files, the `#include` directive is typically used with double quotes, such as `#include "myheader.h"`.
+    - User-defined header files contain declarations and definitions specific to your project or library and are often organized within your project's directory structure.
+    - It is a common convention to give them the same base name (e.g., `mylib.h` and `mylib.cpp`) for clarity and organization, but it is not a strict requirement. 
+- `C++` Standard Library Header Files:
+    - `C++` Standard Library header files often do not have a `.h` extension, and they are included using angle brackets, like `#include <iostream>`.
+    - The omission of the `.h` extension is a convention within the `C++` Standard Library to distinguish these headers from traditional `C` headers, which often use the `.h` extension.
+    - These headers provide standardized interfaces to `C++` language features and standard library components.
+It is important to note that while these conventions are common, they are not strict rules enforced by the language itself. The presence or absence of the extension doesn't affect how the compiler or preprocessor treats the file. The choice of file extension and inclusion method is ultimately defined by the project's convention.
 
 - *What is the difference between a shared and a static library?*
 Shared Libraries (Dynamic Link Libraries on Windows, Shared Objects on Linux, and Dylibs on macOS) and Static Libraries serve different purposes in software development and are linked with programs in different ways. The main difference between using a shared library and a static library lies in how the library is linked to your program at runtime. When you link against a static library, the library code is physically copied into your executable file during the linking process. This means that your program becomes self-contained and can be run independently without relying on the presence of the static library at runtime. The library code becomes part of your program's binary.
@@ -44,6 +54,25 @@ In terms of workflow, the process of compiling and linking your program is gener
 Overall, the choice between using a shared library or a static library depends on various factors, including the specific requirements of your program, considerations for memory usage, ease of deployment, and potential library versioning issues.
 
 A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously. A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies. However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
+
+- *When I include the header file by using the directive `#include` in my project, how does the system know where to find it?*
+When you include a header file using the #include directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
+1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are predefined and include paths like `/usr/include` on Linux and macOS or `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include` on Windows, depending on your development environment.
+1. *User-Defined Paths*: If the header file is not found in the system directories, the compiler checks additional paths that you can specify. These paths can be set in several ways:
+    1. *Command-Line Options*: You can use command-line options to specify include directories with the `-I` flag (e.g., `-I/path/to/includes`).
+    1. *Environment Variables*: Some compilers allow you to set environment variables (e.g., `CPLUS_INCLUDE_PATH` or `CPATH`) to specify additional include paths.
+    1. *IDE or Build System Settings*: Integrated development environments (IDEs) like Visual Studio or build systems like CMake allow you to configure include directories in project settings or configuration files.
+1. *Relative Paths*: If you include a header with a relative path (e.g., `#include` "`myheader.h`"), the compiler looks for the header file relative to the location of the source file that includes it.
+1. *Library-Specific Paths*: Some libraries may have their own include paths that you need to configure separately when using those libraries. (?)
+To find from where your system look for the header files, [run][1]:
+```shell
+    $(gcc -print-prog-name=cc1plus) -v
+```
+for `C++`, and
+```shell
+  $(gcc -print-prog-name=cpp) -v  
+```
+for `C`. For instance, you can check whether `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
 
 ---
 ## Example
@@ -91,3 +120,6 @@ Now, let's compile and use these files to create both a static and shared librar
     - The `-L.` option is a compiler flag that specifies the directory where the linker should search for libraries specified by the `-l` option. In this case, the dot `.` represents the current directory.
     - When compiling the main program, we specify the library to link against using the `-l` option (e.g., `-lmylib_static` or `-lmylib_shared`). The linker (`ld`) resolves the function call to `printMessage()` by looking for the corresponding implementation in the linked library.
 1. Run the programs: `./program_static` and `./program_shared`
+
+
+[1]: https://stackoverflow.com/questions/344317/where-does-gcc-look-for-c-and-c-header-files/344525#344525
