@@ -1,6 +1,7 @@
 # Libraries
 
 **What is a library?**
+
 A C/C++ library is a collection of precompiled code modules that can be used to perform common tasks or provide reusable functionality within C or C++ programs. 
 
 **How does a library look like on my computer?**
@@ -68,6 +69,7 @@ When you include a header file using the #include directive in your C++ project,
     1. *IDE or Build System Settings*: Integrated development environments (IDEs) like Visual Studio or build systems like CMake allow you to configure include directories in project settings or configuration files.
 1. *Relative Paths*: If you include a header with a relative path (e.g., `#include` "`myheader.h`"), the compiler looks for the header file relative to the location of the source file that includes it.
 1. *Library-Specific Paths*: Some libraries may have their own include paths that you need to configure separately when using those libraries. (?)
+
 To find from where your system look for the header files, [run][1]:
 ```shell
     $(gcc -print-prog-name=cc1plus) -v
