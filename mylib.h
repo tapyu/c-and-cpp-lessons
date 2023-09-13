@@ -1,9 +1,8 @@
 #ifndef MYLIB_H
 #define MYLIB_H
 
-// Function declaration for static lib
-void printMessage();
-// Function declaration for shared lib
-// extern "C" void printMessage();
+// leave only one of the following function declarations to use the static or shared lib
+void printMessage(); // function declaration for static lib
+// extern "C" void printMessage(); // function declaration for shared lib
 
 #endif
