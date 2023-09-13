@@ -3,3 +3,4 @@ libmylib_shared.so
 libmylib_static.a
 program_shared
 program_static
+.vscode/

@@ -78,7 +78,16 @@ for `C++`, and
 ```shell
   $(gcc -print-prog-name=cpp) -v  
 ```
-for `C`. For instance, you can check whether `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
+for `C`. For instance, you can check that `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
+
+To see all the recursive header filer depencency, you can [run][2]:
+```shell
+    g++ -MM -H main.cpp
+```
+where `main.cpp` is the main `C++` file in your project.
+
+**And the library, where is it located?**
+The `C++` Standard Libraries are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
 
 ---
 ## Example
@@ -87,7 +96,7 @@ In this example, we have a main program (`main.cpp`) that includes the header fi
 
 Now, let's compile and use these files to create both a static and shared library.
 
-1. **Create a static library** (uncomment the `mylib.h` for the static header):
+1. **Create a static library** (leave only the function declaration of the static library in `mylib.h`):
     ```
     g++ -c mylib_static.cpp -o mylib_static.o
     ar rcs libmylib_static.a mylib_static.o
@@ -108,7 +117,7 @@ Now, let's compile and use these files to create both a static and shared librar
     ar rcs libmylib.a foo.o bar.o
     ```
     After running the above commands, you will have a static library file `libmylib.a` that contains the compiled functions from both `foo.cpp` and `bar.cpp`. You can then link this library with your main program during the compilation process. On the other hand, when creating a shared library, you typically compile each source file separately into object files and then link them together to create the shared library file.
-1. **Create a shared library** (uncomment the `mylib.h` for the shared header). When creating a shared library, you typically compile the source files into object files (`*.o`) first, and then use the linker to combine these object files into a shared library.
+1. **Create a shared library** (leave only the function declaration of the shared library in `mylib.h`). When creating a shared library, you typically compile the source files into object files (`*.o`) first, and then use the linker to combine these object files into a shared library.
     ```
     g++ -shared -fPIC mylib_shared.cpp -o libmylib_shared.so
     ```
@@ -125,7 +134,10 @@ Now, let's compile and use these files to create both a static and shared librar
     ```
     - The `-L.` option is a compiler flag that specifies the directory where the linker should search for libraries specified by the `-l` option. In this case, the dot `.` represents the current directory.
     - When compiling the main program, we specify the library to link against using the `-l` option (e.g., `-lmylib_static` or `-lmylib_shared`). The linker (`ld`) resolves the function call to `printMessage()` by looking for the corresponding implementation in the linked library.
-1. Run the programs: `./program_static` and `./program_shared`
+1. Run the programs:
+    - `./program_static` for the static library
+    - Before running `./program_shared` for the shared library, you must check whether the path of your shared library (`libmylib_shared.so`) is within the `LD_LIBRARY_PATH` environment variable. Setting the LD_LIBRARY_PATH environment variable is often necessary when you want to run an executable that depends on shared libraries that are not in the standard library search paths. This environment variable tells the dynamic linker where to find those libraries at runtime. If it is not set, you can run `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)` and then run `./program_shared`. Otherwise, you will get the error "./program_shared: error while loading shared libraries: libmylib_shared.so: cannot open shared object file: No such file or directory". This shows the fundamental difference between static and shared (or dynamic) library: shared library is loaded and linked dynamically at runtime when the program is executed. If it is not found by the linker, the program doesn't run.
 
 
 [1]: https://stackoverflow.com/questions/344317/where-does-gcc-look-for-c-and-c-header-files/344525#344525
+[2]: https://stackoverflow.com/a/18593344/13998346
