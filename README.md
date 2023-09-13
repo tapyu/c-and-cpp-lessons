@@ -26,3 +26,7 @@ https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/
 
 PS1: you will possibly merge the `2-compilation-objects-link` branch into this branch
 PS2: if this branch becomes too extensive. you can break it down, e.g., `1-biuld-process:1-compilation`, `1-biuld-process:2-preprocessor`, etc...
+PS3: for the code example, choose one of the followings
+- https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
+- https://www.learncpp.com/cpp-tutorial/header-files/
+- https://www.youtube.com/watch?v=GExnnTaBELk&ab_channel=BarryBrown
