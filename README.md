@@ -112,17 +112,36 @@ Now, let's compile and use these files to create both a static and shared librar
     g++ -c foo.cpp -o foo.o
     g++ -c bar.cpp -o bar.o
     ```
-    Next, use the ar command to combine the object files into a static library:
+    Next, use the `ar` command to combine the object files into a static library:
     ```
     ar rcs libmylib.a foo.o bar.o
     ```
     After running the above commands, you will have a static library file `libmylib.a` that contains the compiled functions from both `foo.cpp` and `bar.cpp`. You can then link this library with your main program during the compilation process. On the other hand, when creating a shared library, you typically compile each source file separately into object files and then link them together to create the shared library file.
-1. **Create a shared library** (leave only the function declaration of the shared library in `mylib.h`). When creating a shared library, you typically compile the source files into object files (`*.o`) first, and then use the linker to combine these object files into a shared library.
+1. **Create a shared library** (leave only the function declaration of the shared library in `mylib.h`). When creating a shared library, you typically compile the source files into object files (`*.o`) first, and then use the linker to combine these object files into a shared library. To convert the `.cpp` file to an object file, run:
     ```
-    g++ -shared -fPIC mylib_shared.cpp -o libmylib_shared.so
+        g++ -c -fPIC mylib_shared.cpp -o mylib_shared.o
+    ```
+    - `-fPIC`: This option stands for "Position Independent Code" is used when creating a shared library to ensure that the generated code is relocatable. Relocatable code can be loaded into memory at different addresses by the operating system without any issues. This is crucial for shared libraries because multiple processes can use the same shared library, and each process may load the library at a different address in memory.
+
+    Then, you can create an shared library `.so` by linking these object files together:
+    ```
+        g++ -shared mylib_shared.o -o libmylib_shared.so
     ```
     - `-shared`: This option instructs the compiler (or linker) to create a shared library instead of an executable or a static library. A shared library contains code and data that can be loaded into memory and shared by multiple programs at runtime. It allows for dynamic linking, where the library is linked with the executable when it is loaded or during runtime.
-    - `-fPIC`: This option stands for "Position Independent Code" and is used to generate code that can be loaded at any memory address. It is required for creating shared libraries because the library code needs to be relocatable, meaning it can be loaded at different memory locations by different processes without conflicts.
+
+    The reason you use different tools (`ar` for static libraries and `g++` for shared libraries) to create libraries is due to the nature of the libraries themselves and how they are meant to be used. When you create a static library, you're essentially creating an archive of object files. `ar` is specifically designed for that task. On the other hand, `g++` (or any `C`/`C++` compiler) can be used to create shared libraries. When you use `g++` to create a shared library, you're essentially compiling the source code directly into a shared library file (`.so` on Linux).
+
+    Alternatively, if your shared library is based only on one `.cpp` file, you can directly convert it to the shared library as follows:
+    ```
+        g++ -shared -fPIC mylib_shared.cpp -o libmylib_shared.so
+    ```
+    In practice, both approaches are common, and the choice between them often depends on the development workflow and the complexity of the project. Compiling to object file first is the more traditional and flexible approach. You first compile the source code into object files separately. This approach offers several advantages:
+        - Incremental Builds: If your project has multiple source files, you can compile them individually to object files. When you make changes to one source file, you only need to recompile that file and relink, which can significantly speed up development.
+        - Reusability: You can reuse the object files in multiple projects or when creating different libraries/executables.
+        - Better Control: You have more control over the compilation process and can optimize individual source files differently.
+    In the direct compilation to shared library, you compile the source code directly into a shared library without generating intermediate object files. This can simplify the build process, especially for small projects. However, it has some limitations:
+        - Slower Builds: Compiling the entire source code into a shared library in one step can be slower, especially for larger projects, as all code must be recompiled each time.
+        - Limited Reusability: The shared library generated may not be as reusable across projects, as it includes all the compiled code in one file.
 1. Compile and link the main program with the libraries. 
     - Using the static library:
     ```
