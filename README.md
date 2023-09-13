@@ -16,5 +16,13 @@ https://en.wikipedia.org/wiki/Just-in-time_compilation (?)
 
 https://cplusplus.com/doc/tutorial/introduction/
 
+https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B
+
+https://www.learncpp.com/cpp-tutorial/introduction-to-the-compiler-linker-and-libraries/
+
+https://www.learncpp.com/cpp-tutorial/introduction-to-programming-languages/
+
+https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/
+
 PS1: you will possibly merge the `2-compilation-objects-link` branch into this branch
 PS2: if this branch becomes too extensive. you can break it down, e.g., `1-biuld-process:1-compilation`, `1-biuld-process:2-preprocessor`, etc...
