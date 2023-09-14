@@ -58,9 +58,9 @@ It is suitable for cross-platform development and can target various platforms, 
 ![](./assets/compiling.png)
 
 - The input file for this stage is `*.i` file.
-- [It][15] takes the output of the preprocessor and generates assembly language, an intermediate human readable language, specific to the target processor.
-
-![](./assets/compiler_parts.png)
+- [It][15] takes the output of the preprocessor and converts it to assembly language.
+- Assembly code, often referred to as assembly language or just assembly, is a low-level programming language that uses mnemonic symbols (e.g., MOV for "move," ADD for "add") to represent CPU instructions, thus making the code human-readable. Each assembly instruction typically corresponds to a single machine code instruction that is specific to the target CPU. Therefore, Assembly code is highly platform-specific, meaning that it is tailored to a specific computer architecture and operating system. Code written in assembly for one type of CPU will not run on a different CPU architecture without modification.
+``![](./assets/compiler_parts.png)
 
 - The first part of the compiler is called Front End: in which, the analysis of program syntax and semantics happens. First stage of the front-end part of the compiler is scanning the input text and Tokenization by identifying tokens such as keywords, identifiers, operators, and literals, then passing the scanned token to the parsing tool that ensures tokens are organized according to C rules to avoid compiler syntax errors. Second stage of the front-end of the compiler is checking if the sentence that has been parsed has the right meaning. And, this semantic check, if it fails you get a Semantic Error.
 - The second part convert the code to assembly code. This conversion is not a one to one mapping of lines but instead a decomposition of `C` operations into numerous assembly operations.
@@ -77,8 +77,9 @@ It is suitable for cross-platform development and can target various platforms, 
 
 ![](./assets/assembler.png)
 
-- The input file for this stage is *.asm file.
-- The assembler will convert the assembly code into pure binary code or machine code (zeros and ones). This code is also known as object code.
+- The input file for this stage is `*.asm` or `*.s` file.
+- If you use `gcc` to assemble the file, you must name the extension to `.s`. Otherwise, the `-c` option of `gcc` will try to link the file instead to assemble it.
+- The assembler will convert the assembly code into lower-level intermediate representation, which is stored in the `.o` file, known as object file. This intermediate representation contains machine-level code, that is, non-human-readable instructions and data structures that represent the functions and variables defined in your code. The `.o` file is not the final executable code. It contains machine-readable instructions but is not directly executable by the operating system. It lacks some necessary information, such as the memory addresses of functions and variables, which is resolved during the linking phase.
 - The output file is `*.o` or `*.obj` file.
 
 ### example
