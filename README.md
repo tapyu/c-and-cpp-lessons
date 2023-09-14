@@ -52,6 +52,8 @@ It is suitable for cross-platform development and can target various platforms, 
 ```
 - [The][15] option `-E` Stop after the preprocessing stage; do not run the compiler proper. The output is in the form of preprocessed source code, which is sent to the standard output (or to a file with the `-o` option).
 
+TODO: See how it is done with `cpp` (`C` preprocessor).
+
 
 ### Compilation
 
@@ -112,6 +114,8 @@ where `as` the the GNU assembler. Note that both output are exactly the same.
 ```
 
 `myprogram` is an executable file.
+
+TODO: See how to it is done with `ld`, the GNU linker.
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
 
