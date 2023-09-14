@@ -74,7 +74,7 @@ It is suitable for cross-platform development and can target various platforms, 
 ```
 - `-S`: Stop after the stage of compilation proper;
 
-## Assembler
+## Assembling
 
 ![](./assets/assembler.png)
 
@@ -93,14 +93,16 @@ Alternatively, you can run
   as main.s -o main.o
 ```
 
-where `as` the the GNU assembler.
+where `as` the the GNU assembler. Note that both output are exactly the same.
 
 ## Linking
 
 ![](./assets/linker.png)
 
-- The input file for this stage is *.o file.
+- The input file for this stage is `*.o` file.
 - The linker merges all the object code from multiple modules into a single one. If we are using a function from libraries, linker will link our code with that library function code.
+- The `C` Standard Libraries are typically bundled with the `gcc` compiler. When you install `gcc` or any other `C` compiler, it includes the necessary standard libraries required to compile and link `C` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a `.so` (shared library) or `.a` (static library) file.
+- For libraries outside the `C` standard library, you must to link it manually.
 
 
 ### example
