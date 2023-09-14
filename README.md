@@ -33,9 +33,9 @@ It is suitable for cross-platform development and can target various platforms, 
 
 ## Preprocessing
 
-![](./figs/preprocessing.png)
+![](./assets/preprocessing.png)
 
-- [The][1] input file for this stage is *.c file.
+- [The][1] input file for this stage is `*.c` file.
 - [The preprocessor][16] takes the source code as an input, and it removes all the comments from the source code.
 - It performs [fours][15] tasks:
   - Inclusion of header files. [For][16] example, if the directive `#include <stdio.h>` is available in the program, then the preprocessor interprets the directive and replaces this directive with the content of the `/usr/include/stdio.h` file.
@@ -43,11 +43,71 @@ It is suitable for cross-platform development and can target various platforms, 
   - Resolve *conditional compilation*. Using special preprocessing directives, you can include or exclude parts of the program according to various conditions. For example, `#ifdef DEBUG printf("Debugging is enabled.\n"); #endif`. Other conditional compilatinos are `#if`, `#elif`, `#else`.
   - Line control. If you use a program to combine or rearrange source files into an intermediate file which is then compiled, you can use line control to inform the compiler of where each source line originally came from.
 - In nutshell, the preprocessor expands the code.
-- The output file is *.i or preprocessed file.
+- The output file is `*.i` or preprocessed file.
 
 ### Example
 
+```
+  gcc -E main.c -o main.i
+```
+- [The][15] option `-E` Stop after the preprocessing stage; do not run the compiler proper. The output is in the form of preprocessed source code, which is sent to the standard output (or to a file with the `-o` option).
 
+
+### Compilation
+
+![](./assets/compiling.png)
+
+- The input file for this stage is `*.i` file.
+- [It][15] takes the output of the preprocessor and generates assembly language, an intermediate human readable language, specific to the target processor.
+
+![](./assets/compiler_parts.png)
+
+- The first part of the compiler is called Front End: in which, the analysis of program syntax and semantics happens. First stage of the front-end part of the compiler is scanning the input text and Tokenization by identifying tokens such as keywords, identifiers, operators, and literals, then passing the scanned token to the parsing tool that ensures tokens are organized according to C rules to avoid compiler syntax errors. Second stage of the front-end of the compiler is checking if the sentence that has been parsed has the right meaning. And, this semantic check, if it fails you get a Semantic Error.
+- The second part convert the code to assembly code. This conversion is not a one to one mapping of lines but instead a decomposition of `C` operations into numerous assembly operations.
+- The output file is `*.s` or `*.asm` file.
+
+### example
+
+```
+  gcc -S main.i -o main.s
+```
+- `-S`: Stop after the stage of compilation proper;
+
+## Assembler
+
+![](./assets/assembler.png)
+
+- The input file for this stage is *.asm file.
+- The assembler will convert the assembly code into pure binary code or machine code (zeros and ones). This code is also known as object code.
+- The output file is `*.o` or `*.obj` file.
+
+### example
+
+```
+  gcc -c main.s -o main.o
+```
+Alternatively, you can run
+```
+  as main.s -o main.o
+```
+
+where `as` the the GNU assembler.
+
+## Linking
+
+![](./assets/linker.png)
+
+- The input file for this stage is *.o file.
+- The linker merges all the object code from multiple modules into a single one. If we are using a function from libraries, linker will link our code with that library function code.
+
+
+### example
+
+```
+  gcc main.o -o myprogram
+```
+
+`myprogram` is an executable file.
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
 
