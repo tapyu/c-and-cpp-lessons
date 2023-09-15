@@ -53,7 +53,17 @@ It is suitable for cross-platform development and can target various platforms, 
 ```
 - [The][15] option `-E` Stop after the preprocessing stage; do not run the compiler proper. The output is in the form of preprocessed source code, which is sent to the standard output (or to a file with the `-o` option).
 
-TODO: See how it is done with `cpp` (`C` preprocessor).
+Alternatively, you can directly use `cpp` (`C` preprocessor) to obtain the preprocessed file:
+
+```
+  cpp main.c -o main2.i
+```
+Note that both file are exactly the same
+```
+  ❯ cmp main.i main2.i && echo "Files are equal" || echo "Files are not equal"
+  Files are equal
+```
+
 
 
 ### Compilation
@@ -77,6 +87,8 @@ TODO: See how it is done with `cpp` (`C` preprocessor).
 ```
 - `-S`: Stop after the stage of compilation proper;
 
+Strictly speaking, this is the most crucial part of the compilation process and cannot be done by no one but the `gcc` compiler. When we use the `gcc` to directly generate the executable file (without breaking down all the steps), what happens under the hood is: The `gcc` delegates all other compilation steps (preprocessing, assembling, and linking) to `cpp`, `as`, and `ld`, respectively, and only performs the compilation step. By doing so, we, `C` developers, can be unworried in calling such tools as it is already done by `gcc`. Therefore, we can work with a unique command interface (the `gcc`) to perform all the compilation process.
+
 ## Assembling
 
 ![](./assets/assembler.png)
@@ -96,7 +108,11 @@ Alternatively, you can run
   as main.s -o main.o
 ```
 
-where `as` the the GNU assembler. Note that both output are exactly the same.
+where `as` the the GNU assembler. Note that both output are exactly the same. Again, you can check that both approaches produce the same output:
+```
+  ❯ cmp main.o main2.o && echo "Files are equal" || echo "Files are not equal"
+  Files are equal
+```
 
 ## Linking
 
@@ -114,9 +130,14 @@ where `as` the the GNU assembler. Note that both output are exactly the same.
   gcc main.o -o myprogram
 ```
 
-`myprogram` is an executable file.
+where `myprogram` is the executable file. Alternatively, you can directly use the `ld` command:
 
-TODO: See how to it is done with `ld`, the GNU linker.
+```
+  ld main.o -o myprogram2
+```
+
+Once again, you can check whether both files are the same:
+
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
 
