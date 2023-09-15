@@ -47,6 +47,10 @@ Header files are human-readable files that serve to communicate the interface of
     - These headers provide standardized interfaces to `C++` language features and standard library components.
 It is important to note that while these conventions are common, they are not strict rules enforced by the language itself. The presence or absence of the extension doesn't affect how the compiler or preprocessor treats the file. The choice of file extension and inclusion method is ultimately defined by the project's convention.
 
+However, it is also important to note that header files are not used exclusively for libraries; they are a fundamental part of C programming and serve various purposes beyond just defining library interfaces. Header files are also used to:
+- *Declare Function Prototypes*: Header files commonly declare function prototypes, allowing you to use functions defined in other source files. This is essential for breaking up your code into multiple source files while maintaining proper encapsulation. See `./C-header-files-for-func-prot`
+- *Share Common Definitions*: Header files can contain shared constants, macros, and data structure definitions that multiple source files need. This promotes code reusability and consistency.
+
 **What is the difference between a shared and a static library?**
 
 Shared Libraries (Dynamic Link Libraries on Windows, Shared Objects on Linux, and Dylibs on macOS) and Static Libraries serve different purposes in software development and are linked with programs in different ways. The main difference between using a shared library and a static library lies in how the library is linked to your program at runtime. When you link against a static library, the library code is physically copied into your executable file during the linking process. This means that your program becomes self-contained and can be run independently without relying on the presence of the static library at runtime. The library code becomes part of your program's binary.
