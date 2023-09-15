@@ -2,7 +2,7 @@
 
 ```shell
 for file in {main.c,functions.c,math.c}; do
-        echo ${file/%.*/.o}
+        gcc -c $file -o ${file/%.*/.o}
 done
 ```
 To get the object files done.
