@@ -1,160 +1,30 @@
-# Build process
+# FAQ
 
-**What is a compiler?**
+**"void foo(void)" vs. "void foo()"?**
 
-C/C++ compilers are software tools that translate human-readable source code written in the C or C++ programming languages into [*machine languages*][10], that is, a set of instructions made of zeros and ones. This set of instructions are represented in the computer as an executable file that can run on a computer's hardware.
+```c
+  void foo(void);
+```
+[That][1] is the correct way to say "no parameters" in `C`, and it also works in `C++`.
 
-**What is the build process?**
+But:
 
-Build process is a multi-stage process that includes
-- Preprocessing
-- Compiling
-- Assembling
-- Linking
+```c
+  void foo();
+```
+Means different things in `C` and `C++`! In `C` it means "could take any number of parameters of unknown types", and in `C++` it means the same as foo(void).
 
-The key step is the compilation phase, where the source code is analyzed, optimized, and translated into an intermediate representation known as assembly code (for `C`) or object code (for `C++`). The software that perform these processes tasks are called *compiler* (although compiling is just one of the steps performed by the compiler).
-
-**What are the main `C`/`C++` compilers?**
-
-- GCC (GNU Compiler Collection): One of the most widely used open-source compilers, GCC supports a variety of programming languages, including `C` and `C++`. It's available on multiple platforms, making it a popular choice for `C`/`C++` development.
-  - `gcc`: The GNU `C` Compiler, which primarily compiles `C` code.
-  - `g++`: The GNU `C++` Compiler, which compiles `C++` code.
-Both `gcc` and `g++` are part of the GCC suite and are commonly used to compile `C` and `C++` programs on various platforms, including Unix-like systems (Linux, macOS, BSD), as well as Windows through tools like MinGW or MSYS2.
-  - MinGW (Minimalist GNU for Windows): MinGW is a port of the GCC (GNU Compiler Collection) for Windows. It provides a GCC-based development environment on Windows.
-Developers who prefer GCC and a more Unix-like development experience often use MinGW on Windows.
-It is suitable for cross-platform development and can target various platforms, including Windows.
-- Clang: Developed by the LLVM project, Clang is known for its fast compilation times and excellent diagnostics. It's often used as an alternative to GCC, especially in the `C++` community. On [macOS][2], the most commonly used `C`/`C++` compiler is Clang, which is part of the LLVM (Low-Level Virtual Machine) project. Clang has become the default compiler on macOS for `C` and `C++` development.
-  - `clang`: `C` compiler
-  - `clang++`: `C++` compiler
-- Microsoft Visual `C++` (MSVC): MSVC is the compiler provided by Microsoft as part of Visual Studio. It's a primary choice for [Windows][4] development with `C++`.
-- Intel `C++` Compiler: Intel's compiler is known for its optimization capabilities, especially for Intel processors. It's commonly used in high-performance computing (HPC) and scientific computing.
+Variable argument list functions are inherently un-typesafe and should be avoided where possible.
 
 ---
 
-## Preprocessing
+**Object-like macro vs. constant variables**
 
-![](./assets/preprocessing.png)
+A constant defined with the const qualifier is best thought of as an unmodifiable variable. It has all the properties of a variable: it has a type, it has a size, it has linkage, you can take its address. (The compiler might optimize away some of these properties if it can get away with it: for instance, constants whose address is never used may not get emitted into the executable image. But this is only by the grace of the as-if rule.) The only thing you can't do to a const datum is change its value. A constant defined with enum is a little different. It has a type and a size, but it doesn't have linkage, you can't take its address, and its type is unique. Both of these are processed during translation phase 7, so they can't be anything but an lvalue or rvalue. (I'm sorry about the jargon in the preceding sentence, but I would have to write several paragraphs otherwise.)
 
-- [The][1] input file for this stage is `*.c` file.
-- It performs the following tasks:
-  - Removing comments : It removes all the comments.
-  - [Line Splicing][18] (`\`): The backslash `\` is used for line splicing, allowing you to break long lines of code into multiple lines for readability, are concatenated to form a single line.
-  - Header files inclusion: [For][16] example, if the directive `#include <stdio.h>` is available in the program, then the preprocessor interprets the directive and replaces this directive with the content of the `/usr/include/stdio.h` file.
-  - *Macro* expansion: A macro is a preprocessor directive that allows you to define a symbolic name or identifier for a sequence of code. They are used to create code snippets that can be easily reused and to introduce simple text substitutions. The most common use of macros in C is through the `#define` directive, which defines a macro. They can be [constant][17] macros, e.g., `#define BUFFER_SIZE 1024`, or [function-like][18] macros, e.g., `#define MAX(a, b) ((a) > (b) ? (a) : (b))`.
-  - Resolve the *conditional compilation directives*: Using special preprocessing directives, you can include or exclude parts of the program according to various conditions. For example, `#ifdef DEBUG printf("Debugging is enabled.\n"); #endif`. Other conditional compilations are `#ifndef`, `#if`, `#elif`, `#else`. The preprocessor evaluates these conditions and determines whether the enclosed code should be included in the preprocessed output file.
-  - *Line Control*: The `C` preprocessor [informs][19] the `C` compiler of the location in your source code where each token came from. A token in C can be defined as the smallest individual element of the C programming language that is meaningful to the compiler. It is the basic component of a C program. They can be Keywords (`double`, `if`, `while`, `return`, ...); Identifiers (variable and function names); Constants (`const int c_var = 20;`); Strings;  Special Symbols (`[]`, `()`, `{}`, `,`, `#`, ...); Operators (unary, binary, and ternary operators);
-- In nutshell, the preprocessor expands the code.
-- The output file is `*.i` or preprocessed file.
+A macro has far fewer constraints: it can expand to any sequence of tokens, as long as the overall program remains a well-formed program. It doesn't have any of the properties of a variable. Applying sizeof or & to a macro may or may not do something useful, depending on what the macro expands to. Macros are sometimes defined to expand to numeric literals, and such macros are sometimes thought of as constants, but they're not: "the compiler proper" (that is, translation phase 7) sees them as numeric literals.
 
-### Example
+**It is generally considered good practice, nowadays, not to use a macro when a constant will do**. Macros don't obey the same scoping rules as all other identifiers, which can be confusing, and if you use a constant you give more information to translation phase 7 and thus also to the debugger. However, macros permit you to do things that cannot be done any other way, and if you need to do one of those things, you should not hesitate to use them. (Macros that are pulling their weight, in this sense, generally do not just expand to numeric literals, though I am not going to say never.)
 
-```
-  gcc -E main.c -o main.i
-```
-- [The][15] option `-E` Stop after the preprocessing stage; do not run the compiler proper. The output is in the form of preprocessed source code, which is sent to the standard output (or to a file with the `-o` option).
-
-TODO: See how it is done with `cpp` (`C` preprocessor).
-
-
-### Compilation
-
-![](./assets/compiling.png)
-
-- The input file for this stage is `*.i` file.
-- [It][15] takes the output of the preprocessor and converts it to assembly language.
-- Assembly code, often referred to as assembly language or just assembly, is a low-level programming language that uses mnemonic symbols (e.g., MOV for "move," ADD for "add") to represent CPU instructions (the so-called opcode), thus making the code human-readable. Each assembly instruction typically corresponds to a single machine code instruction that is specific to the target CPU. Therefore, Assembly code is highly platform-specific, meaning that it is tailored to a specific computer architecture and operating system. Code written in assembly for one type of CPU will not run on a different CPU architecture without modification.
-- This is exactly the same code you may have worked with when programming some microcontrollers directly in assembly language (e.g., 8051 microcontroller).
-``![](./assets/compiler_parts.png)
-
-- The first part of the compiler is called Front End: in which, the analysis of program syntax and semantics happens. First stage of the front-end part of the compiler is scanning the input text and Tokenization by identifying tokens such as keywords, identifiers, operators, and literals, then passing the scanned token to the parsing tool that ensures tokens are organized according to C rules to avoid compiler syntax errors. Second stage of the front-end of the compiler is checking if the sentence that has been parsed has the right meaning. And, this semantic check, if it fails you get a Semantic Error.
-- The second part convert the code to assembly code. This conversion is not a one to one mapping of lines but instead a decomposition of `C` operations into numerous assembly operations.
-- The output file is `*.s` or `*.asm` file.
-
-### example
-
-```
-  gcc -S main.i -o main.s
-```
-- `-S`: Stop after the stage of compilation proper;
-
-## Assembling
-
-![](./assets/assembler.png)
-
-- The input file for this stage is `*.asm` or `*.s` file.
-- If you use `gcc` to assemble the file, you must name the extension to `.s`. Otherwise, the `-c` option of `gcc` will try to link the file instead to assemble it.
-- The assembler will convert the assembly code into lower-level intermediate representation, which is stored in the `.o` file, known as object file. This intermediate representation contains machine-level code, that is, non-human-readable instructions and data structures that represent the functions and variables defined in your code. The `.o` file is not the final executable code. It contains machine-readable instructions but is not directly executable by the operating system. It lacks some necessary information, such as the memory addresses of functions and variables, which is resolved during the linking phase.
-- The output file is `*.o` or `*.obj` file.
-
-### example
-
-```
-  gcc -c main.s -o main.o
-```
-Alternatively, you can run
-```
-  as main.s -o main.o
-```
-
-where `as` the the GNU assembler. Note that both output are exactly the same.
-
-## Linking
-
-![](./assets/linker.png)
-
-- The input file for this stage is `*.o` file.
-- The linker merges all the object code from multiple modules into a single one. If we are using a function from libraries, linker will link our code with that library function code.
-- The `C` Standard Libraries are typically bundled with the `gcc` compiler. When you install `gcc` or any other `C` compiler, it includes the necessary standard libraries required to compile and link `C` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a `.so` (shared library) or `.a` (static library) file.
-- For libraries outside the `C` standard library, you must to link it manually.
-
-
-### example
-
-```
-  gcc main.o -o myprogram
-```
-
-`myprogram` is an executable file.
-
-TODO: See how to it is done with `ld`, the GNU linker.
-
-[1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
-
-[2]: https://medium.com/hayoung-techlog/setup-for-c-on-mac-d2056a025c85#:~:text=Oct%203%2C%202022-,Clang%20vs%20G%2B%2B,%2B%2B%20is%20GNU%20c%2B%2B%20compiler.
-
-[4]: https://www.reddit.com/r/cpp/comments/3pe6j9/why_should_i_use_clang_over_g/
-
-[5]: https://llvm.org/
-
-[6]: https://stackoverflow.com/questions/5708670/llvm-vs-clang-on-os-x#:~:text=LLVM%20is%20a%20backend%20compiler,a%20representation%20suitable%20for%20LLVM.
-
-[8]: https://en.wikipedia.org/wiki/LLVM
-
-[9]: https://en.wikipedia.org/wiki/Just-in-time_compilation (?)
-
-[10]: https://cplusplus.com/doc/tutorial/introduction/
-
-[11]: https://en.wikipedia.org/wiki/Microsoft_Visual_C%2B%2B
-
-[12]: https://www.learncpp.com/cpp-tutorial/introduction-to-the-compiler-linker-and-libraries/
-
-[13]: https://www.learncpp.com/cpp-tutorial/introduction-to-programming-languages/
-
-[14]: https://www.learncpp.com/cpp-tutorial/introduction-to-the-preprocessor/
-
-[15]: https://www.linkedin.com/pulse/understanding-c-program-compilation-process-fernandez-barreto/
-
-[16]: https://www.linkedin.com/pulse/explanation-all-steps-compilation-juan-diego-petter/
-
-[17]: https://gcc.gnu.org/onlinedocs/cpp/Object-like-Macros.html
-
-[18]: https://en.wikipedia.org/wiki/C_preprocessor#Phases
-
-[19]: https://gcc.gnu.org/onlinedocs/cpp/Line-Control.html
-
-PS1: you will possibly merge the `2-compilation-objects-link` branch into this branch
-PS2: if this branch becomes too extensive. you can break it down, e.g., `1-biuld-process:1-compilation`, `1-biuld-process:2-preprocessor`, etc...
-PS3: for the code example, choose one of the followings
-- https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
-- https://www.learncpp.com/cpp-tutorial/header-files/
-- https://www.youtube.com/watch?v=GExnnTaBELk&ab_channel=BarryBrown
+[1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
+[2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
