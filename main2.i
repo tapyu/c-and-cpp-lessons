@@ -736,43 +736,8 @@ extern int __overflow (FILE *, int);
 
 # 2 "main.c" 2
 
-
-
-# 4 "main.c"
-void generateFibonacci(int n) {
-    int first = 0, second = 1, next;
-
-    printf("Fibonacci Sequence: ");
-
-    for (int i = 1; i <= n; i++) {
-        if (i == 1) {
-            printf("%d ", first);
-            continue;
-        }
-        if (i == 2) {
-            printf("%d ", second);
-            continue;
-        }
-        next = first + second;
-        printf("%d ", next);
-        first = second;
-        second = next;
-    }
-    printf("\n");
-}
-
+# 2 "main.c"
 int main() {
-    int terms;
-
-
-    printf("Enter the number of terms in the Fibonacci sequence: ");
-    scanf("%d", &terms);
-
-    if (terms <= 0) {
-        printf("Please enter a positive integer.\n");
-    } else {
-        generateFibonacci(terms);
-    }
-
-    return 0;
+   printf("Hello, World!");
+   return 0;
 }

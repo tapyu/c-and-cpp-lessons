@@ -64,8 +64,6 @@ Note that both file are exactly the same
   Files are equal
 ```
 
-
-
 ### Compilation
 
 ![](./assets/compiling.png)
@@ -130,13 +128,30 @@ where `as` the the GNU assembler. Note that both output are exactly the same. Ag
   gcc main.o -o myprogram
 ```
 
-where `myprogram` is the executable file. Alternatively, you can directly use the `ld` command:
+where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command, but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... `gcc` already and wonderfully does this hard work for us.
+
+
+## From executable code to the bit level: A deeper dive
+
+The content inside `./myprogram` is the machine code or binary representation of your compiled program. It consists of instructions and data that the computer's processor can understand and execute directly. We can dive deeper and the the `./myprogram` at bit level or, equivalently, at hexadecimal level by using the `xxd` tool.
 
 ```
-  ld main.o -o myprogram2
+  xxd ./myprogram -o myprogram.hex
 ```
 
-Once again, you can check whether both files are the same:
+Use the `-b` flag if you want to obtain bits instead hexadecimals and save it with the `.bin` extension. The first line of hex digits are:
+
+```
+  00000000: 7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+```
+
+1. Each hexadecimal digit contains 4 bits.
+1. Each set of 4 hexadecimal digits contain 16 bits or 2 bytes (each byte contains 8 bits)
+1. `00000000` counts, in hexadecimal, the number of bytes in the executable file (?). At the end of this line goes to `00000010`.
+1. `.ELF............` is the actual content that the hexadecimal digits represents.
+  - `7f45 4c46` represents the `ELF` values, which stands for Executable and Linkable Format. This sequence of hex digits is magic number, which is a signature indicating that this is an ELF file.
+  - `0201` represents the ELF file class and data encoding (e.g., 32-bit or 64-bit, little-endian or big-endian).
+  - `0100` represents the ELF file version.
 
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
