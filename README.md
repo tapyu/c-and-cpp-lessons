@@ -131,6 +131,8 @@ where `as` the the GNU assembler. Note that both output are exactly the same. Ag
 where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command, but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... Thankfully, `gcc` already knows all these details and wonderfully does this hard work for us by internally invoking `ld` with all the necessary options set.
 
 
+---
+
 ## From executable code to the bit level: A deeper dive
 
 The content inside `./myprogram` is the machine code or binary representation of your compiled program. It consists of instructions and data that the computer's processor can understand and execute directly. We can dive deeper and the the `./myprogram` at bit level or, equivalently, at hexadecimal level by using the `xxd` tool.
@@ -152,6 +154,17 @@ Use the `-b` flag if you want to obtain bits instead hexadecimals and save it wi
   - `7f45 4c46` represents the `ELF` values, which stands for Executable and Linkable Format. This sequence of hex digits is magic number, which is a signature indicating that this is an ELF file.
   - `0201` represents the ELF file class and data encoding (e.g., 32-bit or 64-bit, little-endian or big-endian).
   - `0100` represents the ELF file version.
+
+  ---
+
+  ## The usual and most direct compilation process
+
+All that shit usually occurs under the hood. For 99.9999% of cases, to get the compilation done, it is enough to run
+  ```
+  ❯ gcc main.c -o straight-forward-program
+  ❯ ./straight-forward-program
+  Hello, World!
+```
 
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
@@ -187,10 +200,3 @@ Use the `-b` flag if you want to obtain bits instead hexadecimals and save it wi
 [18]: https://en.wikipedia.org/wiki/C_preprocessor#Phases
 
 [19]: https://gcc.gnu.org/onlinedocs/cpp/Line-Control.html
-
-PS1: you will possibly merge the `2-compilation-objects-link` branch into this branch
-PS2: if this branch becomes too extensive. you can break it down, e.g., `1-biuld-process:1-compilation`, `1-biuld-process:2-preprocessor`, etc...
-PS3: for the code example, choose one of the followings
-- https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
-- https://www.learncpp.com/cpp-tutorial/header-files/
-- https://www.youtube.com/watch?v=GExnnTaBELk&ab_channel=BarryBrown
