@@ -36,12 +36,13 @@ It is suitable for cross-platform development and can target various platforms, 
 ![](./assets/preprocessing.png)
 
 - [The][1] input file for this stage is `*.c` file.
-- [The preprocessor][16] takes the source code as an input, and it removes all the comments from the source code.
-- It performs [fours][15] tasks:
-  - Inclusion of header files. [For][16] example, if the directive `#include <stdio.h>` is available in the program, then the preprocessor interprets the directive and replaces this directive with the content of the `/usr/include/stdio.h` file.
-  - *Macro* expansion. A macro is a preprocessor directive that allows you to define a symbolic name or identifier for a sequence of code. They are used to create code snippets that can be easily reused and to introduce simple text substitutions. The most common use of macros in C is through the `#define` directive, which defines a macro. They can be [constant][17] macros, e.g., `#define BUFFER_SIZE 1024`, or [function-like][18] macros, e.g., `#define MAX(a, b) ((a) > (b) ? (a) : (b))`.
-  - Resolve *conditional compilation*. Using special preprocessing directives, you can include or exclude parts of the program according to various conditions. For example, `#ifdef DEBUG printf("Debugging is enabled.\n"); #endif`. Other conditional compilatinos are `#if`, `#elif`, `#else`.
-  - Line control. If you use a program to combine or rearrange source files into an intermediate file which is then compiled, you can use line control to inform the compiler of where each source line originally came from.
+- It performs the following tasks:
+  - Removing comments : It removes all the comments.
+  - [Line Splicing][18] (`\`): The backslash `\` is used for line splicing, allowing you to break long lines of code into multiple lines for readability, are concatenated to form a single line.
+  - Header files inclusion: [For][16] example, if the directive `#include <stdio.h>` is available in the program, then the preprocessor interprets the directive and replaces this directive with the content of the `/usr/include/stdio.h` file.
+  - *Macro* expansion: A macro is a preprocessor directive that allows you to define a symbolic name or identifier for a sequence of code. They are used to create code snippets that can be easily reused and to introduce simple text substitutions. The most common use of macros in C is through the `#define` directive, which defines a macro. They can be [constant][17] macros, e.g., `#define BUFFER_SIZE 1024`, or [function-like][18] macros, e.g., `#define MAX(a, b) ((a) > (b) ? (a) : (b))`.
+  - Resolve the *conditional compilation directives*: Using special preprocessing directives, you can include or exclude parts of the program according to various conditions. For example, `#ifdef DEBUG printf("Debugging is enabled.\n"); #endif`. Other conditional compilations are `#ifndef`, `#if`, `#elif`, `#else`. The preprocessor evaluates these conditions and determines whether the enclosed code should be included in the preprocessed output file.
+  - *Line Control*: The `C` preprocessor [informs][19] the `C` compiler of the location in your source code where each token came from. A token in C can be defined as the smallest individual element of the C programming language that is meaningful to the compiler. It is the basic component of a C program. They can be Keywords (`double`, `if`, `while`, `return`, ...); Identifiers (variable and function names); Constants (`const int c_var = 20;`); Strings;  Special Symbols (`[]`, `()`, `{}`, `,`, `#`, ...); Operators (unary, binary, and ternary operators);
 - In nutshell, the preprocessor expands the code.
 - The output file is `*.i` or preprocessed file.
 
@@ -61,7 +62,7 @@ TODO: See how it is done with `cpp` (`C` preprocessor).
 
 - The input file for this stage is `*.i` file.
 - [It][15] takes the output of the preprocessor and converts it to assembly language.
-- Assembly code, often referred to as assembly language or just assembly, is a low-level programming language that uses mnemonic symbols (e.g., MOV for "move," ADD for "add") to represent CPU instructions, thus making the code human-readable. Each assembly instruction typically corresponds to a single machine code instruction that is specific to the target CPU. Therefore, Assembly code is highly platform-specific, meaning that it is tailored to a specific computer architecture and operating system. Code written in assembly for one type of CPU will not run on a different CPU architecture without modification.
+- Assembly code, often referred to as assembly language or just assembly, is a low-level programming language that uses mnemonic symbols (e.g., MOV for "move," ADD for "add") to represent CPU instructions (the so-called opcode), thus making the code human-readable. Each assembly instruction typically corresponds to a single machine code instruction that is specific to the target CPU. Therefore, Assembly code is highly platform-specific, meaning that it is tailored to a specific computer architecture and operating system. Code written in assembly for one type of CPU will not run on a different CPU architecture without modification.
 - This is exactly the same code you may have worked with when programming some microcontrollers directly in assembly language (e.g., 8051 microcontroller).
 ``![](./assets/compiler_parts.png)
 
@@ -146,6 +147,10 @@ TODO: See how to it is done with `ld`, the GNU linker.
 [16]: https://www.linkedin.com/pulse/explanation-all-steps-compilation-juan-diego-petter/
 
 [17]: https://gcc.gnu.org/onlinedocs/cpp/Object-like-Macros.html
+
+[18]: https://en.wikipedia.org/wiki/C_preprocessor#Phases
+
+[19]: https://gcc.gnu.org/onlinedocs/cpp/Line-Control.html
 
 PS1: you will possibly merge the `2-compilation-objects-link` branch into this branch
 PS2: if this branch becomes too extensive. you can break it down, e.g., `1-biuld-process:1-compilation`, `1-biuld-process:2-preprocessor`, etc...
