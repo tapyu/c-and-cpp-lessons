@@ -31,6 +31,19 @@ It is suitable for cross-platform development and can target various platforms, 
 
 ---
 
+## The usual and most direct compilation process (without build automation tools)
+
+For 99.9999% of cases, to get the compilation done, it is enough to run
+  ```
+  ❯ gcc main.c -o straight-forward-program
+  ❯ ./straight-forward-program
+  Hello, World!
+```
+
+However, under the hood, the preprocessing, compiling, assembling, and linking have occurred silently. Let us break each step down.
+
+---
+
 ## Preprocessing
 
 ![](./assets/preprocessing.png)
@@ -157,17 +170,6 @@ Use the `-b` flag if you want to obtain bits instead hexadecimals and save it wi
   - `7f45 4c46` represents the `ELF` values, which stands for Executable and Linkable Format. This sequence of hex digits is magic number, which is a signature indicating that this is an ELF file.
   - `0201` represents the ELF file class and data encoding (e.g., 32-bit or 64-bit, little-endian or big-endian).
   - `0100` represents the ELF file version.
-
-  ---
-
-  ## The usual and most direct compilation process
-
-All that shit usually occurs under the hood. For 99.9999% of cases, to get the compilation done, it is enough to run
-  ```
-  ❯ gcc main.c -o straight-forward-program
-  ❯ ./straight-forward-program
-  Hello, World!
-```
 
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
