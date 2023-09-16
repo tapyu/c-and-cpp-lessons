@@ -23,6 +23,12 @@ A build automation tool is a software tool or system designed to automate the pr
 ## `Autotools`
 
 
+---
+
+## `CMake`
+
+TODO: https://www.youtube.com/watch?v=kekw7eGb8Mw&t=75s&ab_channel=sudocpp
+
 [1]: https://stackoverflow.com/a/18291580/13998346
 [2]: https://en.wikipedia.org/wiki/GNU_Autotools
 [3]: https://en.wikipedia.org/wiki/Build_automation
