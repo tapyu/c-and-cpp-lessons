@@ -144,7 +144,7 @@ where `as` the the GNU assembler. Note that both output are exactly the same. Ag
   gcc main.o -o myprogram
 ```
 
-where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command, but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... Thankfully, `gcc` already knows all these details and wonderfully does this hard work for us by internally invoking `ld` with all the necessary options set.
+where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command, but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... Thankfully, `gcc` already knows all these details and wonderfully does this hard work for us by internally invoking `ld` with all the necessary options set. It is also important to state that, in practice, is highly unrecommended to directly use `ld`. You should use `gcc` (or other compiler) instead.
 
 
 ---
