@@ -1,6 +1,6 @@
 # FAQ
 
-**"void foo(void)" vs. "void foo()"?**
+**"void foo(void)" vs. "void foo()"? (`C` and `C++`)**
 
 ```c
   void foo(void);
@@ -18,7 +18,7 @@ Variable argument list functions are inherently un-typesafe and should be avoide
 
 ---
 
-**Object-like macro vs. constant variables**
+**Object-like macro vs. constant variables (`C` and `C++`(?))**
 
 [A][2] constant defined with the `const` qualifier is best thought of as an unmodifiable variable. It has all the properties of a variable: it has a type, it has a size, it has linkage, you can take its address. (The compiler might optimize away some of these properties if it can get away with it: for instance, constants whose address is never used may not get emitted into the executable image. But this is only by the grace of the as-if rule.) The only thing you can't do to a `const` datum is change its value. A constant defined with `enum` is a little different. It has a type and a size, but it doesn't have linkage, you can't take its address, and its type is unique. Both of these are processed during translation phase 7, so they can't be anything but an lvalue or rvalue. (I'm sorry about the jargon in the preceding sentence, but I would have to write several paragraphs otherwise.)
 
@@ -26,7 +26,7 @@ A macro has far fewer constraints: it can expand to any sequence of tokens, as l
 
 **It is generally considered good practice, nowadays, not to use a macro when a constant will do**. Macros don't obey the same scoping rules as all other identifiers, which can be confusing, and if you use a constant you give more information to translation phase 7 and thus also to the debugger. However, macros permit you to do things that cannot be done any other way, and if you need to do one of those things, you should not hesitate to use them. (Macros that are pulling their weight, in this sense, generally do not just expand to numeric literals, though I am not going to say never.)
 
-**`%f` vs. `%lf`**
+**`%f` vs. `%lf` (`C`)**
 1. [For][3] `printf()` -> Arguments of type `float` are promoted to `double` so both `%f` and `%lf` are used for double.
 1. For `scanf()` -> `%f` for float and `%lf` for double.
 
