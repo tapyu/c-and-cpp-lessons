@@ -26,5 +26,10 @@ A macro has far fewer constraints: it can expand to any sequence of tokens, as l
 
 **It is generally considered good practice, nowadays, not to use a macro when a constant will do**. Macros don't obey the same scoping rules as all other identifiers, which can be confusing, and if you use a constant you give more information to translation phase 7 and thus also to the debugger. However, macros permit you to do things that cannot be done any other way, and if you need to do one of those things, you should not hesitate to use them. (Macros that are pulling their weight, in this sense, generally do not just expand to numeric literals, though I am not going to say never.)
 
+**`%f` vs. `%lf`**
+1. [For][3] `printf()` -> Arguments of type `float` are promoted to `double` so both `%f` and `%lf` are used for double.
+1. For `scanf()` -> `%f` for float and `%lf` for double.
+
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
+[3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
