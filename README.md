@@ -114,6 +114,9 @@ where `as` the the GNU assembler. Note that both output are exactly the same. Ag
 
 ## Linking
 
+*A quick historical note:*
+[In][20] the old days, when dinosaurs roamed the data centers, many programs were complete in themselves. In those days there was generally no compiler–people wrote directly in assembly code–and the assembler actually generated an executable file which the machine could execute directly. As languages liked Fortran and Cobol started to appear, people began to think in terms of libraries of subroutines, which meant that there had to be some way to run the assembler at two different times, and combine the output into a single executable file. This required the assembler to generate a different type of output, which became known as an object file (I have no idea where this name came from). And a new program was required to combine different object files together into a single executable. This new program became known as the linker (the source of this name should be obvious).
+
 ![](./assets/linker.png)
 
 - The input file for this stage is `*.o` file.
@@ -200,3 +203,5 @@ All that shit usually occurs under the hood. For 99.9999% of cases, to get the c
 [18]: https://en.wikipedia.org/wiki/C_preprocessor#Phases
 
 [19]: https://gcc.gnu.org/onlinedocs/cpp/Line-Control.html
+
+[20]: https://www.airs.com/blog/archives/38
