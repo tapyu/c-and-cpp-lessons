@@ -1,5 +1,7 @@
 # Build process
 
+![](.assets/general-build-process.jpg)
+
 **What is a compiler?**
 
 C/C++ compilers are software tools that translate human-readable source code written in the C or C++ programming languages into [*machine languages*][10], that is, a set of instructions made of zeros and ones. This set of instructions are represented in the computer as an executable file that can run on a computer's hardware.
