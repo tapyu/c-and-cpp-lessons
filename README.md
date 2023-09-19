@@ -93,7 +93,7 @@ where `main.cpp` is the main `C++` file in your project.
 #### **And the library, where is it located?**
 The `C++` Standard Libraries are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
 
-#### **I could simply use an object and use the `printMessage()` function (see example in this branch) without requiring to build a library (see the example in the 1-build-process). So when should I create a library?**
+#### **When to use a librabry over a source `.c`/`.cpp` code and its header file**
 
 Whenever you see a set of classes (or whatever) that fulfill a more general need than just this project. [For instance][3], an Engineer called Steve Baker is writing C++ in the “wasm” environment (I have no idea what this shit is) for running C++ in a browser window. So his “general web storage” software is an absolute ‘natural’ for turning into a library. He knows for 100% sure that sometime in the future, he will need something like this in another C++/wasm environment - so he is writing this code with generality in mind and it’s going into a stack of other libraries I’ve written over the years.
 
