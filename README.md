@@ -3,14 +3,14 @@
 ### **"void foo(void)" vs. "void foo()"? (`C` and `C++`)**
 
 ```c
-  void foo(void);
+void foo(void);
 ```
 [That][1] is the correct way to say "no parameters" in `C`, and it also works in `C++`.
 
 But:
 
 ```c
-  void foo();
+void foo();
 ```
 Means different things in `C` and `C++`! In `C` it means "could take any number of parameters of unknown types", and in `C++` it means the same as `foo(void)`, that is, no parameters are allowed.
 
