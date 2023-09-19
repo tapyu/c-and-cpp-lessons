@@ -14,3 +14,6 @@ tip: tip.o gd.o
 
 tip.o: tip.c gd.h
 	gcc -c tip.c
+
+clean:
+	rm *.o tip geom
