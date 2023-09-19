@@ -47,7 +47,7 @@ Header files are human-readable files that serve to communicate the interface of
     - These headers provide standardized interfaces to `C++` language features and standard library components.
 It is important to note that while these conventions are common, they are not strict rules enforced by the language itself. The presence or absence of the extension doesn't affect how the compiler or preprocessor treats the file. The choice of file extension and inclusion method is ultimately defined by the project's convention.
 
-However, it is also important to note that header files are not used exclusively for libraries; they are a fundamental part of C programming and serve various purposes beyond just defining library interfaces. Header files are also used to:
+However, it is also important to note that header files are not used exclusively for libraries; they are a fundamental part of `C`/`C++` programming and serve various purposes beyond just defining library interfaces. Header files are also used to:
 - *Declare Function Prototypes/declarations*: Header files commonly declare function prototypes, allowing you to use functions defined in other source files. This is essential for breaking up your code into multiple source files while maintaining proper encapsulation. See `./C-header-files-for-func-prot`
 - *Share Common Definitions*: Header files can contain shared constants, macros, and data structure definitions that multiple source files need. This promotes code reusability and consistency.
 
