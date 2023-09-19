@@ -16,4 +16,4 @@ tip.o: tip.c gd.h
 	gcc -c tip.c
 
 clean:
-	rm *.o tip geom
+	rm -f *.o tip geom
