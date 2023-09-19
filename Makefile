@@ -1,5 +1,5 @@
 geom: geom.o gd.o
-	gcc geom.o gd.o geom -lm
+	gcc geom.o gd.o -o geom -lm
 
 geom.o: geom.c
 	gcc -c geom.c
