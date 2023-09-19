@@ -2,7 +2,7 @@
 
 ```shell
 for file in {main.c,functions.c,math.c}; do
-        gcc -c $file -o ${file/%.*/.o}
+    gcc -c $file -o ${file/%.*/.o}
 done
 ```
 To get the object files done.
@@ -10,4 +10,4 @@ To get the object files done.
 ```shell
 gcc main.o functions.o math.o -o program
 ```
-To obtain the excutable file.
+To obtain the excutable file (the `.o` object files' order does not matter).
