@@ -19,7 +19,14 @@ To compile `tip`, run:
 ```
 gcc -c tip.c
 gcc -c gd.c
-gcc -o tip tip.o gd.o -lm
+gcc -o tip tip.o gd.o
+```
+
+To compile `geom`, run:
+```
+gcc -c geom.c
+gcc -c gd.c
+gcc -o geom gd.o geom.o -lm
 ```
 
 
@@ -29,4 +36,3 @@ gcc -o tip tip.o gd.o -lm
 [3]: https://en.wikipedia.org/wiki/Build_automation
 [4]: https://youtu.be/GExnnTaBELk?t=981
 [5]: https://youtu.be/GExnnTaBELk?t=1402
-
