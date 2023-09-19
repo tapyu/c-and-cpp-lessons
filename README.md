@@ -38,7 +38,7 @@ Libraries on your computer are typically stored as binary files. The exact file 
 Header files are human-readable files that serve to communicate the interface of the library to users, enabling them to properly use and interact with the library's features. When using a library, whether static or shared, it is common practice to provide a corresponding header file that contains the necessary declarations for the library's functions, classes, structures, and other entities. This allows users of the library to include the header file in their own code and access the functionality provided by the library. In `C++`, the `#include` directive is used to include header files. Directives are commands or instructions that are processed by the preprocessor before the actual compilation of the code. Directives are typically preceded by the `#` symbol. Header files typically contain function declarations, class definitions, constants, and other declarations that are needed for the compilation and usage of functions and types defined in the external source file (`.cpp` file).
 - User-Defined Header Files:
     - These files are typically given a `.h` extension, and sometimes a `.hpp` extension in `C++` to indicate that they are header files.
-    - When including user-defined header files, the `#include` directive is typically used with double quotes, such as `#include "myheader.h"`.
+    - When including user-defined header files, the `#include` directive is typically used with double quotes, which means to search in the current directory (relative path). For example, `#include "myheader.h"` means to access the file `./myheader.h`.
     - User-defined header files contain declarations and definitions specific to your project or library and are often organized within your project's directory structure.
     - It is a common convention to give them the same base name (e.g., `mylib.h` and `mylib.cpp`) for clarity and organization, but it is not a strict requirement. 
 - `C++` Standard Library Header Files:
@@ -170,3 +170,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [2]: https://stackoverflow.com/a/18593344/13998346
 [3]: https://www.quora.com/When-should-one-build-libraries-for-personal-C-projects
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter
+[5]: https://youtu.be/GExnnTaBELk?t=941
