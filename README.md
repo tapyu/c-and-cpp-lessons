@@ -1,6 +1,6 @@
 # Build process
 
-![](.assets/general-build-process.jpg)
+![](assets/general-build-process.jpg)
 
 **What is a compiler?**
 
