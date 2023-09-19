@@ -20,8 +20,8 @@ A good project file structure in C/C++ can help organize your code, make it more
 ├── bin/
 │   └── (executable files)
 │
-├── build/
-│   └── (intermediate build files)
+├── build/ (or obj/)
+│   └── (intermediate object files)
 │
 ├── include/
 │   └── (header files)
@@ -30,7 +30,7 @@ A good project file structure in C/C++ can help organize your code, make it more
 │   └── (library files, if applicable)
 │
 ├── src/ (or project_name/)
-│   ├── main.c (or main.cpp. One can use project_name instead of main)
+│   ├── main.c (or main.cpp. project_name can be used instead of main)
 │   ├── module1.c (or module1.cpp)
 │   ├── module2.c (or module2.cpp)
 │   └── ...
