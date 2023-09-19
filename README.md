@@ -29,6 +29,9 @@ gcc -c gd.c
 gcc -o geom gd.o geom.o -lm
 ```
 
+### Performing it by using `./Makefile`
+
+Just run `make`
 
 
 [1]: https://www.youtube.com/watch?v=GExnnTaBELk
