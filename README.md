@@ -23,7 +23,7 @@ A good project file structure in C/C++ can help organize your code, make it more
 ├── build/ (or obj/)
 │   └── (intermediate object files)
 │
-├── include/
+├── include/ (or headers/)
 │   └── (header files)
 │
 ├── lib/
