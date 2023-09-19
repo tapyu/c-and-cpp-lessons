@@ -1,6 +1,8 @@
 # Build process
 
-![](assets/general-build-process.jpg)
+<p align="center">
+  <img src="assets/general-build-process.jpg" alt="All the build/compilation process">
+</p>
 
 **What is a compiler?**
 
