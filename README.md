@@ -13,6 +13,14 @@ Makefiles are essential tools in `C`/`C++` projects for automating the build pro
 ## Example
 ![](./assets/example.png)
 
+### Performing it manually
+
+To compile `tip`, run:
+```
+gcc -c tip.c
+gcc -c geom.c
+gcc -o tip tip.o geom.o -lm
+```
 
 
 

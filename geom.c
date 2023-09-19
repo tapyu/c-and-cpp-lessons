@@ -19,15 +19,3 @@ double get_double(char *prompt, double min, double max) // prompt is a pointer t
     while (input < min || input > max);
     return input;
 }
-
-int main()
-{
-    double x = get_double("Enter the x value: ", -100, 100);
-    double y = get_double("Enter the y value: ", -100, 100);
-
-    double d = sqrt(pow(x,2) + pow(y,2));
-
-    printf("The distance is %lf meters", d);
-
-    return 0;
-}
