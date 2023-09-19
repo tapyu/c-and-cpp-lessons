@@ -9,7 +9,7 @@ int main()
 
     double d = sqrt(pow(x,2) + pow(y,2));
 
-    printf("The distance is %lf meters", d);
+    printf("The distance is %lf km", d);
 
     return 0;
 }
