@@ -11,4 +11,6 @@ int main()
     double total = price + tip;
     printf("Tip amount: %lf\n", tip);
     printf("Total amount: %lf\n", total);
+    
+    return 0;
 }

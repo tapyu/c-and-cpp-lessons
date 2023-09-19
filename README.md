@@ -18,8 +18,8 @@ Makefiles are essential tools in `C`/`C++` projects for automating the build pro
 To compile `tip`, run:
 ```
 gcc -c tip.c
-gcc -c geom.c
-gcc -o tip tip.o geom.o -lm
+gcc -c gd.c
+gcc -o tip tip.o gd.o -lm
 ```
 
 
