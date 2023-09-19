@@ -1,3 +1,6 @@
+# Compiler and Compiler Flags
+CC = gcc
+
 all: geom tip
 
 geom: geom.o gd.o
