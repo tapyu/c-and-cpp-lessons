@@ -1,5 +1,5 @@
 # build directories
-CODEDIRS=. ./src
+SRCDIRS=. ./src
 # source directories
 INCDIRS=. ./include/
 # build directories
@@ -20,7 +20,7 @@ DEPFLAGS=-MP -MD
 # c compiler flags. The foreach function will expand to `-I. -I./include/`
 CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIRS),-I$(DIR)) $(OPT) $(DEPFLAGS)
 # all .c files. The foreach function will expand to `./*.c ./src/*.c`
-CFILES=$(foreach DIR,$(CODEDIRS),$(wildcard $(DIR)/*.c))
+CFILES=$(foreach DIR,$(SRCDIRS),$(wildcard $(DIR)/*.c))
 # all .o files. patsubst will expand to the respective C files, but within `build` directory
 OBJECTS=$(patsubst %.c,$(BUILDDIRS)/%.o,$(notdir $(CFILES)))
 # all .d files
@@ -31,7 +31,7 @@ all: $(BINARIES)
 $(BINARIES): $(OBJECTS)
 	$(CC) -o $@ $^
 
-%.o: %.c
+$(BUILDDIRS)/%.o: $(SRCDIRS)/%.c
 	echo $^
 	$(CC) $(CFLAGS) -c -o $@ $<
 
