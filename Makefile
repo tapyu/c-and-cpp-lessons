@@ -29,7 +29,8 @@ DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
 all: $(BINARIES)
 
-$(BINARIES): $(OBJECTS)
+# exclude $(BUILDDIR)/tip.o
+$(BINARIES): $(filter-out %tip.o,$(OBJECTS))
 	echo $^
 	$(CC) -o $@ $^
 
