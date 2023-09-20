@@ -27,11 +27,14 @@ OBJECTS=$(patsubst %.c,$(BUILDDIR)/%.o,$(notdir $(CFILES)))
 # all .d files
 DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
-all: $(BINARIES)
+all: $(foreach BIN,$(BINARIES),$(BINDIR)/$(BIN))
 
-# exclude $(BUILDDIR)/tip.o
-$(BINARIES): $(filter-out %tip.o,$(OBJECTS))
-	echo $^
+# geom
+$(BINDIR)/$(filter-out tip,$(BINARIES)): $(filter-out %tip.o,$(OBJECTS))
+	$(CC) -o $@ $^ -lm
+
+# tip
+$(BINDIR)/$(filter-out geom,$(BINARIES)): $(filter-out %geom.o,$(OBJECTS))
 	$(CC) -o $@ $^
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.c
