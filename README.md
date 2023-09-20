@@ -71,21 +71,21 @@ It's essential to choose a structure that fits your project's size and complexit
 
 To compile `tip`, run:
 ```
-gcc -c tip.c
-gcc -c gd.c
-gcc -o tip tip.o gd.o
+gcc -c -o build/gd.o src/gd.c
+gcc -c -o build/tip.o src/tip.c
+gcc -o bin/tip build/tip.o build/gd.o
 ```
 
 To compile `geom`, run:
 ```
-gcc -c geom.c
-gcc -c gd.c
-gcc -o geom gd.o geom.o -lm
+gcc -c -o build/gd.o src/gd.c
+gcc -c -o build/geom.o src/geom.c
+gcc -o bin/geom build/gd.o build/geom.o -lm
 ```
 
 ### Performing it by using `./Makefile`
 
-Just run `make`
+Just run `make`.
 
 
 [1]: https://www.youtube.com/watch?v=GExnnTaBELk

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "gd.h"
+#include "../include/gd.h"
 
 int main() {
     double x = get_double("Enter the x value: ", -100, 100);
