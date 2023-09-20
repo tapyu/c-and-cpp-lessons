@@ -22,6 +22,10 @@ A build automation tool is a software tool or system designed to automate the pr
 
 ## `Autotools`
 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Autoconf-automake-process.svg/1024px-Autoconf-automake-process.svg.png" alt="GNU autotools">
+</p>
+
 
 ---
 
