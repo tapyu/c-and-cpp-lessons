@@ -29,7 +29,7 @@ OBJECTS=$(patsubst %.c,$(BUILDDIR)/%.o,$(notdir $(CFILES)))
 # all .d files
 DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
-all: $(foreach BIN,$(BINARIES),$(BINDIR)/$(BIN))
+all: $(addprefix $(BINDIR)/,$(BINARIES))
 
 # geom
 $(BINDIR)/$(filter-out tip,$(BINARIES)): $(filter-out %tip.o,$(OBJECTS))
