@@ -1,26 +1,33 @@
-BUILD_DIR ?= ./build
-SRC_DIRS ?= ./src
+# build directories
+CODEDIRS=. ./src/
+# source directories
+INCDIRS=. ./include/
+# build directories
+BUILDDIRS=. ./build/
+# bin directory
+BINDIR=./bin/
+# binaries
+BINARIES=geom tip
 
-SRCS := $(shell find $(SRC_DIRS) -name '*.cpp' -or -name '*.c' -or -name '*.s')
-OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
-DEPS := $(OBJS:.o=.d)
+# C compiler
+CC=gcc
+# compiler optmization level option
+OPT=-O0
+# compiler other options
+CFLAGS=-Wall -Wextra -g
+# related to generating dependency files in GCC, which are useful for managing dependencies between source files in a project, especially in the context of Makefiles. It mean, don't just build the program, but also generate the depencies in a way that `make` will understand.
+DEPFLAGS=-MP -MD
+# c compiler flags. The foreach function will expand to `-I. -I./include/`
+CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIRS),-I$(DIR)) $(OPT) $(DEPFLAFS)
+# all .c files. The foreach function will expand to `./first/path/to/foo.c ./second/path/to/bar.c`
+CFILES=$(foreach DIR,$(CODEDIRS),$(wildcard $(DIR)/*.c))
+# all .o files. patsubst will expand to `./first/path/to/foo.o ./second/path/to/bar.o`
+OBJECTS=$(patsubst %.c,%.o,$(CFILES))
+# all .d files
+DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
-all: geom tip
+all: $(BINARIES)
 
-geom: geom.o gd.o
-	gcc geom.o gd.o -o geom -lm
-
-geom.o: geom.c gd.h
-	gcc -c geom.c
-
-gd.o: gd.c
-	gcc -c gd.c
-
-tip: tip.o gd.o
-	gcc tip.o gd.o -o tip
-
-tip.o: tip.c gd.h
-	gcc -c tip.c
 
 clean:
 	rm -f *.o tip geom
