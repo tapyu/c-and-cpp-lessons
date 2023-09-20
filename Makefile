@@ -3,7 +3,7 @@ CODEDIRS=. ./src
 # source directories
 INCDIRS=. ./include/
 # build directories
-BUILDDIRS=. ./build/
+BUILDDIRS=. ./build
 # bin directory
 BINDIR=./bin/
 # binaries
@@ -19,9 +19,9 @@ CFLAGS=-Wall -Wextra -g
 DEPFLAGS=-MP -MD
 # c compiler flags. The foreach function will expand to `-I. -I./include/`
 CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIRS),-I$(DIR)) $(OPT) $(DEPFLAGS)
-# all .c files. The foreach function will expand to `./first/path/to/foo.c ./second/path/to/bar.c`
+# all .c files. The foreach function will expand to `./*.c ./src/*.c`
 CFILES=$(foreach DIR,$(CODEDIRS),$(wildcard $(DIR)/*.c))
-# all .o files. patsubst will expand to `./first/path/to/foo.o ./second/path/to/bar.o`
+# all .o files. patsubst will expand to the respective C files, but within `build` directory
 OBJECTS=$(patsubst ./%.c,$(BUILDDIRS)/%.o,$(CFILES))
 # all .d files
 DEPFILES=$(patsubst %.c,%.d,$(CFILES))
