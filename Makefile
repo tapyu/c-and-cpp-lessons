@@ -22,7 +22,7 @@ CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIRS),-I$(DIR)) $(OPT) $(DEPFLAGS)
 # all .c files. The foreach function will expand to `./*.c ./src/*.c`
 CFILES=$(foreach DIR,$(CODEDIRS),$(wildcard $(DIR)/*.c))
 # all .o files. patsubst will expand to the respective C files, but within `build` directory
-OBJECTS=$(patsubst ./%.c,$(BUILDDIRS)/%.o,$(CFILES))
+OBJECTS=$(patsubst %.c,$(BUILDDIRS)/%.o,$(notdir $(CFILES)))
 # all .d files
 DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
