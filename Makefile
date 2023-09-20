@@ -29,10 +29,10 @@ DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 all: $(BINARIES)
 
 $(BINARIES): $(OBJECTS)
-	echo $^
 	$(CC) -o $@ $^
 
 %.o: %.c
+	echo $^
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
