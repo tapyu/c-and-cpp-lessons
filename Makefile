@@ -14,8 +14,10 @@ CC=gcc
 # compiler optmization level option
 OPT=-O0
 # compiler other options
+# The -g option in GCC is used to include debugging information in the generated executable. When you compile your code with -g, it adds debugging symbols to the binary, which can be extremely helpful for debugging and analyzing your program when it encounters issues or crashes.
+# The -Wall and -Wextra options in GCC are used to enable a variety of warning messages during compilation. They are part of a set of compiler warning options that can help you catch potential issues and improve the quality of your code.
 CFLAGS=-Wall -Wextra -g
-# related to generating dependency files in GCC, which are useful for managing dependencies between source files in a project, especially in the context of Makefiles. It mean, don't just build the program, but also generate the depencies in a way that `make` will understand.
+# related to generating dependency files (.d files) in GCC, which are useful for managing dependencies between source files in a project, especially in the context of Makefiles. It mean, don't just build the program, but also generate the depencies in a way that `make` will understand.
 DEPFLAGS=-MP -MD
 # c compiler flags. The foreach function will expand to `-I. -I./include/`
 CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIR),-I$(DIR)) $(OPT) $(DEPFLAGS)
