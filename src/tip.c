@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "gd.h"
+#include "../include/gd.h"
 
 int main()
 {
