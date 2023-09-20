@@ -22,7 +22,7 @@ CFLAGS=-Wall -Wextra -g $(foreach DIR,$(INCDIRS),-I$(DIR)) $(OPT) $(DEPFLAGS)
 # all .c files. The foreach function will expand to `./first/path/to/foo.c ./second/path/to/bar.c`
 CFILES=$(foreach DIR,$(CODEDIRS),$(wildcard $(DIR)/*.c))
 # all .o files. patsubst will expand to `./first/path/to/foo.o ./second/path/to/bar.o`
-OBJECTS=$(patsubst %.c,%.o,$(CFILES))
+OBJECTS=$(patsubst ./%.c,$(BUILDDIRS)/%.o,$(CFILES))
 # all .d files
 DEPFILES=$(patsubst %.c,%.d,$(CFILES))
 
