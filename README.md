@@ -97,6 +97,12 @@ The `C++` Standard Libraries are typically bundled with the `g++` compiler. When
 
 Whenever you see a set of classes (or whatever) that fulfill a more general need than just this project. [For instance][3], an Engineer called Steve Baker is writing C++ in the “wasm” environment (I have no idea what this shit is) for running C++ in a browser window. So his “general web storage” software is an absolute ‘natural’ for turning into a library. He knows for 100% sure that sometime in the future, he will need something like this in another C++/wasm environment - so he is writing this code with generality in mind and it’s going into a stack of other libraries I’ve written over the years.
 
+#### **How to get more `C`/`C++` libraries?**
+
+On Linux, you can obtain more `C`/`C++` libraries via
+1. Package manager: Most Linux distributions provide a package manager (e.g., APT for Debian/Ubuntu, YUM/DNF for Red Hat/Fedora, Pacman for Arch Linux) that allows you to easily install software packages, including libraries.
+1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
+
 ---
 ## Example
 
