@@ -14,7 +14,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{red}* \color{violet}px \space \color{green}= \space \color{yellow}\& \color{cyan}x}$</td>
-    <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space px \space \color{green}is \space set \space to \space \color{yellow}the \space address \space of \space \color{cyan}x}$.</td>
+    <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space px \space \color{green}is \space set \space to}$
+        ${\color{yellow}the \space address \space of \space \color{cyan}x}$.</td>
     <td>This syntax is used to initialize the pointer variable. This is the unique situation that $\color{red}*$ reads $\color{red}pointer$. In all others, $\color{red}*$ will denote the dereference process. By "integer pointer", we mean that this pointer points to an address whose stored value is an integer.</td>
 </tr>
 <tr>
@@ -30,7 +31,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{cyan}y \space \color{green}= \space \color{red}* \color{violet}px}$</td>
-    <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space \color{red}the \space stored \space value \space pointed \space by \space \color{violet}px}$.</td>
+    <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space}$
+        ${\color{red}the \space stored \space value \space pointed \space by \space \color{violet}px}$.</td>
     <td>It is also a dereference, but in the other way around, that is, the value of a variable that is out of the scope in question is assigned to a local variable.</td>
 </tr>
 <tr>
