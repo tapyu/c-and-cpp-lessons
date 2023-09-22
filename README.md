@@ -19,7 +19,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
-    <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to \space \color{cyan}the \space address \space of \space the \space first \space element \space in \space the \space integer \space array \space arr}$.</td>
+    <td>${\color{blue}Integer \space \color{red}pointer& &\color{violet}named \space parr& &\color{green}is \space set \space to \space \color{cyan}the \space address \space of \space the \space first \space element \space in \space the \space integer \space array \space arr}$.</td>
     <td>When you use the array name in this context, it implicitly decays into the address of the first element of the array. In other words, arr represents the address of the first element <code>arr[0]</code>. In the context of C and C++, the term "decay" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.</td>
 </tr>
 <tr>
