@@ -22,7 +22,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
         ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$.</td>
-    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>decay</b>" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for string as it is represented as an array of `char`.</td>
+    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>decay</b>" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for string as it is represented as an array of `char` (see <code>./example2/</code>).</td>
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
@@ -64,7 +64,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 #### **What is pointer arithmetic?**
 
-Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses.
+Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./example2`).
 
 - *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. For example (you could use `ptr++;` instead of `ptr = ptr + 1;`):
 ```c
