@@ -38,6 +38,6 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 
 ## **Worth mentioning aspects of pointers**
 
-1. In `C`, when you pass a string literal like `"Mike"` as an argument to a function that expects a pointer to a character (`char *name`), it works because string literals are treated as pointers to the first character of the string.
+1. When passes as an argument of a function, string literals like `"Mike"` are treated as `char` pointers to the first character of that string.
 
 [1]: https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning
