@@ -14,12 +14,55 @@ You are explicitly specifying that myString is an array of characters with a siz
 
 #### String operations
 
-C provides a set of standard library functions for working with these character arrays, such as `strlen()`, `strcpy()`, `strcat()`, and `printf()` with `%s` format specifier.
+C provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier.
 
-
-#### Using pointers to manipulate strings
-
-In `C`, **character arrays are often manipulated using pointers to char.** Since arrays can be treated as pointers to their first elements, you can use pointer arithmetic to traverse the characters of a string. This is a fundamental feature of C that allows you to manipulate strings efficiently.
-
-
+<table>
+<tr>
+  <th multicol="2">Format specifier</th>
+</tr>
+<tr>
+  <td>Syntax</td>
+  <td>Variable</td>
+</tr>
+<tr>
+  <td><code>%i</code>,<code>%d</code></td>
+  <td>Integer (decimal)</td>
+</tr>
+<tr>
+  <td><code>%li</code>,<code>%ld</code></td>
+  <td>Long integer (decimal)</td>
+</tr>
+<tr>
+  <td><code>%c</code></td>
+  <td>Character</td>
+</tr>
+<tr>
+  <td><code>%s</code></td>
+  <td>String</td>
+</tr>
+<tr>
+  <td><code>%f</code></td>
+  <td>Float</td>
+</tr>
+<tr>
+  <td><code>%lf</code></td>
+  <td>Double-precision floating-point number (double)</td>
+</tr>
+<tr>
+  <td><code>%u</code></td>
+  <td>Unsigned integer (decimal)</td>
+</tr>
+<tr>
+  <td><code>%lu</code></td>
+  <td>Unsigned long integer (decimal)</td>
+</tr>
+<tr>
+  <td><code>%x</code></td>
+  <td>Integer (hexadecimal)</td>
+</tr>
+<tr>
+  <td><code>%o</code></td>
+  <td>Integer (octal)</td>
+</tr>
+</table>
 
