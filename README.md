@@ -36,6 +36,25 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 
 ---
 
+#### **What is memory allocation?**
+
+Memory allocation involves reserving a specific number of bytes in the computer's memory (RAM - Random Access Memory) for a specific purpose. This reserved space can be used to store data structures, variables, arrays, objects, and other program-related information.. It is a fundamental concept in computer programming and is crucial for managing data and resources efficiently.
+
+#### **Static vs. dynamic memory allocation**
+
+Memory can be allocated either at compile-time (static memory allocation) or at runtime (dynamic memory allocation). Dynamic memory allocation, often used in languages like C and C++, allows memory to be allocated and deallocated during program execution, providing flexibility in managing memory resources. When memory is allocated dynamically, a pointer is used to keep track of the allocated memory's location.
+
+#### **What are deallocation and memory leak?**
+
+Proper memory management also involves deallocating memory when it is no longer needed. Failure to deallocate memory can result in memory leaks, where memory is reserved but never released, leading to decreased system performance and potential program crashes.
+
+#### **What are memory safety and garbage collector**
+
+Ensuring that allocated memory is used correctly and avoiding issues like buffer overflows (writing beyond allocated memory) is essential for memory safety. Languages like C and C++ provide powerful memory management but also require careful coding practices to prevent memory-related errors. In some programming languages (e.g., Java, C#), automatic memory management techniques like garbage collection are used to automatically reclaim memory that is no longer in use. This simplifies memory management for programmers but introduces its own set of considerations.
+
+
+---
+
 ## **Worth mentioning aspects of pointers**
 
 1. #### When passed as an argument of a function, string literals like `"Mike"` are treated as `char` pointers to the first character of that string.
