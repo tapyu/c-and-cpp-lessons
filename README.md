@@ -30,7 +30,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 <tr>
      <td>${\color{red}p->age \space \color{green}= \space \color{cyan}5}$</td>
     <td>${\color{red}The \space stored \space value \space of \space the \space struct's \space feild \space age \space that \space p \space points \space to \space \color{green}is \space set \space to \space \color{cyan}5}.$</td>
-    <td>In this case, the pointer <code>p</code> is a structure pointer, e.g., <code>struct Person *p = &mike</code>. The syntax <code>p->age</code> <a href="https://stackoverflow.com/questions/2575048/arrow-operator-usage-in-c/2575050#2575050">is equivalent to</a> <code>(*p).age</code></td>
+    <td>In this case, the pointer <code>p</code> is a structure pointer, e.g., <code>struct Person *p = &mike</code>. Note that the syntax <code>p->age</code> <a href="https://stackoverflow.com/questions/2575048/arrow-operator-usage-in-c/2575050#2575050">is equivalent to</a> <code>(*p).age</code></td>
 </tr>
 </table>
 
