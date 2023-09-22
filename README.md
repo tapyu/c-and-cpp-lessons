@@ -2,7 +2,9 @@
 
 In `C` and `C++`, pointers are variables that store memory addresses as their values. They are a fundamental concept in both languages and are used extensively for tasks like dynamic memory allocation, working with arrays, and passing data by reference. 
 
-**Syntax**
+---
+
+## **Syntax**
 
 <table>
 <tr>
@@ -31,7 +33,5 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>In this case, the pointer <code>p</code> is a structure pointer, e.g., <code>struct Person *p = &mike<code></td>
 </tr>
 </table>
-
-See examples.
 
 [1]: https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning
