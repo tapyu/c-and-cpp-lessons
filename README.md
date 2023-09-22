@@ -90,9 +90,21 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 # References
 
 
-## What are references?
+#### **What are references?**
 
-In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable.
+In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable (see `./example4/`).
+
+#### **What is the difference between a reference and a pointer?**
+
+Some important differences:
+1. References cannot be `NULL`;
+1. You cannot change the variable that is referenced by a reference. Once a reference is *associated* to a variable, it is that way forever;
+1. You cannot do math on references;
+1. While you can have pointer to pointer, you cannot have references to references;
+
+Okay... But what are the advantage in using a reference instead of a pointer?
+
+In `C`....
 
 ---
 
@@ -109,7 +121,7 @@ In `C++` (and some other programming languages, but not in `C`), a reference is 
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{yellow}\& \color{violet}rx \color{green}= \color{cyan}i}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space i}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space variable \space i}$</td>
     <td>This syntax is used to initialize a reference variable.</td>
 </tr>
 </table>
