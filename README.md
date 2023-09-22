@@ -16,7 +16,7 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 ```cpp
   std::string myString = "Hello, C++";
 ```
-myString is an object of the `std::string` class.
+`myString` is an object of the `std::string` class.
 
 #### String operations
 
