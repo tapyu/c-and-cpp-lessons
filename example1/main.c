@@ -3,14 +3,21 @@
 
 int main() {
     char source[] = "My source string";
-    char destination[40] = "My destination string"; // up-to-40-sized string
+    char destination[50] = "My destination string"; // up-to-50-sized string
 
-    printf("Before: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
-    printf("Before: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
+    printf("Before strcpy: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
+    printf("Before strcpy: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
 
     strcpy(destination, source);
 
-    printf("After: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
-    printf("After: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
+    printf("After strcpy: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
+    printf("After strcpy: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
+
+    char newString[] = ". This is a new string.";
+
+    strcat(destination, newString);
+
+    printf("After strcat: \"%s\". Its length is %lu.\n", destination, strlen(destination));
+
     return 0;
 }
