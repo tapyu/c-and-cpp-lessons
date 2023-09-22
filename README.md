@@ -20,16 +20,14 @@ The key step is the compilation phase, where the source code is analyzed, optimi
 
 **What are the main `C`/`C++` compilers?**
 
-- GCC (GNU Compiler Collection): One of the most widely used open-source compilers, GCC supports a variety of programming languages, including `C` and `C++`. It's available on multiple platforms, making it a popular choice for `C`/`C++` development.
+- GCC (GNU Compiler Collection): One of the most widely used open-source compilers, GCC supports a variety of programming languages, including `C` and `C++`. It's available on multiple platforms, making it a popular choice for `C`/`C++` development. Both `gcc` and `g++` are part of the GCC suite and are commonly used to compile `C` and `C++` programs on various platforms, including Unix-like systems (Linux, macOS, BSD), as well as Windows through tools like MinGW or MSYS2. MinGW is a port of the GCC (GNU Compiler Collection) for Windows. It provides a GCC-based development environment on Windows. Developers who prefer GCC and a more Unix-like development experience often use MinGW on Windows.
   - `gcc`: The GNU `C` Compiler, which primarily compiles `C` code.
   - `g++`: The GNU `C++` Compiler, which compiles `C++` code.
-Both `gcc` and `g++` are part of the GCC suite and are commonly used to compile `C` and `C++` programs on various platforms, including Unix-like systems (Linux, macOS, BSD), as well as Windows through tools like MinGW or MSYS2.
-  - MinGW (Minimalist GNU for Windows): MinGW is a port of the GCC (GNU Compiler Collection) for Windows. It provides a GCC-based development environment on Windows.
-Developers who prefer GCC and a more Unix-like development experience often use MinGW on Windows.
-It is suitable for cross-platform development and can target various platforms, including Windows.
+  - `gdb`: The GCC debugger.
 - Clang: Developed by the LLVM project, Clang is known for its fast compilation times and excellent diagnostics. It's often used as an alternative to GCC, especially in the `C++` community. On [macOS][2], the most commonly used `C`/`C++` compiler is Clang, which is part of the LLVM (Low-Level Virtual Machine) project. Clang has become the default compiler on macOS for `C` and `C++` development.
   - `clang`: `C` compiler
   - `clang++`: `C++` compiler
+  - `lldb`: The LLVM debugger.
 - Microsoft Visual `C++` (MSVC): MSVC is the compiler provided by Microsoft as part of Visual Studio. It's a primary choice for [Windows][4] development with `C++`.
 - Intel `C++` Compiler: Intel's compiler is known for its optimization capabilities, especially for Intel processors. It's commonly used in high-performance computing (HPC) and scientific computing.
 
@@ -153,7 +151,7 @@ where `as` the the GNU assembler. Note that both output are exactly the same. Ag
   gcc main.o -o myprogram
 ```
 
-where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command, but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... Thankfully, `gcc` already knows all these details and wonderfully does this hard work for us by internally invoking `ld` with all the necessary options set. It is also important to state that, in practice, is highly not recommended to directly use `ld`. You should use `gcc` (or other compiler) instead.
+where `myprogram` is the executable file. Alternatively, you could directly use the `ld` command (the GCC linker) or `lld` (the LLVM linker) but guess what? Although it is not the most crucial part, manually linking you object file to an executable file is **COMPLICATED AS HELL**. At this point you are literally twiddling bits to perfectly match with the hardware and OS specifications of your machine. You must undestand stuffs such as computer organization and architecture, endianness, File Types, dynamic linker/loader paths, Build ID, OS Compatibility, Magic numbers, stripped and non-stripped executables, etc... Thankfully, `gcc` already knows all these details and wonderfully does this hard work for us by internally invoking `ld` with all the necessary options set. It is also important to state that, in practice, is highly not recommended to directly use `ld`. You should use `gcc` (or other compiler) instead.
 
 
 ---
