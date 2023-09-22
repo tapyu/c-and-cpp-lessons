@@ -22,7 +22,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
         ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$.</td>
-    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>decay</b>" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.</td>
+    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>decay</b>" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for string as it is represented as an array of `char`.</td>
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
@@ -79,11 +79,5 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     int *ptr = &arr[2]; // ptr points to the third element (30)
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
-
----
-
-## **Worth mentioning aspects of pointers**
-
-1. #### When passed as an argument of a function, string literals like `"Mike"` are treated as `char` pointers to the first character of that string.
 
 [1]: https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning
