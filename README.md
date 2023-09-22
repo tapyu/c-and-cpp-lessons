@@ -18,7 +18,7 @@ Build process is a multi-stage process that includes
 
 The key step is the compilation phase, where the source code is analyzed, optimized, and translated into an intermediate representation known as assembly code (for `C`) or object code (for `C++`). The software that perform these processes tasks are called *compiler* (although compiling is just one of the steps performed by the compiler).
 
-**What are the main `C`/`C++` compilers?**
+#### **What are the main `C`/`C++` compilers?**
 
 - GCC (GNU Compiler Collection): One of the most widely used open-source compilers, GCC supports a variety of programming languages, including `C` and `C++`. It's available on multiple platforms, making it a popular choice for `C`/`C++` development. Both `gcc` and `g++` are part of the GCC suite and are commonly used to compile `C` and `C++` programs on various platforms, including Unix-like systems (Linux, macOS, BSD), as well as Windows through tools like MinGW or MSYS2. MinGW is a port of the GCC (GNU Compiler Collection) for Windows. It provides a GCC-based development environment on Windows. Developers who prefer GCC and a more Unix-like development experience often use MinGW on Windows.
   - `gcc`: The GNU `C` Compiler, which primarily compiles `C` code.
@@ -31,7 +31,28 @@ The key step is the compilation phase, where the source code is analyzed, optimi
 - Microsoft Visual `C++` (MSVC): MSVC is the compiler provided by Microsoft as part of Visual Studio. It's a primary choice for [Windows][4] development with `C++`.
 - Intel `C++` Compiler: Intel's compiler is known for its optimization capabilities, especially for Intel processors. It's commonly used in high-performance computing (HPC) and scientific computing.
 
-  A more detailed comparision between `gcc` and `clang` can be found in [here][21].
+A more detailed comparision between `gcc` and `clang` can be found in [here][21].
+
+#### **What are the main options/flags used when running a compiler?**
+Although there are many `C`/`C++` compilers out there, their options/flags are stardarized. The main options are:
+<table>
+<tr>
+  <th>Option</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <td><code>-O0</code>, <code>-O1</code>, <code>-O2</code>, <code>-O3</code>, <code>-Os</code></td>
+  <td>Optimization level, where <code>0</code>, <code>1</code>, <code>2</code>, <code>3</code> stand for "no optimization", "basic optimization", "moderate optmization", "high-level optimization", and "optmizatize for the code size" (which means prioritizing the reduction of the size of the generated machine code at the expense of some potential runtime performance), respectively.</td>
+</tr>
+<tr>
+  <td><code>-g</code></td>
+  <td>Include debugging information in the generated executable. It adds debugging symbols to the binary, which can be extremely helpful for debugging and analyzing your program when it encounters issues or crashes.</td>
+<tr>
+<tr>
+  <td><code>-Wall</code>, <code>-Wextra</code></td>
+  <td>Enable a variety of warning messages during compilation. They are part of a set of compiler warning options that can help you catch potential issues and improve the quality of your code.</td>
+</tr>
+</table>
 
 ---
 
