@@ -83,4 +83,9 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
 
-[1]: https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning
+---
+
+Good refs:
+
+1. [you will never ask about pointers again after watching this video](https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning)
+1. [so... what even is a "reference"?](https://www.youtube.com/watch?v=wro8Bb6JnwU&ab_channel=LowLevelLearning)
