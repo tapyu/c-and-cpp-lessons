@@ -1,10 +1,12 @@
+# Pointers
+
 ## **What are pointers?**
 
 In `C` and `C++`, pointers are variables that store memory addresses as their values. They are a fundamental concept in both languages and are used extensively for tasks like dynamic memory allocation, working with arrays, and passing data by reference. 
 
 ---
 
-## **Syntax**
+## **Pointer Syntax**
 
 <table>
 <tr>
@@ -82,6 +84,35 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     int *ptr = &arr[2]; // ptr points to the third element (30)
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
+
+---
+
+# References
+
+
+## What are references?
+
+In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable.
+
+---
+
+## **Reference syntax**
+
+<table>
+<tr>
+    <th colspan="3"><h2>Pointer syntax</h2></th>
+</tr>
+<tr>
+    <th>Code</th>
+    <th>How you should read it</th>
+    <th>Comments</th>
+</tr>
+<tr>
+    <td>${\color{blue}int \space \color{yellow}\& \color{violet}rx \color{green}= \color{cyan}i}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space i}$</td>
+    <td>This syntax is used to initialize a reference variable.</td>
+</tr>
+</table>
 
 ---
 
