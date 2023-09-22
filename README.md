@@ -26,7 +26,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
-    <td>${\color{red}The \space stored \space value \space pointed \space by \space \color{violet}px \space \color{green}is \space set \space to \space \color{cyan}5}$.</td>
+    <td>${\color{red}The \space stored \space value \space pointed \space by \space}$
+        ${\color{violet}px \space \color{green}is \space set \space to \space \color{cyan}5}$.</td>
     <td>This process is called "dereference", and it is used to assign the new value to a variable that is out of the scope in question.</td>
 </tr>
 <tr>
