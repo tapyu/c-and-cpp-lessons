@@ -8,6 +8,9 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 
 <table>
 <tr>
+    <th colspan="3"><h2>Pointer syntax</h2></th>
+</tr>
+<tr>
     <th>Code</th>
     <th><a href="https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning">How you should read it</a></th>
     <th>Comments</th>
@@ -60,7 +63,7 @@ Proper memory management also involves deallocating memory when it is no longer 
 
 #### **What are memory safety and garbage collector**
 
-Ensuring that allocated memory is used correctly and avoiding issues like buffer overflows (writing beyond allocated memory) is essential for memory safety. Languages like C and C++ provide powerful memory management but also require careful coding practices to prevent memory-related errors. In some programming languages (e.g., Java, C#), automatic memory management techniques like garbage collection are used to automatically reclaim memory that is no longer in use. This simplifies memory management for programmers but introduces its own set of considerations.
+Ensuring that allocated memory is used correctly and avoiding issues like buffer overflows (writing beyond allocated memory) is essential for memory safety. Languages like `C` and `C++` provide powerful memory management but also require careful coding practices to prevent memory-related errors. In some programming languages (e.g., `Java`, `C#`), automatic memory management techniques like garbage collection are used to automatically reclaim memory that is no longer in use. This simplifies memory management for programmers but introduces its own set of considerations.  In contrast to languages with garbage collection, languages like `C` and `C++` require manual memory management using `malloc()`, `free()`, `new()`, and `delete()` to allocate and deallocate memory. This can be error-prone but offers more control over memory usage.
 
 #### **What is pointer arithmetic?**
 
