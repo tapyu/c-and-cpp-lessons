@@ -33,6 +33,8 @@ It is suitable for cross-platform development and can target various platforms, 
 - Microsoft Visual `C++` (MSVC): MSVC is the compiler provided by Microsoft as part of Visual Studio. It's a primary choice for [Windows][4] development with `C++`.
 - Intel `C++` Compiler: Intel's compiler is known for its optimization capabilities, especially for Intel processors. It's commonly used in high-performance computing (HPC) and scientific computing.
 
+  A more detailed comparision between `gcc` and `clang` can be found in [here][21].
+
 ---
 
 ## The usual and most direct compilation process (without build automation tools)
@@ -214,3 +216,5 @@ Use the `-b` flag if you want to obtain bits instead hexadecimals and save it wi
 [19]: https://gcc.gnu.org/onlinedocs/cpp/Line-Control.html
 
 [20]: https://www.airs.com/blog/archives/38
+
+[21]: https://alibabatech.medium.com/gcc-vs-clang-llvm-an-in-depth-comparison-of-c-c-compilers-899ede2be378
