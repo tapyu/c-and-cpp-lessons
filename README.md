@@ -98,5 +98,10 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
   <td>Memory address</td>
   <td>It can be a memory address of any-type variable, and you can pass it by accessing the value stored (i.e., the memory address) of a pointer that points to it, or you can access its memory address directly (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
 </tr>
+<tr>
+  <td><code>%zu</code></td>
+  <td>Memory size of variable types</td>
+  <td><code>size_t</code></td>
+</tr>
 </table>
 
