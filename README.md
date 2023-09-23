@@ -70,5 +70,9 @@ C provides a set of standard library functions for working with these character 
   <td><code>%o</code></td>
   <td>Integer (octal)</td>
 </tr>
+<tr>
+  <td><code>%p</code></td>
+  <td>Memory address</td>
+</tr>
 </table>
 
