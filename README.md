@@ -18,61 +18,85 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 ```
 `myString` is an object of the `std::string` class.
 
-#### `printf`/`scanf` `%` syntax
+### `C` string function operators
 
-C provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier.
+`C` provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier.
+
+#### `printf`/`scanf` `%` syntax in `C` (`C++`?)
 
 <table>
 <tr>
-  <th colspan="2">Format specifier</th>
+  <th colspan="3">Format specifier</th>
 </tr>
 <tr>
   <td>Syntax</td>
-  <td>Variable</td>
+  <td>Variable type</td>
+  <td>Variable keywords</td>
 </tr>
 <tr>
   <td><code>%i</code>,<code>%d</code></td>
   <td>Integer (decimal)</td>
+  <td><code>int</code>,<code>short</code></td>
 </tr>
 <tr>
   <td><code>%li</code>,<code>%ld</code></td>
   <td>Long integer (decimal)</td>
+  <td><code>long</code></td>
+</tr>
+<tr>
+  <td><code>%lli</code>,<code>%lld</code></td>
+  <td>Long long integer (decimal) (C99 and later)</td>
+  <td><code>long long</code></td>
 </tr>
 <tr>
   <td><code>%c</code></td>
   <td>Character</td>
+  <td><code>char</code></td>
 </tr>
 <tr>
   <td><code>%s</code></td>
   <td>String</td>
+  <td>a <code>char</code> array, e.g., <code>char c[] = "Hello!"</code></td>
 </tr>
 <tr>
   <td><code>%f</code></td>
   <td>Float</td>
+  <td><code>float</code></td>
 </tr>
 <tr>
   <td><code>%lf</code></td>
-  <td>Double-precision floating-point number (double)</td>
+  <td>Double-precision floating-point number (or just double)</td>
+  <td><code>double</code></td>
+</tr>
+<tr>
+  <td><code>%Lf</code></td>
+  <td>Long double</td>
+  <td><code>long double</code></td>
 </tr>
 <tr>
   <td><code>%u</code></td>
   <td>Unsigned integer (decimal)</td>
+  <td><code>unsigned int</code></td>
 </tr>
 <tr>
   <td><code>%lu</code></td>
   <td>Unsigned long integer (decimal)</td>
+  <td><code>unsigned long</code></td>
 </tr>
 <tr>
   <td><code>%x</code></td>
   <td>Integer (hexadecimal)</td>
+  <td>?</td>
 </tr>
 <tr>
   <td><code>%o</code></td>
   <td>Integer (octal)</td>
+  <td>?</td>
 </tr>
 <tr>
   <td><code>%p</code></td>
   <td>Memory address</td>
+  <td>It can be memory address of any-type variable, and you can pass access the value stored (i.e., the memorry address) of a pointer that points to it, or you can explicitly access its memory address (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
 </tr>
 </table>
 
