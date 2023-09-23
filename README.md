@@ -182,22 +182,57 @@ where `myprogram` is the executable file. Alternatively, you could directly use 
 The content inside `./myprogram` is the machine code or binary representation of your compiled program. It consists of instructions and data that the computer's processor can understand and execute directly. We can dive deeper and the the `./myprogram` at bit level or, equivalently, at hexadecimal level by using the `xxd` tool.
 
 ```
-  xxd ./myprogram -o myprogram.hex
+  xxd ./myprogram
 ```
 
-Use the `-b` flag if you want to obtain bits instead hexadecimals and save it with the `.bin` extension. The first line of hex digits are:
+Use the `-b` flag if you want to obtain bits instead hexadecimals and save it with the `.bin` extension. Its head is:
 
 ```
-  00000000: 7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+00000000: 7f45 4c46 0201 0100 0000 0000 0000 0000  .ELF............
+00000010: 0300 3e00 0100 0000 6010 0000 0000 0000  ..>.....`.......
+00000020: 4000 0000 0000 0000 9836 0000 0000 0000  @........6......
+00000030: 0000 0000 4000 3800 0d00 4000 1f00 1e00  ....@.8...@.....
+00000040: 0600 0000 0400 0000 4000 0000 0000 0000  ........@.......
+00000050: 4000 0000 0000 0000 4000 0000 0000 0000  @.......@.......
+00000060: d802 0000 0000 0000 d802 0000 0000 0000  ................
+00000070: 0800 0000 0000 0000 0300 0000 0400 0000  ................
+00000080: 1803 0000 0000 0000 1803 0000 0000 0000  ................
+00000090: 1803 0000 0000 0000 1c00 0000 0000 0000  ................
+000000a0: 1c00 0000 0000 0000 0100 0000 0000 0000  ................
+000000b0: 0100 0000 0400 0000 0000 0000 0000 0000  ................
+000000c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+000000d0: 2806 0000 0000 0000 2806 0000 0000 0000  (.......(.......
+000000e0: 0010 0000 0000 0000 0100 0000 0500 0000  ................
 ```
 
 1. Each hexadecimal digit contains 4 bits.
 1. Each set of 4 hexadecimal digits contain 16 bits or 2 bytes (each byte contains 8 bits)
-1. `00000000` counts, in hexadecimal, the number of bytes in the executable file (?). At the end of this line goes to `00000010`.
+1. `00000000` counts, in hexadecimal, the number of bytes in the executable file. Each line contais 16 bytes (8 sets x 2 bytes per each set of 4 hex digits). By counting this in hexhadecimal we get `00000000`, `00000010`, `00000020`, ...
 1. `.ELF............` is the actual content that the hexadecimal digits represents.
   - `7f45 4c46` represents the `ELF` values, which stands for Executable and Linkable Format. This sequence of hex digits is magic number, which is a signature indicating that this is an ELF file.
   - `0201` represents the ELF file class and data encoding (e.g., 32-bit or 64-bit, little-endian or big-endian).
   - `0100` represents the ELF file version.
+
+Another important tool is the `objdump`, which is a command-line utility that is commonly used in Unix-like operating systems to display information about object files, executable files, and shared libraries. It is a part of the GNU Binutils suite of programming tools. `objdump` provides various functionalities for examining and analyzing binary files, including. For instance, `objdump` allows us to **dissasembly** an executable code, that is, it displays the assembly code for the instructions in a human-readable format. This is especially useful for understanding the low-level code of a program or library.
+```sh
+  objdump -d -Mintel ./myprogram > ./myprogram.asm # it is a sensible extension as its output is in assembly language
+```
+
+we get in the `main` section the following assembly code:
+```asm
+0000000000001149 <main>:
+    1149:       f3 0f 1e fa             endbr64 
+    114d:       55                      push   rbp
+    114e:       48 89 e5                mov    rbp,rsp
+    1151:       48 8d 05 ac 0e 00 00    lea    rax,[rip+0xeac]        # 2004 <_IO_stdin_used+0x4>
+    1158:       48 89 c7                mov    rdi,rax
+    115b:       b8 00 00 00 00          mov    eax,0x0
+    1160:       e8 eb fe ff ff          call   1050 <printf@plt>
+    1165:       b8 00 00 00 00          mov    eax,0x0
+    116a:       5d                      pop    rbp
+    116b:       c3                      ret 
+```
+You can say that the disassembled code you've shown is the assembly language representation of the main function in your executable, which is compatible with your computer archtecture, the operating system that you are using, etc... It represents the set of instructions that make up the main function in your program.
 
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
