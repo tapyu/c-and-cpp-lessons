@@ -27,7 +27,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
         ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$.</td>
-    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>decay</b>" refers to the automatic conversion of an array to the address of its first element under certain circumstances. This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for string as it is represented as an array of `char` (see <code>./example2/</code>).</td>
+    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>array decay</b>" refers to the automatic conversion of an array to the address of its first element (see <code>./pointer-arithmetic/main1.c</code>). This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for a string as it is represented as a <code>char</code> array in <code>C</code> (see <code>./pointer-arithmetic/main1.c</code>).</td>
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
@@ -51,6 +51,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 
 ---
 
+# Memory
+
 #### **What is memory allocation?**
 
 Memory allocation involves reserving a specific number of bytes in the computer's memory (RAM - Random Access Memory) for a specific purpose. This reserved space can be used to store data structures, variables, arrays, objects, and other program-related information.. It is a fundamental concept in computer programming and is crucial for managing data and resources efficiently.
@@ -69,7 +71,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 #### **What is pointer arithmetic?**
 
-Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./example2`).
+Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./pointer-arithmetic/` examples).
 
 - *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. For example (you could use `ptr++;` instead of `ptr = ptr + 1;`):
 ```c
@@ -85,6 +87,80 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
 
+## Memory size (in bytes)
+
+*The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`).
+
+<table>
+<tr>
+    <th colspan="3"><h2>Minimum memory size of variables</h2></th>
+</tr>
+<tr>
+    <th>Variable type</th>
+    <th>Bytes (a byte contains 8 bits)</th>
+    <th>Comments</th>
+</tr>
+<tr>
+    <td><code>char</code></td>
+    <td>Tipically 1 byte (8 bits)</td>
+    <td></td>
+</tr>
+<tr>
+    <td><code>int</code></td>
+    <td>At least 2 byte (16 bits)</td>
+    <td></td>
+</tr>
+<tr>
+    <td><code>short</code></td>
+    <td>2 byte (16 bits)</td>
+    <td>An integer variant designed to have a smaller range of values compared to <code>int</code>. It typically has a minimum range of -32,767 to 32,767 for a signed short (16 bits), but the exact range can vary depending on the system and compiler.</td>
+</tr>
+<tr>
+    <td><code>long</code></td>
+    <td>At least 4 bytes (32 bits).</td>
+    <td>The <code>long</code> data type in <code>C</code> is used to represent integers just like <code>int</code> and <code>short</code>, but it typically has a larger range and requires more memory compared to <code>int</code>.</td>
+</tr>
+<tr>
+    <td><code>long long</code></td>
+    <td>At least 4 bytes (32 bits).</td>
+    <td>The <code>long long</code> data type in C is used to represent integers with an even larger range than <code>long</code>. It's typically <code>64</code> bits in size on most modern systems, allowing it to hold very large integer values. The long long data type was introduced in the C99 (ISO/IEC 9899:1999) standard.</td>
+</tr>
+<tr>
+    <td><code>float</code></td>
+    <td>At least 4 bytes (32 bits).</td>
+    <td></td>
+</tr>
+<tr>
+    <td><code>double</code></td>
+    <td>At least 8 bytes (64 bits).</td>
+    <td></td>
+</tr>
+<tr>
+    <td><code>long double</code></td>
+    <td>At least 10 bytes (80 bits) on some systems.</td>
+    <td></td>
+</tr>
+<tr>
+    <th colspan="3"><h3><code>C++</code>-only data types</h3></th>
+</tr>
+<tr>
+    <th>Variable type</th>
+    <th>Bytes (a byte contains 8 bits)</th>
+    <th>Comments</th>
+</tr>
+<tr>
+    <td><code>bool</code></td>
+    <td>Typically 1 byte (8 bits), representing <code>true</code> or <code>false</code>.</td>
+    <td></td>
+</tr>
+<tr>
+    <td>User-defined types</td>
+    <td>Classes and structures in C++ can have variable sizes based on their member variables and alignment requirements.</td>
+    <td></td>
+</tr>
+</table>
+
+
 ---
 
 # References
@@ -99,8 +175,8 @@ In `C++` (and some other programming languages, but not in `C`), a reference is 
 In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./pointers-refs-comparison/`). However, there are fundamental differences beween both:
 1. References cannot be `NULL` (e.g., you cannot write `int &ref = NULL;`);
 1. You cannot change the variable e.g. referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (e.g., if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
-1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`);
-1. While you can have pointer to pointer, you cannot have references to references;
+1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *px = &x + 1`). See `./pointer-arithmetic/main2.c`;
+1. While you can have pointer to pointer (e.g., if `int *px = &x;` you can write `int **ppx = &px;`), you cannot have references to references (e.g., if `int &rx = x;`, you cannot write `int &&rrx = rx`). See `./pointers-to-pointers/`.
 
 
 ---
