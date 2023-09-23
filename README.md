@@ -142,7 +142,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 </tr>
 <tr>
     <td><code>size_t</code></td>
-    <td>On 32-bit systems, size_t is typically 32 bits (4 bytes), while on 64-bit systems, it is typically 64 bits (8 bytes).</td>
+    <td>On 32-bit systems, <code>size_t</code> is typically 32 bits (4 bytes), while on 64-bit systems, it is typically 64 bits (8 bytes).</td>
     <td>It is an unsigned integer type that is used for representing the sizes of objects in memory.  The size_t type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
 </tr>
 <tr>
