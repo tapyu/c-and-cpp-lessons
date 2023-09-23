@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 int main() {
-    char myString[] = "Hello";
-    char *ptr = myString;
+    char my_string[] = "Hello";
+    char *ptr = my_string;
 
     while (*ptr != '\0') {
         printf("%c", *ptr);
