@@ -89,7 +89,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 
 ## Memory size (in bytes)
 
-*The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`).
+*The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`). See `./memory-size-variables/main.c`.
 
 <table>
 <tr>
@@ -139,6 +139,11 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td><code>long double</code></td>
     <td>At least 10 bytes (80 bits) on some systems.</td>
     <td></td>
+</tr>
+<tr>
+    <td><code>size_t</code></td>
+    <td>On 32-bit systems, size_t is typically 32 bits (4 bytes), while on 64-bit systems, it is typically 64 bits (8 bytes).</td>
+    <td>It is an unsigned integer type that is used for representing the sizes of objects in memory.  The size_t type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
 </tr>
 <tr>
     <th colspan="3"><h3><code>C++</code>-only data types</h3></th>

@@ -1,15 +1,15 @@
 #include <iostream>
 
 void wrong_add_to_int(int i) {
-    i+=5;
+    i += 5;
 }
 
 void right_add_to_int_reference(int &r) {
-    r+=5;
+    r += 5;
 }
 
 void right_add_to_int_pointer(int *p) {
-    *p+=5;
+    *p += 5;
 }
 
 int main() {
@@ -25,7 +25,5 @@ int main() {
 
     right_add_to_int_pointer(pi);
     std::cout << "You can also achieve an equivalent result by using a pointer. i = " << i << std::endl;
-
-
     return 0;
 }
