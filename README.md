@@ -21,7 +21,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}px \space \color{green}= \space \color{yellow}\& \color{cyan}x}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space px \space \color{green}is \space set \space to}$
         ${\color{yellow}the \space address \space of \space \color{cyan}x}$.</td>
-    <td>This syntax is used to initialize the pointer variable. This is the unique situation that $\color{red}*$ reads $\color{red}pointer$. In all others, $\color{red}*$ will denote the dereference process. By "integer pointer", we mean that this pointer points to an address whose stored value is an integer. The syntax <code>int* px = &x;</code> can also be used as an alternative to <code>int *px = &x;</code>. Both are commonly adopted (I prefer the former).</td>
+    <td>This syntax is used to initialize the pointer variable. This is the unique situation that $\color{red}*$ reads $\color{red}pointer$. In all others, $\color{red}*$ will denote the dereference process. By "integer pointer", we mean that this pointer points to an address whose stored value is an integer. The syntax <code>int* px = &x;</code> can also be used as an alternative to <code>int *px = &x;</code>. Although both are commonly adopted, I prefer the latter because <code>int* a, b;</code> produces an integer <code>a</code> and a pointer integer <code>b</code>, even though it wrongly seems that both <code>a</code> and <code>b</code> are integer pointers.</td>
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
@@ -97,9 +97,9 @@ In `C++` (and some other programming languages, but not in `C`), a reference is 
 #### **References vs. Pointers**
 
 In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./pointers-refs-comparison/`). However, there are fundamental differences beween both:
-1. References cannot be `NULL` (that is, you cannot write `int &ref = NULL;`);
-1. You cannot change the variable that is referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (that is, if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
-1. You cannot do math on references;
+1. References cannot be `NULL` (e.g., you cannot write `int &ref = NULL;`);
+1. You cannot change the variable e.g. referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (e.g., if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
+1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`);
 1. While you can have pointer to pointer, you cannot have references to references;
 
 
