@@ -26,6 +26,16 @@ int main() {
     printf("Value of int: %d\n", i);
     printf("Size of int: %zu bytes\n\n", sizeof(i)); // or sizeof(int)
 
+    // Declare a integer variable (in octal)
+    int octa_i = 032;
+    printf("Value of octal int: %o\n", octa_i); // // use %d to convert from octal to decimal
+    printf("Size of octal int: %zu bytes\n\n", sizeof(octa_i)); // or sizeof(int)
+
+    // Declare a integer variable (in hexadecimal)
+    int hex_i = 0x1a;
+    printf("Value of hexadecimal int: %x\n", hex_i); // use %d to convert from hexadecimal to decimal
+    printf("Size of hexadecimal int: %zu bytes\n\n", sizeof(hex_i)); // or sizeof(int)
+
     // Declare a short integer variable
     short s = 32767; // The maximum value that can be represented in a signed short
     printf("Value of short: %d\n", s);
