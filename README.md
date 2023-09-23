@@ -133,7 +133,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 <tr>
     <td><code>double</code></td>
     <td>At least 8 bytes (64 bits).</td>
-    <td></td>
+    <td>Also known as "Double-precision floating-point number".</td>
 </tr>
 <tr>
     <td><code>long double</code></td>
