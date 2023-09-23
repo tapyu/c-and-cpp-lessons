@@ -87,7 +87,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
 
-## Memory size (in bytes)
+## Memory size of variables (in bytes)
 
 *The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`). See `./memory-size-variables/main.c`.
 
@@ -173,16 +173,78 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 
 #### **What are references?**
 
-In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable (see `./example4/`).
+In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable (see `./refs-vs-pointers/`).
 
 #### **References vs. Pointers**
 
 In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./pointers-refs-comparison/`). However, there are fundamental differences beween both:
 1. References cannot be `NULL` (e.g., you cannot write `int &ref = NULL;`);
 1. You cannot change the variable e.g. referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (e.g., if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
-1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *px = &x + 1`). See `./pointer-arithmetic/main2.c`;
+1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *pi = &i + 1`). See `./pointer-arithmetic/main2.c`;
 1. While you can have pointer to pointer (e.g., if `int *px = &x;` you can write `int **ppx = &px;`), you cannot have references to references (e.g., if `int &rx = x;`, you cannot write `int &&rrx = rx`). See `./pointers-to-pointers/`.
 
+**The main point is, for some tasks, it is easier to work with references instead of pointers** (see `./refs-vs-pointers/with-ref-is-much-easier.cpp`). Moreover, [this crazy guy here][2] said that **all references is, under the hood, a pointer** but with some operation restrictions that make it easier to work with for some tasks. By running
+
+```sh
+objdump -d -Mintel ./refs-vs-pointers/how | less
+```
+
+we get in `main` section
+```
+0000000000001169 <main>:
+    1169:       f3 0f 1e fa             endbr64 
+    116d:       55                      push   rbp
+    116e:       48 89 e5                mov    rbp,rsp
+    1171:       48 83 ec 20             sub    rsp,0x20
+    1175:       64 48 8b 04 25 28 00    mov    rax,QWORD PTR fs:0x28
+    117c:       00 00 
+    117e:       48 89 45 f8             mov    QWORD PTR [rbp-0x8],rax
+    1182:       31 c0                   xor    eax,eax
+    1184:       c7 45 e4 00 00 00 00    mov    DWORD PTR [rbp-0x1c],0x0
+    118b:       48 8d 45 e4             lea    rax,[rbp-0x1c]
+    118f:       48 89 45 e8             mov    QWORD PTR [rbp-0x18],rax
+    1193:       48 8d 45 e4             lea    rax,[rbp-0x1c]
+    1197:       48 89 45 f0             mov    QWORD PTR [rbp-0x10],rax
+    119b:       48 8b 45 e8             mov    rax,QWORD PTR [rbp-0x18]
+    119f:       8b 00                   mov    eax,DWORD PTR [rax]
+    11a1:       8d 50 01                lea    edx,[rax+0x1]
+    11a4:       48 8b 45 e8             mov    rax,QWORD PTR [rbp-0x18]
+    11a8:       89 10                   mov    DWORD PTR [rax],edx
+    11aa:       48 8b 45 f0             mov    rax,QWORD PTR [rbp-0x10]
+    11ae:       8b 00                   mov    eax,DWORD PTR [rax]
+    11b0:       8d 50 01                lea    edx,[rax+0x1]
+    11b3:       48 8b 45 f0             mov    rax,QWORD PTR [rbp-0x10]
+    11b7:       89 10                   mov    DWORD PTR [rax],edx
+    11b9:       8b 45 e4                mov    eax,DWORD PTR [rbp-0x1c]
+    11bc:       89 c6                   mov    esi,eax
+    11be:       48 8d 05 3f 0e 00 00    lea    rax,[rip+0xe3f]        # 2004 <_IO_stdin_used+0x4>
+    11c5:       48 89 c7                mov    rdi,rax
+    11c8:       b8 00 00 00 00          mov    eax,0x0
+    11cd:       e8 9e fe ff ff          call   1070 <printf@plt>
+    11d2:       b8 00 00 00 00          mov    eax,0x0
+    11d7:       48 8b 55 f8             mov    rdx,QWORD PTR [rbp-0x8]
+    11db:       64 48 2b 14 25 28 00    sub    rdx,QWORD PTR fs:0x28
+    11e2:       00 00 
+    11e4:       74 05                   je     11eb <main+0x82>
+    11e6:       e8 75 fe ff ff          call   1060 <__stack_chk_fail@plt>
+    11eb:       c9                      leave  
+    11ec:       c3                      ret    
+```
+
+Let us break it down:
+- `1184: mov    DWORD PTR [rbp-0x1c],0x0`: Move the value `0` into a 32-bit memory location located 28 bytes below the base pointer (`rbp`). That is our "high"-level `C` command `int i = 0;`.
+    - `mov`: This is the mnemonic for the "move" instruction, which is used to transfer data from one location to another.
+    - `DWORD PTR`: specifies the size of the data being moved. In this case, `DWORD PTR` stands for "Double Word Pointer", which typically refers to a 32-bit value. It means that we are working with a 32-bit (4-byte) data item.
+    - `[rbp-0x1c]`: This is the destination memory address where the data will be stored. `[rbp-0x1c]` means that we are accessing memory at an offset of 0x1c bytes (28 bytes) below the base pointer (rbp). The base pointer (`rbp`) is often used as a frame pointer in function prologues to access local variables and parameters. Note that `[rbp-0x1c]` is the address of the integer variable `i`.
+    - `0x0`: This is the immediate value being moved into the specified memory location. In this case, it's the value zero (0x0).
+- `118b: lea    rax,[rbp-0x1c]`: Calculate the address of a memory location of `[rbp-0x1c]`. The result of this calculation is stored in the `rax` register.
+    - `lea`: This is the mnemonic for the "load effective address" instruction, which is used to calculate an effective memory address and load it into a register.
+    - `rax`: This specifies the destination register where the calculated address will be stored. In this case, the result will be placed in the `rax` register.
+    - `[rbp-0x1c]`: This is the memory address calculation. It calculates the effective address by subtracting `0x1c` (28 in decimal) from the value in the base pointer (`rbp`). So, it computes the address that is 28 bytes below the value in `rbp`.
+- `118f: mov    QWORD PTR [rbp-0x18],rax`: move the 64-bit value contained in the `rax` register into an 8-byte memory location located 24 bytes below the base pointer (`rbp`). In other words, it puts it on the [stack][2]. Note that the address of `px` is `[rbp-0x18]`, and its value is indeed the addres of the variable `i`, which is `[rbp-0x1c]`. The instruction `118b` and `118f` form the implementation of our "high"-level `C` command `int *pi = &i`.
+    - `QWORD PTR`: This part specifies the size of the data being moved. `QWORD PTR` stands for "Quad Word Pointer," which typically refers to a 64-bit (8-byte) value. It means that we are working with an 8-byte data item.
+- `1193: lea    rax,[rbp-0x1c]`: Does exactly the same as the instruction `1184`.
+- `1197: mov    QWORD PTR [rbp-0x10],rax`: Does exactly the same as the instruction `118f`, but in the memory `[rbp-0x10]`. Note that `1193` and `1197` form our "high"-level `C` command `int &ri = i`.
 
 ---
 
