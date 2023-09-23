@@ -22,7 +22,7 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 
 `C` provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier.
 
-#### `printf`/`scanf` `%` syntax in `C` (`C++`?)
+#### `printf`/`scanf` `%` syntax in `C`/`C++`
 
 <table>
 <tr>
