@@ -86,7 +86,7 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 <tr>
   <td><code>%x</code></td>
   <td>Integer (hexadecimal)</td>
-  <td>The same as the integer types, but with a <code>x</code> prefixed to it, e.g., <code>int hexVar = 0x1A; // Hexadecimal 0x1A is equivalent to decimal 26</code>. Use <code>%d</code> to convert from hexadecimal to decimal.</td>
+  <td>The same as the integer types, but with a <code>0x</code> prefixed to it, e.g., <code>int hexVar = 0x1A; // Hexadecimal 0x1A is equivalent to decimal 26</code>. Use <code>%d</code> to convert from hexadecimal to decimal.</td>
 </tr>
 <tr>
   <td><code>%o</code></td>
