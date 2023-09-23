@@ -96,7 +96,7 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 <tr>
   <td><code>%p</code></td>
   <td>Memory address</td>
-  <td>It can be memory address of any-type variable, and you can pass access the value stored (i.e., the memorry address) of a pointer that points to it, or you can explicitly access its memory address (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
+  <td>It can be a memory address of any-type variable, and you can pass access the value stored (i.e., the memory address) of a pointer that points to it, or you can explicitly access its memory address (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
 </tr>
 </table>
 
