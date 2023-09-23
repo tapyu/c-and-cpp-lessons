@@ -29,9 +29,9 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
   <th colspan="3">Format specifier</th>
 </tr>
 <tr>
-  <td>Syntax</td>
-  <td>Variable type</td>
-  <td>Variable keywords</td>
+  <th>Syntax</th>
+  <th>Variable type</th>
+  <th>Variable keywords</th>
 </tr>
 <tr>
   <td><code>%i</code>,<code>%d</code></td>
