@@ -232,7 +232,7 @@ we get in the `main` section the following assembly code:
     116a:       5d                      pop    rbp
     116b:       c3                      ret 
 ```
-You can say that the disassembled code you've shown is the assembly language representation of the main function in your executable, which is compatible with your computer archtecture, the operating system that you are using, etc... It represents the set of instructions that make up the main function in your program.
+You can say that the disassembled code you've shown is the assembly language representation of the main function in your executable, which is compatible with your computer archtecture, the operating system that you are using, etc... In other words, this set of assembly commands is totally platform-dependent, and it represents the set of instructions that make up the main function in your final program.
 
 
 [1]: https://www.linkedin.com/pulse/c-build-process-details-abdelaziz-moustafa/
