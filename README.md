@@ -4,7 +4,11 @@ In `C`, strings are represented as arrays of characters (i.e., `char` vectors). 
 ```c
   char myString[] = "Hello";
 ```
-the `[]` symbol means that `myString` is an array of characters (i.e., a string). In this case, the size of the array is determined automatically by the compiler based on the length of the initializer string "Hello". This means the array myString will be just long enough to hold the characters in the string "Hello", plus one extra character for the null terminator '\0', which is added automatically by the compiler to mark the end of the string. So, myString will have a size of 6 characters in this case: `h`, `e`, `l`, `l`, `o`, and `\0`.
+the `[]` symbol means that `myString` is an array of characters (i.e., a string). In this case, the size of the array is determined automatically by the compiler based on the length of the initializer string "Hello". This means the array myString will be just long enough to hold the characters in the string "Hello", plus one extra character for the null terminator '\0', which is added automatically by the compiler to mark the end of the string. So, myString will have a size of 6 characters in this case: `h`, `e`, `l`, `l`, `o`, and `\0`. Note that you can pass multiple string to the `printf()` function as long as you don't put any whitespace of operator between them (break line is allowed, though). They will be automatically concatenated by the compiler, thus resulting in more readable code when you want to split a long string across multiple lines. For instance,
+```c
+printf("This is"
+"two strings");
+```
 
 On the other hand, if you write:
 ```c
