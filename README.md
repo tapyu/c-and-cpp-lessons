@@ -136,7 +136,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 <tr>
     <td><code>unsigned</code>, <code>unsigned int</code></td>
     <td>2 bytes (16 bits)</td>
-    <td><code>%hu</code></td>
+    <td><code>%u</code></td>
     <td><code>u</code>, <code>U</code></td>
     <td>Basic unsigned integer type. Contains at least the <code>[0, 65,535]</code> range.</td>
 </tr>
