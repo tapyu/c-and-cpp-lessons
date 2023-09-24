@@ -30,7 +30,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
         <br>or<br>
         ${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
         ${\color{cyan}the \space internal \space pointer \space variable \space}$ ${\color{cyan} of \space the \space integer \space array \space arr}$.</td>
-    <td>When you use the array name with this sytax, you are saying to <code>parr</code> store the memory address of the first array element of <code>arr</code> (<code>arr[0]</code>). This memory address is effectively the <b>internal pointer variable</b> that points to the beginning of the array. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for strings as they are represented as <code>char</code> arrays in <code>C</code> (see <code>./pointer-arithmetic/main1.c</code>).</td>
+    <td>When you use the array name with this sytax, you are saying to <code>parr</code> store the memory address of the first array element of <code>arr</code> (<code>arr[0]</code>). This memory address is effectively the <b>internal pointer variable</b> that points to the beginning of the array (see <code>./pointer-arithmetic/int_array.c</code>). This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for strings as they are represented as <code>char</code> arrays in <code>C</code> (see <code>./pointer-arithmetic/char_array.c</code>).</td>
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
@@ -76,13 +76,13 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./pointer-arithmetic/` examples).
 
-- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. For example (you could use `ptr++;` instead of `ptr = ptr + 1;`):
+- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. Desipe the memory size offset that the stored memory address will undergo, you can simply type `ptr = ptr + 1;` (or `ptr++`) and then the pointer `ptr` will shift the memory address the the appropriate value. For example:
 ```c
     int arr[] = {10, 20, 30, 40};
-    int *ptr = arr; // ptr points to the first element (10)
+    int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 10.
     ptr = ptr + 1; // Move ptr to the next integer (20)
 ```
-In this example, adding 1 to the pointer ptr moves it to the next integer in the array.
+The number of
 - *Subtracting an Integer from a Pointer*: You can also subtract an integer from a pointer, which has the opposite effect of moving the pointer backward in memory. Again, the size of the offset depends on the data type. For example (you could use `ptr--;` instead of `ptr = ptr - 1;`):
 ```c
     int arr[] = {10, 20, 30, 40};
@@ -157,14 +157,14 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 <tr>
     <td><code>long</code>, <code>long int</code>, <code>signed long</code>, <code>signed long int</code></td>
     <td>At least 4 bytes (32 bits).</td>
-    <td><code>li</code>,<code>ld</code></td>
+    <td><code>%li</code>,<code>%ld</code></td>
     <td><code>l</code>, <code>L</code></td>
     <td>Long signed integer type. Capable of containing at least the <code>[−2,147,483,647, +2,147,483,647]</code> range.</td>
 </tr>
 <tr>
     <td><code>unsigned long</code>, <code>unsigned long int</code></td>
     <td>At least 4 bytes (32 bits).</td>
-    <td><code>lu</code></td>
+    <td><code>%lu</code></td>
     <td>both <code>l</code> or <code>L</code> and <code>u</code> or <code>U</code></td>
     <td>Long unsigned integer type. Capable of containing at least the <code>[0, 4,294,967,295]</code> range.</td>
 </tr>
@@ -275,7 +275,7 @@ In `C++` (and some other programming languages, but not in `C`), a reference is 
 In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./pointers-refs-comparison/`). However, there are fundamental differences beween both:
 1. References cannot be `NULL` (e.g., you cannot write `int &ref = NULL;`);
 1. You cannot change the variable e.g. referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (e.g., if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
-1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *pi = &i + 1`). See `./pointer-arithmetic/main2.c`;
+1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *pi = &i + 1`). See `./pointer-arithmetic/pointerpp.c`;
 1. While you can have pointer to pointer (e.g., if `int *px = &x;` you can write `int **ppx = &px;`), you cannot have references to references (e.g., if `int &rx = x;`, you cannot write `int &&rrx = rx`). See `./pointers-to-pointers/`.
 
 **The main point is, for some tasks, it is easier to work with references instead of pointers** (see `./refs-vs-pointers/with-ref-is-much-easier.cpp`). Moreover, [this crazy guy here][2] said that **all references is, under the hood, a pointer** but with some operation restrictions that make it easier to work with for some tasks. By running
