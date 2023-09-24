@@ -162,7 +162,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td><code>unsigned long</code>, <code>unsigned long int</code></td>
     <td>At least 4 bytes (32 bits).</td>
     <td><code>lu</code></td>
-    <td>both <code>l</code> or <code>L</code> and <code>u</code> and <code>U</code></td>
+    <td>both <code>l</code> or <code>L</code> and <code>u</code> or <code>U</code></td>
     <td>Long unsigned integer type. Capable of containing at least the <code>[0, 4,294,967,295]</code> range.</td>
 </tr>
 <tr>
@@ -206,21 +206,34 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td>It is an unsigned integer type that is used for representing the sizes of objects in memory.  The size_t type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
 </tr>
 <tr>
-    <th colspan="3"><h3><code>C++</code>-only data types</h3></th>
+    <td><code>size_t</code></td>
+    <td>Typically 32 bits (4 bytes) on 32-bit systems or 64 bits (8 bytes) on 64-bit systems</td>
+    <td><code>%zu</code></td>
+    <td></td>
+    <td>An unsigned integer type that is used for representing the sizes of objects in memory. It is often used when dealing with memory allocation, arrays, and indexing. The <code>size_t</code> type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
+</tr>
+<tr>
+    <th colspan="5"><h3><code>C++</code>-only data types</h3></th>
 </tr>
 <tr>
     <th>Variable type</th>
     <th>Bytes (a byte contains 8 bits)</th>
+    <th><code>%</code> syntax</th>
+    <th>Suffix for literals</th>
     <th>Comments</th>
 </tr>
 <tr>
     <td><code>bool</code></td>
     <td>Typically 1 byte (8 bits), representing <code>true</code> or <code>false</code>.</td>
     <td></td>
+    <td></td>
+    <td></td>
 </tr>
 <tr>
     <td>User-defined types</td>
     <td>Classes and structures in C++ can have variable sizes based on their member variables and alignment requirements.</td>
+    <td></td>
+    <td></td>
     <td></td>
 </tr>
 </table>
