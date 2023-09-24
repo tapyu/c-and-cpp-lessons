@@ -37,8 +37,8 @@ int main() {
     printf("Size of hexadecimal int: %zu bytes\n\n", sizeof(hex_i)); // or sizeof(int)
 
     // Declare a short integer variable
-    short s = 32767; // The maximum value that can be represented in a signed short
-    printf("Value of short: %d\n", s);
+    short int s = 32767; // The maximum value that can be represented in a signed short
+    printf("Value of short: %hi\n", s);
     printf("Size of short: %zu bytes\n", sizeof(s)); // or sizeof(short)
     // Attempt to exceed the range of a short
     s = s + 1; // This will result in numeric overflow

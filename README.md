@@ -93,51 +93,111 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 
 <table>
 <tr>
-    <th colspan="3"><h2>Minimum memory size of variables</h2></th>
+    <th colspan="4"><h2>Variables</h2></th>
 </tr>
 <tr>
     <th>Variable type</th>
     <th>Bytes (a byte contains 8 bits)</th>
+    <th><code>%</code> syntax</th>
+    <th>Suffix for literals</th>
     <th>Comments</th>
 </tr>
 <tr>
     <td><code>char</code></td>
     <td>Tipically 1 byte (8 bits)</td>
+    <td><code>%c</code></td>
     <td></td>
+    <td>The a <code>char</code> variable may be signed or unsigned depending on the compiler's implementation. To explicitly specify the signedness of a <code>char</code>, you can use <code>signed char</code> or <code>unsigned char</code>.</td>
 </tr>
 <tr>
-    <td><code>int</code></td>
-    <td>At least 2 byte (16 bits)</td>
+    <td><code>signed char</code></td>
+    <td>Tipically 1 byte (8 bits)</td>
+    <td><code>%c</code> (or <code>%hhi</code> for numerical output)</td>
     <td></td>
+    <td>Of the same size as <code>char</code>, but guaranteed to be signed. Capable of containing at least the <code>[−127, +127]</code> range.</td>
 </tr>
 <tr>
-    <td><code>short</code></td>
-    <td>2 byte (16 bits)</td>
-    <td>An integer variant designed to have a smaller range of values compared to <code>int</code>. It typically has a minimum range of -32,767 to 32,767 for a signed short (16 bits), but the exact range can vary depending on the system and compiler.</td>
+    <td><code>unsigned char</code></td>
+    <td>Tipically 1 byte (8 bits)</td>
+    <td><code>%c</code> (or <code>%hhi</code> for numerical output)</td>
+    <td></td>
+    <td>Of the same size as <code>char</code>, but guaranteed to be unsigned. Capable of containing at least the <code>[0, 255]</code> range.</td>
 </tr>
 <tr>
-    <td><code>long</code></td>
+    <td><code>int</code>, <code>signed</code>, <code>signed int</code></td>
+    <td>At least 2 bytes (16 bits)</td>
+    <td><code>%i</code>,<code>%d</code></td>
+    <td></td>
+    <td>Basic signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range.</td>
+</tr>
+<tr>
+    <td><code>unsigned</code>, <code>unsigned int</code></td>
+    <td>2 bytes (16 bits)</td>
+    <td><code>%hu</code></td>
+    <td><code>u</code>, <code>U</code></td>
+    <td>Basic unsigned integer type. Contains at least the <code>[0, 65,535]</code> range.</td>
+</tr>
+<tr>
+    <td><code>short</code>, <code>short int</code>, <code>signed short</code>, <code>signed short int</code></td>
+    <td>2 bytes (16 bits)</td>
+    <td><code>%hi</code> or <code>%hd</code></td>
+    <td></td>
+    <td>Short signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range.</td>
+</tr>
+<tr>
+    <td><code>unsigned short</code>, <code>unsigned short int</code></td>
+    <td>2 bytes (16 bits)</td>
+    <td><code>%hu</code></td>
+    <td></td>
+    <td>Short unsigned integer type. Contains at least the <code>[0, 65,535]</code> range.</td>
+</tr>
+<tr>
+    <td><code>long</code>, <code>long int</code>, <code>signed long</code>, <code>signed long int</code></td>
     <td>At least 4 bytes (32 bits).</td>
-    <td>The <code>long</code> data type in <code>C</code> is used to represent integers just like <code>int</code> and <code>short</code>, but it typically has a larger range and requires more memory compared to <code>int</code>.</td>
+    <td><code>li</code>,<code>ld</code></td>
+    <td><code>l</code>, <code>L</code></td>
+    <td>Long signed integer type. Capable of containing at least the <code>[−2,147,483,647, +2,147,483,647]</code> range.</td>
 </tr>
 <tr>
-    <td><code>long long</code></td>
+    <td><code>unsigned long</code>, <code>unsigned long int</code></td>
     <td>At least 4 bytes (32 bits).</td>
-    <td>The <code>long long</code> data type in C is used to represent integers with an even larger range than <code>long</code>. It's typically <code>64</code> bits in size on most modern systems, allowing it to hold very large integer values. The long long data type was introduced in the C99 (ISO/IEC 9899:1999) standard.</td>
+    <td><code>lu</code></td>
+    <td>both <code>l</code> or <code>L</code> and <code>u</code> and <code>U</code></td>
+    <td>Long unsigned integer type. Capable of containing at least the <code>[0, 4,294,967,295]</code> range.</td>
+</tr>
+<tr>
+    <td><code>long long</code>, <code>long long int</code>, <code>signed long long</code>, <code>signed long long int</code></td>
+    <td>At least 8 bytes (64 bits).</td>
+    <td><code>%lli</code>, <code>%lld</code</td>
+    <td><code>ll</code> or <code>LL</code></td>
+    <td>Long long signed integer type. Capable of containing at least the <code>[−9,223,372,036,854,775,807, +9,223,372,036,854,775,807]</code> range. Specified since the C99 (ISO/IEC 9899:1999) version of the standard.</td>
+</tr>
+<tr>
+    <td><code>unsigned long long</code>, <code>unsigned long long int</code></td>
+    <td>At least 8 bytes (64 bits).</td>
+    <td><code>%llu</code></td>
+    <td>both <code>u</code> or <code>U</code> and <code>ll</code> or <code>LL</code></td>
+    <td>Long long unsigned integer type. Capable of containing at least the <code>[0, 18,446,744,073,709,551,615]</code> range. Specified since the C99 (ISO/IEC 9899:1999) version of the standard.</td>
 </tr>
 <tr>
     <td><code>float</code></td>
     <td>At least 4 bytes (32 bits).</td>
-    <td></td>
+    <td><code>%f</code>, <code>%F</code>, <code>%g</code>, <code>%G</code>, <code>%e</code>, <code>%E</code>, <code>%a</code>, <code>%A</code></td>
+    <td><code>f</code>, <code>F</code></td>
+    <td>Real floating-point type, usually referred to as a "single-precision floating-point type".</td>
 </tr>
 <tr>
     <td><code>double</code></td>
     <td>At least 8 bytes (64 bits).</td>
-    <td>Also known as "Double-precision floating-point number".</td>
+    <td><code>%lf</code>, <code>%lF</code>, <code>%lg</code>, <code>%lG</code>, <code>%le</code>, <code>%lE</code>, <code>%la</code>, <code>%lA</code></td>
+    <td></td>
+    <td>Real floating-point type, usually referred to as a "double-precision floating-point type", or simply "double".</td>
 </tr>
 <tr>
     <td><code>long double</code></td>
     <td>At least 10 bytes (80 bits) on some systems.</td>
+    <td><code>%Lf</code>, <code>%LF</code>, <code>%Lg</code>, <code>%LG</code>, <code>%Le</code>, <code>%LE</code>, <code>%La</code>, <code>%LA</code></td>
+    <td><code>L</code>, <code>l<code></td>
     <td></td>
 </tr>
 <tr>
@@ -275,6 +335,10 @@ Good refs:
 1. [you will never ask about pointers again after watching this video](https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning)
 1. [so... what even is a "reference"?][2]
 1. [you will never ask about pointer arithmetic after watching this video][3]
+1. [wiki: Basic types table][4]
+1. [Is the size of C "int" 2 bytes or 4 bytes?][5]
 
 [2]: https://www.youtube.com/watch?v=wro8Bb6JnwU&ab_channel=LowLevelLearning
 [3]: https://www.youtube.com/watch?v=q24-QTbKQS8&t=2s&ab_channel=LowLevelLearning
+[4]: https://en.wikipedia.org/wiki/C_data_types#Basic_types
+[5]: https://stackoverflow.com/a/11438838/13998346
