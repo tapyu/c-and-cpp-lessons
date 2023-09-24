@@ -26,7 +26,10 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 <tr>
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
-        ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$.</td>
+        ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$
+        <br>or<br>
+        ${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
+        ${\color{cyan}the \space internal \space pointer \space variable \space}$ ${\color{cyan} of \space the \space integer \space array \space arr}$.</td>
     <td>When you use the array name with this sytax, you are saying to <code>parr</code> store the memory address of the first array element of <code>arr</code> (<code>arr[0]</code>). This memory address is effectively the <b>internal pointer variable</b> that points to the beginning of the array. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for strings as they are represented as <code>char</code> arrays in <code>C</code> (see <code>./pointer-arithmetic/main1.c</code>).</td>
 </tr>
 <tr>
