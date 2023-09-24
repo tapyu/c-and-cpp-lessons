@@ -27,7 +27,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
         ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$.</td>
-    <td>When you use the array name in this context, it implicitly decays into the address of the first element of that array. In other words, <code>arr</code> represents the address of the first element <code>arr[0]</code>. In the context of <code>C</code> and <code>C++</code>, the term "<b>array decay</b>" refers to the automatic conversion of an array to the address of its first element (see <code>./pointer-arithmetic/main1.c</code>). This conversion happens implicitly in many expressions involving arrays. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for a string as it is represented as a <code>char</code> array in <code>C</code> (see <code>./pointer-arithmetic/main1.c</code>).</td>
+    <td>When you use the array name with this sytax, you are saying to <code>parr</code> store the memory address of the first array element of <code>arr</code> (<code>arr[0]</code>). This memory address is effectively the <b>internal pointer variable</b> that points to the beginning of the array. This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted.  It also works for strings as they are represented as <code>char</code> arrays in <code>C</code> (see <code>./pointer-arithmetic/main1.c</code>).</td>
 </tr>
 <tr>
     <td>${\color{red}* \color{violet}px \space \color{green}= \space \color{cyan}5}$</td>
@@ -246,6 +246,8 @@ Let us break it down:
 - `1193: lea    rax,[rbp-0x1c]`: Does exactly the same as the instruction `1184`.
 - `1197: mov    QWORD PTR [rbp-0x10],rax`: Does exactly the same as the instruction `118f`, but in the memory `[rbp-0x10]`. Note that `1193` and `1197` form our "high"-level `C` command `int &ri = i`.
 
+As you can see, pointers and the refereces are initialized in the same way. The difference between a pointer and a reference occurs after they are initialzied. The compiler manipulates them differently, applying severeal protections/restriction on the reference, which prevent us from things such as doing math with it. On the other hand, for some tasks, such restrictions enable us to use references in a more straightforward way when compared to pointers. For example, modifying a variable value by reference is much more straightforward when compared to the same solution via pointers.
+
 ---
 
 ## **Reference syntax**
@@ -272,5 +274,7 @@ Good refs:
 
 1. [you will never ask about pointers again after watching this video](https://www.youtube.com/watch?v=2ybLD6_2gKM&ab_channel=LowLevelLearning)
 1. [so... what even is a "reference"?][2]
+1. [you will never ask about pointer arithmetic after watching this video][3]
 
 [2]: https://www.youtube.com/watch?v=wro8Bb6JnwU&ab_channel=LowLevelLearning
+[3]: https://www.youtube.com/watch?v=q24-QTbKQS8&t=2s&ab_channel=LowLevelLearning
