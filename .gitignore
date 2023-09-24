@@ -1,7 +1,0 @@
-mylib_static.o
-libmylib_shared.so
-libmylib_static.a
-program_shared
-program_static
-mylib_shared.o
-.vscode/

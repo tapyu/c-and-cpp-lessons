@@ -76,11 +76,11 @@ When you include a header file using the #include directive in your C++ project,
 
 To find from where your system look for the header files, [run][1]:
 ```shell
-    $(gcc -print-prog-name=cc1plus) -v
+    eval $(gcc -print-prog-name=cc1plus) -v
 ```
 for `C++`, and
 ```shell
-  $(gcc -print-prog-name=cpp) -v  
+  eval $(gcc -print-prog-name=cpp) -v  
 ```
 for `C`. For instance, you can check that `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
 
@@ -90,8 +90,21 @@ To see all the recursive header filer depencency, you can [run][2]:
 ```
 where `main.cpp` is the main `C++` file in your project.
 
-#### **And the library, where is it located?**
-The `C++` Standard Libraries are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
+#### **How the header files are associated with the their respective libraries files (which can be in a different path)?**
+
+The process of associating header files with their respective libraries is not handled in the preprocessing phase but rather in the linking phase. The linker can solve it in several ways:
+
+1. *`C++` Standard Libraries*: They are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
+1. *Standard system library paths*: The default library search path on a Linux system typically includes a set of standard directories where the linker (`ld`) looks for libraries when you compile and link your programs. There paths [are][6]: `/lib`, `/usr/lib`, `/lib32`,  `/usr/lib32`, `/lib64`, `/usr/lib64`, `/usr/local/lib`, `/opt/<package>/lib` (some software packages are installed in the `/opt/` directory). These directories are specified in the system's dynamic linker configuration and are usually stored in the `/etc/ld.so.conf` file and the files within the `/etc/ld.so.conf.d/` directory. You can view them using the `ldconfig -v` command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths.
+1. *Explicit linking*: For third-party libraries or libraries not in the standard system library paths, you should use the `-l` flag followed by the library name without the `lib` prefix and the `.a` or `.so` extension. For example, in `g++ main.cpp -L. -lmylib_shared -o program_shared`, the `-L.` option is a compiler flag that specifies the directory path where the linker should search for libraries specified by the `-l` option.
+1. *Implicit Linking*: Some libraries may be implicitly linked when you use certain compiler options or language features. For example, when you use OpenMP directives in your code (`#pragma omp`), the OpenMP runtime library is typically linked automatically.
+
+When you have the executable, you can use the `ldd` command, which is a Linux utility used for printing the shared library dependencies of an executable or a shared library. It stands for "List Dynamic Dependencies." When you run `ldd` followed by the path to an executable or shared library, it will display a list of the shared libraries that the specified binary depends on.
+
+```sh
+ldd /path/to/your/executable
+```
+
 
 #### **When to use a library over a source `.c`/`.cpp` code and its header file**
 
@@ -166,7 +179,7 @@ Now, let's compile and use these files to create both a static and shared librar
     g++ main.cpp -L. -lmylib_shared -o program_shared
     ```
     - The `-L.` option is a compiler flag that specifies the directory where the linker should search for libraries specified by the `-l` option. In this case, the dot `.` represents the current directory.
-    - When compiling the main program, we specify the library to link against using the `-l` option (e.g., `-lmylib_static` or `-lmylib_shared`). The linker (`ld`) resolves the function call to `printMessage()` by looking for the corresponding implementation in the linked library.
+    - When compiling the main program, we specify the library to link against using the `-l` option (e.g., `-lmylib_static` or `-lmylib_shared`). The linker (`ld`) resolves the function call `printMessage()` by looking for the corresponding implementation in the linked library.
 1. Run the programs:
     - `./program_static` for the static library
     - Before running `./program_shared` for the shared library, you must check whether the path of your shared library (`libmylib_shared.so`) is within the `LD_LIBRARY_PATH` environment variable. Setting the LD_LIBRARY_PATH environment variable is often necessary when you want to run an executable that depends on shared libraries that are not in the standard library search paths. This environment variable tells the dynamic linker where to find those libraries at runtime. If it is not set, you can run `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)` and then run `./program_shared`. Otherwise, you will get the error "./program_shared: error while loading shared libraries: libmylib_shared.so: cannot open shared object file: No such file or directory". This shows the fundamental difference between static and shared (or dynamic) library: shared library is loaded and linked dynamically at runtime when the program is executed. If it is not found by the linker, the program doesn't run.
@@ -177,3 +190,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [3]: https://www.quora.com/When-should-one-build-libraries-for-personal-C-projects
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter
 [5]: https://youtu.be/GExnnTaBELk?t=941
+[6]: https://unix.stackexchange.com/a/22937/480687
