@@ -105,7 +105,7 @@ When you have the executable, you can use the `ldd` command, which is a Linux ut
 ldd /path/to/your/executable
 ```
 
-For instance, run `ldd c-link-shared-lib/geom` to list the all the shared libraries dependency and see where the `libm` library is located in you system. This path comes from the `/etc/ld.so.conf.d/x86_64-linux-gnu.conf` config file. That is, the linker can associate this library from the standard system library paths.
+For instance, run `ldd c-link-shared-lib/geom` to list the all the shared libraries dependency and see where the `libm` library is located in you system. This path comes from the `/etc/ld.so.conf.d/x86_64-linux-gnu.conf` config file. That is, the linker can associate this library from the standard system library paths. See this [amazing video][7] about linking libraries manually.
 
 
 #### **When to use a library over a source `.c`/`.cpp` code and its header file**
@@ -193,3 +193,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter
 [5]: https://youtu.be/GExnnTaBELk?t=941
 [6]: https://unix.stackexchange.com/a/22937/480687
+[7]: https://www.youtube.com/watch?v=tOQZlD-0Scc&ab_channel=LowLevelLearning
