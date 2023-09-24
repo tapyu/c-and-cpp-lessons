@@ -2,7 +2,7 @@
 #include <math.h>
 #include "../include/gd.h"
 
-int main() {
+int main(void) {
     double x = get_double("Enter the x value: ", -100, 100);
     double y = get_double("Enter the y value: ", -100, 100);
 

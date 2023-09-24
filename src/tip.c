@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../include/gd.h"
 
-int main() {
+int main(void) {
     double price, tipPerCent;
     price = get_double("Enter the price meal: ", 0, 1000);
     tipPerCent =  get_double("Enter the tip percentage: ", 0, 100);
