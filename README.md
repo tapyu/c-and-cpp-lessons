@@ -93,7 +93,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 
 <table>
 <tr>
-    <th colspan="4"><h2>Variables</h2></th>
+    <th colspan="5"><h2>Variables</h2></th>
 </tr>
 <tr>
     <th>Variable type</th>
