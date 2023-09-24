@@ -14,9 +14,9 @@ int main() {
     printf("After strcpy: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
     printf("After strcpy: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
 
-    char newString[] = ". This is a new string.";
+    char new_string[] = ". This is a new string.";
 
-    strcat(destination, newString);
+    strcat(destination, new_string);
 
     printf("After strcat: \"%s\". Its length is %lu.\n", destination, strlen(destination));
 
