@@ -128,7 +128,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td>At least 2 bytes (16 bits)</td>
     <td><code>%i</code>,<code>%d</code> (or <code>%o</code> or <code>%x</code> if you are using octal or hexadecimal representation, respectively)</td>
     <td></td>
-    <td>Basic signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range. Use <code>0</code> or <code>0x</code> prefix if you are using octal or hexadecimal representation. The convesion to decimal (and vice-versa) is direct when you use <code>%i</code> or <code>%d</code> to refer to a a hexadecimal or octal number.</td>
+    <td>Basic signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range. Use <code>0</code> or <code>0x</code> prefix if you are using octal or hexadecimal representation. The convesion to decimal (and vice-versa) is direct when you use <code>%i</code> or <code>%d</code> to refer to a hexadecimal or octal number.</td>
 </tr>
 <tr>
     <td><code>unsigned</code>, <code>unsigned int</code></td>
