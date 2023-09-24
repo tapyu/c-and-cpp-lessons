@@ -7,20 +7,31 @@ int main() {
     printf("The internal pointer variable of the int array is             : %p\n"
            "The address of the first int array element is                 : %p\n"
            "The stored value (.i.e., the memory address) of the pointer is: %p\n"
-           "PS: Each memory address, by definition, stores 1 byte and is usually represented in hexadecimal.\n\n",
+           "PS: - Each memory address, by definition, stores 1 byte and is usually represented in hexadecimal.\n"
+           "    - Each memory address of a 64-bit (32-bit) memory architecture has a 64/4=16 (32/4=8) hexadecimal digits\n\n",
            &i, &i[0], pi);
 
 
-    printf("The memory size the a int variable is: %zu bytes, or equivalently %lu bits as each byte has 8 bits.\n");
-    printf("Therefore, the integer number `i[0]` occupies the ");
+    printf("The memory size of a int variable is: %zu bytes, or equivalently %lu bits as each byte has 8 bits.\n", sizeof(int), 8*sizeof(int));
 
-    printf("Since `pi` is a int pointer, the command `pi = pi + 1` shifts stored memory address of `pi` in %zu bytes.\n\n",
-            sizeof(int), 8*sizeof(int), sizeof(int));
+    printf("Since each memory address storages 1 byte, the integer number `i[0]` occupies the memory addresses");
+    char *char_pi = (char*)pi; // cast from a int pointer to a char pointer to be able to shift the memory address address in 1 byte only with each increment (1 byte is the memory size of a char)
+    for (int j = 0; j < sizeof(int); j++) {
+        printf(" %p", char_pi);
+        if (j != sizeof(int)-1) {
+            printf(",");
+        } else {
+            printf(".\n\n");
+        }
+        char_pi++; // shift the memory address in 1 byte
+    }
+    
+
+    printf("Since `pi` is a int pointer, the command `pi = pi + 1` shifts stored memory address of `pi` in %zu bytes, which is the memory size of a `C` `int` variable.\n\n",
+            sizeof(int));
+
     pi = pi + 1; // Move pi to the memory address of the next integer (20) (instead, you could use `pi++`)
-    printf("The internal pointer variable of the int array is            : %p\n"
-           "The address of the first int array element is                : %p\n"
-           "The stored value (.i.e., the memory address) of the pointer is: %p\n\n",
-           &i, &i[0], pi);
+    printf("After the command `pi = pi + 1;`, the stored memory address of `pi` is %p, which is the beginning of the memory address of `i[1]`.", pi);
 
 
 
