@@ -208,6 +208,13 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td>An unsigned integer type that is used for representing the sizes of objects in memory. It is often used when dealing with memory allocation, arrays, and indexing. The <code>size_t</code> type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
 </tr>
 <tr>
+    <td>Any pointer type</td>
+    <td>4 bytes (32 bits) of memory on 32-bit systems, or 8 bytes (64 bits) of memory on 64-bit systems.</td>
+    <td><code>%p</code></td>
+    <td></td>
+    <td>It can be a memory address of any-type variable, and you can pass it by accessing the value stored (i.e., the memory address) of a pointer that points to it, or you can access its memory address directly (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
+</tr>
+<tr>
     <th colspan="5"><h3><code>C++</code>-only data types</h3></th>
 </tr>
 <tr>
