@@ -104,7 +104,7 @@ On Linux, you can obtain more `C`/`C++` libraries via
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
 
 ---
-## Example
+## Example: creating static and shared libraries
 
 In this example, we have a main program (`main.cpp`) that includes the header file `mylib.h`. The header file provides the function prototype for `printMessage()`. The actual implementation of `printMessage()` is defined in separate source files `mylib_static.cpp` and `mylib_shared.cpp`, which are compiled into static (`libmylib_static.a`) and shared (`libmylib_shared.so`) libraries, respectively.
 
