@@ -8,7 +8,8 @@ int main() {
     printf("Before strcpy: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
     printf("Before strcpy: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
 
-    strcpy(destination, source);
+    // destination = source; // you cannot do it in C
+    strcpy(destination, source); // instead, do it
 
     printf("After strcpy: source string = \"%s\". Its length is %lu.\n", source, strlen(source));
     printf("After strcpy: destination string = \"%s\". Its length is %lu.\n", destination, strlen(destination));
