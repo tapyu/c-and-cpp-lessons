@@ -105,6 +105,8 @@ When you have the executable, you can use the `ldd` command, which is a Linux ut
 ldd /path/to/your/executable
 ```
 
+For instance, run `ldd c-link-shared-lib/geom` to list the all the shared libraries dependency and see where the `libm` library is located in you system. This path comes from the `/etc/ld.so.conf.d/x86_64-linux-gnu.conf` config file. That is, the linker can associate this library from the standard system library paths.
+
 
 #### **When to use a library over a source `.c`/`.cpp` code and its header file**
 
