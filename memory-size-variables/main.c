@@ -7,7 +7,7 @@ int main() {
     printf("Size of char: %zu bytes\n\n", sizeof(c)); // or sizeof(char)
     
     // Declare a float variable
-    float f = 3.1416;
+    float f = 3.1416f;
     printf("Value of float: %f\n", f);
     printf("Size of float: %zu bytes\n\n", sizeof(f)); // or sizeof(float)
     

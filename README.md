@@ -126,9 +126,9 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 <tr>
     <td><code>int</code>, <code>signed</code>, <code>signed int</code></td>
     <td>At least 2 bytes (16 bits)</td>
-    <td><code>%i</code>,<code>%d</code></td>
+    <td><code>%i</code>,<code>%d</code> (or <code>%o</code> or <code>%x</code> if you are using octal or hexadecimal representation, respectively)</td>
     <td></td>
-    <td>Basic signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range.</td>
+    <td>Basic signed integer type. Capable of containing at least the <code>[−32,767, +32,767]</code> range. Use `0` or `0x` prefix if you are using octal or hexadecimal representation. The convesion to decimal (and vice-versa) is direct you use <code>%i</code> or <code>%d</code> to refer to a a hexadecimal or octal number.</td>
 </tr>
 <tr>
     <td><code>unsigned</code>, <code>unsigned int</code></td>
@@ -184,7 +184,7 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
     <td>At least 4 bytes (32 bits).</td>
     <td><code>%f</code>, <code>%F</code>, <code>%g</code>, <code>%G</code>, <code>%e</code>, <code>%E</code>, <code>%a</code>, <code>%A</code></td>
     <td><code>f</code>, <code>F</code></td>
-    <td>Real floating-point type, usually referred to as a "single-precision floating-point type".</td>
+    <td>Real floating-point type, usually referred to as a "single-precision floating-point type". It is a <b>good practice</b> to add the <code>f</code> suffix to make it clear to the compiler and other developers that you are working with a <code>float</code> rather than a <code>double</code>. By default, many compilers treat numeric literals without suffixes as double. For example, <code>float f1 = 3.14;</code> may be implicitly treated as a <code>double</code>, while <code>float f2 = 3.14f;</code> is not. It's important to note that while using the <code>f</code> suffix is a good practice for <code>float</code> literals, it's not mandatory. In many situations, the compiler can perform implicit conversions from <code>double</code> to <code>float</code> when necessary. However, using the <code>f</code> suffix can help prevent unexpected behavior or type mismatch issues in your code, especially when dealing with <code>float</code> variables and constants.</td>
 </tr>
 <tr>
     <td><code>double</code></td>
