@@ -245,6 +245,23 @@ In this example, adding 1 to the pointer ptr moves it to the next integer in the
 
 # References
 
+## **Reference syntax**
+
+<table>
+<tr>
+    <th colspan="3"><h2>Pointer syntax</h2></th>
+</tr>
+<tr>
+    <th>Code</th>
+    <th>How you should read it</th>
+    <th>Comments</th>
+</tr>
+<tr>
+    <td>${\color{blue}int \space \color{yellow}\& \color{violet}rx \color{green}= \color{cyan}i}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space variable \space i}$</td>
+    <td>This syntax is used to initialize a reference variable.</td>
+</tr>
+</table>
 
 #### **What are references?**
 
@@ -322,26 +339,6 @@ Let us break it down:
 - `1197: mov    QWORD PTR [rbp-0x10],rax`: Does exactly the same as the instruction `118f`, but in the memory `[rbp-0x10]`. Note that `1193` and `1197` form our "high"-level `C` command `int &ri = i`.
 
 As you can see, pointers and the refereces are initialized in the same way. The difference between a pointer and a reference occurs after they are initialzied. The compiler manipulates them differently, applying severeal protections/restriction on the reference, which prevent us from things such as doing math with it. On the other hand, for some tasks, such restrictions enable us to use references in a more straightforward way when compared to pointers. For example, modifying a variable value by reference is much more straightforward when compared to the same solution via pointers.
-
----
-
-## **Reference syntax**
-
-<table>
-<tr>
-    <th colspan="3"><h2>Pointer syntax</h2></th>
-</tr>
-<tr>
-    <th>Code</th>
-    <th>How you should read it</th>
-    <th>Comments</th>
-</tr>
-<tr>
-    <td>${\color{blue}int \space \color{yellow}\& \color{violet}rx \color{green}= \color{cyan}i}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space variable \space i}$</td>
-    <td>This syntax is used to initialize a reference variable.</td>
-</tr>
-</table>
 
 ---
 
