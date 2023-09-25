@@ -2,14 +2,16 @@
 
 int main() {
     int i[] = {10, 20, 30, 40};
-    int *pi = i; // pi points to the internal pointer variable of `i`, that is, the address of its first array element, 10.
+    int *pi = i; // pi points to the internal pointer of the variable `i`, that is, the address of its first array element, 10.
+    int d = 5;
+    // int *pd = d; // you cannot do it as `d` has no internal since it is a primitive data type
 
-    printf("The internal pointer variable of the int array is             : %p\n"
+    printf("The internal pointer of the int array is                      : %p\n"
            "The address of the first int array element is                 : %p\n"
            "The stored value (.i.e., the memory address) of the pointer is: %p\n"
            "PS: - Each memory address, by definition, stores 1 byte and is usually represented in hexadecimal.\n"
            "    - Each memory address of a 64-bit (32-bit) memory architecture has a 64/4=16 (32/4=8) hexadecimal digits\n\n",
-           &i, &i[0], pi);
+           (void*)&i, (void*)&i[0], (void*)pi);
 
 
     printf("The memory size of a int variable is: %zu bytes, or equivalently %lu bits as each byte has 8 bits.\n", sizeof(int), 8*sizeof(int));
