@@ -56,8 +56,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{violet}parr \color{orange}[n] \space \color{green}= \space \color{cyan}5}$
         ${\color{violet}The \space value \space in \space the \space memory \space address}$
         ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space}$
-        ${\color{orange}in \space n\times X \space bytes}$</td>
-        ${\color{green}is \space set \space to \space \color{cyan}5}$
+        ${\color{orange}in \space n\times X \space bytes}$
+        ${\color{green}is \space set \space to \space \color{cyan}5}$</td>
     <td>Same shit, but in the other way around.</td>
 </tr>
 <tr>
