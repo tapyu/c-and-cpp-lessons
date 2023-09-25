@@ -85,7 +85,7 @@ int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is
 int i = ptr[2]; // dereference via indexing: `i` is set to `70`, the memory address of `ptr` did not change
 ```
 
-See `./pointer-arithmetic/dereference-via-indexing.c`.
+Although this notation conveys the idea of an ordinary array indexing (i.e., `arr[2]`) and although it yields the same result of `arr[2]`, what we are doing here is: 1- Pointer arithmetic (but without modifying `parr`) 2- Dereference. In fact, the syntax `parr[2]` is equivalent to `*(parr + 2)` (first we do pointer arithmetic wihtout changing `parr`, then we dereference the resulting memory address). See `./pointer-arithmetic/dereference-via-indexing.c`.
 
 ---
 
