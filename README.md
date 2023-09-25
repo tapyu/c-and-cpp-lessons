@@ -45,6 +45,16 @@ has far fewer constraints: it can expand to any sequence of tokens, as long as t
 ### **Why does the order of the `-l` option matter in the `gcc`/`g++` commands? (`C` and `C++`)**
 [When][4] you add a library using the -l option, the linker does not unconditionally take all object files from the library. It only takes those object files that are currently needed, i.e. files that resolve some currently unresolved (pending) symbols. After that, the linker completely forgets about that library.
 
+---
+
+### **nullptr vs. NULL**
+
+`nullptr` and `NULL` serve similar purposes, but they have differences:
+
+- `nullptr` is a `C++11` and later keyword, introduced to provide a more type-safe and robust way to represent null pointers. It can be used for pointers of any type.
+- `NULL` is a macro defined in the `C` and `C++` standard libraries (typically as `(void*)0` or something similar). It is often used in `C` and older `C++` code to represent null pointers.
+- In modern `C++` code, it's recommended to use `nullptr` for null pointers because it provides better type safety. However, if you're working with legacy code or `C` libraries, you may encounter `NULL`.
+
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
