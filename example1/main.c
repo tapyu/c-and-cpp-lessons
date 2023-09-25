@@ -19,6 +19,6 @@ void wrong_update(struct Person x, int i) {
 int main(void) {
     struct Person mike;
     update_structure(&mike, 100, "Mike");
-    // wrong_update(mike, 100); // uncomment it to see that the we couldn't change this variable without a pointer
+    wrong_update(mike, 2000); // without a pointer, we cannot update the variable
     printf("The age of %s is %d", mike.name, mike.age);
 }

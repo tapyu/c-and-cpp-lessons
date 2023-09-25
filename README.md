@@ -2,7 +2,7 @@
 
 ## **What are pointers?**
 
-In `C` and `C++`, pointers are variables that store memory addresses as their values. They are a fundamental concept in both languages and are used extensively for tasks like dynamic memory allocation, working with arrays, and passing data by reference. 
+In `C` and `C++`, pointers are variables that store memory addresses as their values. In essence, it "points" to the location in memory where a specific piece of data is stored. Pointers provide a way to indirectly access and manipulate data in memory. 
 
 ---
 
@@ -56,7 +56,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 
 Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./pointer-arithmetic/` examples).
 
-- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. Desipe the memory size offset that the stored memory address will undergo, you can simply type `ptr = ptr + 1;` (or `ptr++`) and then the pointer `ptr` will shift the memory address the the appropriate value. For example:
+- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively shifting forward the memory address stored by the pointer in a certain number of bytes. The size of the offset depends on the data type that the pointer points to. If `ptr` points to a variable type `X`, and this type occupies `Y` bytes in the memory, then the memory addres that `ptr` stores will be shifted forward in `Y` bytes. Desipe the memory size offset that the stored memory address will undergo, you can simply type `ptr = ptr + n;` (or `ptr+=n`), and then the memory address stored in `ptr` will be shifted forward in `n*Y` bytes. For example (you could use `ptr++`):
 ```c
     int arr[] = {10, 20, 30, 40};
     int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 10.
@@ -69,7 +69,6 @@ The number of
     int *ptr = &arr[2]; // ptr points to the third element (30)
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
-
 
 ---
 
