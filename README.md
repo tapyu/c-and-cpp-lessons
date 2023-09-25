@@ -289,7 +289,7 @@ In `C++` (and some other programming languages, but not in `C`), a reference is 
 
 #### **References vs. Pointers**
 
-In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./pointers-refs-comparison/`). However, there are fundamental differences beween both:
+In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./refs-vs-pointers/ref-pointer-equivalency.cpp`). However, there are fundamental differences beween both:
 1. References cannot be `NULL` (e.g., you cannot write `int &ref = NULL;`);
 1. You cannot change the variable e.g. referenced by a reference. Once a reference is *associated* to a variable, it is that way forever (e.g., if `int $ref = i;`, you cannot also write `int $ref = another_i;`);
 1. You cannot do math on references (e.g., you cannot write `int &a = i + 1;`) as you can do on pointers (e.g., you can write `int *pi = &i + 1`). See `./pointer-arithmetic/pointerpp.c`;
