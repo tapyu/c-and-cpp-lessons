@@ -8,7 +8,6 @@ struct Person {
 
 void update_structure(struct Person *p, int age, char *c) {
     p->age = age;
-    printf("The name here is %s\n", c);
     strcpy(p->name, c);
 }
 
