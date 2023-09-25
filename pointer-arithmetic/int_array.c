@@ -11,7 +11,7 @@ int main() {
            "The stored value (.i.e., the memory address) of the pointer is: %p\n"
            "PS: - Each memory address, by definition, stores 1 byte and is usually represented in hexadecimal.\n"
            "    - Each memory address of a 64-bit (32-bit) memory architecture has a 64/4=16 (32/4=8) hexadecimal digits\n\n",
-           (void*)&i, (void*)&i[0], (void*)pi);
+           (void*)i, (void*)&i[0], (void*)pi);
 
 
     printf("The memory size of a int variable is: %zu bytes, or equivalently %lu bits as each byte has 8 bits.\n", sizeof(int), 8*sizeof(int));
