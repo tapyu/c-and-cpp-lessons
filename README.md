@@ -52,6 +52,25 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 </tr>
 </table>
 
+#### **What is pointer arithmetic?**
+
+Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./pointer-arithmetic/` examples).
+
+- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. Desipe the memory size offset that the stored memory address will undergo, you can simply type `ptr = ptr + 1;` (or `ptr++`) and then the pointer `ptr` will shift the memory address the the appropriate value. For example:
+```c
+    int arr[] = {10, 20, 30, 40};
+    int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 10.
+    ptr = ptr + 1; // Move ptr to the next integer (20)
+```
+The number of
+- *Subtracting an Integer from a Pointer*: You can also subtract an integer from a pointer, which has the opposite effect of moving the pointer backward in memory. Again, the size of the offset depends on the data type. For example (you could use `ptr--;` instead of `ptr = ptr - 1;`):
+```c
+    int arr[] = {10, 20, 30, 40};
+    int *ptr = &arr[2]; // ptr points to the third element (30)
+    ptr = ptr - 1; // Move ptr to the previous integer (20)
+```
+
+
 ---
 
 # Memory
@@ -71,24 +90,6 @@ Proper memory management also involves deallocating memory when it is no longer 
 #### **What are memory safety and garbage collector?**
 
 Ensuring that allocated memory is used correctly and avoiding issues like buffer overflows (writing beyond allocated memory) is essential for memory safety. Languages like `C` and `C++` provide powerful memory management but also require careful coding practices to prevent memory-related errors. In some programming languages (e.g., `Java`, `C#`), automatic memory management techniques like garbage collection are used to automatically reclaim memory that is no longer in use. This simplifies memory management for programmers but introduces its own set of considerations.  In contrast to languages with garbage collection, languages like `C` and `C++` require manual memory management using `malloc()`, `free()`, `new()`, and `delete()` to allocate and deallocate memory. This can be error-prone but offers more control over memory usage.
-
-#### **What is pointer arithmetic?**
-
-Pointer arithmetic is a fundamental concept in programming languages like `C` and `C++`, which allows you to perform arithmetic operations on pointers. Specifically, it involves adding or subtracting integers to/from pointers to manipulate memory addresses (see `./pointer-arithmetic/` examples).
-
-- *Adding an Integer to a Pointer*: When you add an integer value to a pointer, you are effectively moving the pointer to point to a memory location that is offset by a certain number of bytes. The size of the offset depends on the data type that the pointer points to. Desipe the memory size offset that the stored memory address will undergo, you can simply type `ptr = ptr + 1;` (or `ptr++`) and then the pointer `ptr` will shift the memory address the the appropriate value. For example:
-```c
-    int arr[] = {10, 20, 30, 40};
-    int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 10.
-    ptr = ptr + 1; // Move ptr to the next integer (20)
-```
-The number of
-- *Subtracting an Integer from a Pointer*: You can also subtract an integer from a pointer, which has the opposite effect of moving the pointer backward in memory. Again, the size of the offset depends on the data type. For example (you could use `ptr--;` instead of `ptr = ptr - 1;`):
-```c
-    int arr[] = {10, 20, 30, 40};
-    int *ptr = &arr[2]; // ptr points to the third element (30)
-    ptr = ptr - 1; // Move ptr to the previous integer (20)
-```
 
 ## Memory size of variables (in bytes)
 
