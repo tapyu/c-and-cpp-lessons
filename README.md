@@ -53,6 +53,15 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>In this expression, <code>X</code> is the memory size (in bytes) of each element in the array <code>arr</code> and <code>n</code> is any positive or negative interger value. This notation is an sintactic sugar to its <a href="https://stackoverflow.com/questions/4622461/difference-between-pointer-index-and-pointer">equivalent</a> command, <code>*(parr+n)</code>. In fact, a pointer arithmetic is performed on <code>parr</code> before dereferencing it. This syntax might be called "dereference via indexing". See the <a href="https://github.com/tapyu/c-and-cpp-lessons/tree/5-pointer-reference-memory#what-is-pointer-arithmetic">pointer arithmetic</a> section for more info.</td>
 </tr>
 <tr>
+    <td>${\color{violet}parr \color{orange}[n] \space \color{green}= \space \color{cyan}5}$</td>
+    <td>
+        ${\color{violet}The \space value \space in \space the \space memory \space address}$
+        ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space}$
+        ${\color{orange}in \space n\times X \space bytes}$</td>
+        ${\color{green}is \space set \space to \space \color{cyan}5}$
+    <td>Same shit, but in the other way around.</td>
+</tr>
+<tr>
      <td>${\color{red}p->age \space \color{green}= \space \color{cyan}5}$</td>
     <td>${\color{red}The \space stored \space value \space of \space the \space struct's}$
         ${\color{red}feild \space age \space that \space p \space points \space to \space \color{green}is \space set \space to \space \color{cyan}5}.$</td>
