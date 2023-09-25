@@ -47,8 +47,8 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
 <tr>
     <td>${\color{blue}int \space \color{cyan}y \space \color{green}= \space \color{violet}parr \color{orange}[n]}$</td>
     <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space}$
-        ${\color{violet}the \space value \space in \space the \space memory \space address \space pointed \space by \space parr,}$
-        ${\color{orange}but \space shifted \space in \space n\times X bytes}$</td>
+        ${\color{violet}the \space value \space in \space the \space memory \space address}$
+        ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space in \space n\times X \space bytes}$</td>
     <td>In this expression, <code>X</code> is the memory size (in bytes) of each element in the array <code>arr</code> and <code>n</code> is any positive or negative interger value. This notation is an sintactic sugar to its <a href="https://stackoverflow.com/questions/4622461/difference-between-pointer-index-and-pointer">equivalent</a> command, <code>*(parr+n)</code>. In fact, a pointer arithmetic is performed on <code>parr</code> before dereferencing it. This syntax might be called "dereference via indexing". See the <a href="https://github.com/tapyu/c-and-cpp-lessons/tree/5-pointer-reference-memory#what-is-pointer-arithmetic">pointer arithmetic</a> section for more info.</td>
 </tr>
 <tr>
