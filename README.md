@@ -27,9 +27,9 @@ printf("These are"
 `C` provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier. Note that, in `C`, **you cannot directly assign a string (e.g., "Mike") to a character array (e.g., name) using the assignment operator `=`**. You need to use functions like `strcpy()` to copy a string into a character array (see `./string-manipulation-c-vs-cpp/main.c`). On the other hand, `C++` codes can handle strings in a much more efficient way (see `/.string-manipulation-c-vs-cpp/main.cpp`).
 
 
-### How `C` functions tipically handle strings?
+### How do `C` functions tipically handle strings?
 
-Tipically `C` functions handles strings (i.e., `char` arrays) via `char` pointers. In other words, function declaration/prototype usually use `char *` to handle a string as its input argument. The benefit is that, once we might not know the string length in advance, using a `char` pointer gives to the function the fredoom of reading each character until it finds null character, `\0`. Therefore, if `char str[] = "Hello my string";`, you can pass either:
+Tipically, `C` functions handles strings (i.e., `char` arrays) via `char` pointers. In other words, function declaration/prototype usually use `char *` to handle a string as its input argument. The benefit is that, once we might not know the string length in advance, using a `char` pointer gives to the function the fredoom of reading each character until it finds null character, `\0`. Therefore, if `char str[] = "Hello my string";`, you can pass either:
 
 - If you pass a string (i.e., a char array) (e.g., `str`): The compiler will *decay* the memory addres to its internal pointer variable, which is the memory address of its first element (i.e., `&str[0]`).
 - If you pass a `char` (e.g., `str[0]` or `c`, where `char c = 'a';`): In this case, we don't have an internal pointer variable as this variable type is not structured. Only structured types (e.g., array, structs, etc) have internal point variable (?). Therefore, the passed argument does not *decay* to any memory address and the compiler prompts an error message.
