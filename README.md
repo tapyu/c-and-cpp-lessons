@@ -2,7 +2,7 @@
 
 ## **What are pointers?**
 
-In `C` and `C++`, pointers are variables that store memory addresses as their values. In essence, it "points" to the location in memory where a specific piece of data is stored. Pointers provide a way to indirectly access and manipulate data in memory. 
+In `C` and `C++`, pointers are variables that store memory addresses as their values. In essence, it "points" to the location in memory where a specific piece of data is stored. Pointers provide a way to indirectly access and manipulate data in memory (see `./basic-functionality/main.c`).
 
 ---
 
