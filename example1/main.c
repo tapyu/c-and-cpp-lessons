@@ -1,14 +1,15 @@
 #include <stdio.h>
+#include <string.h>
 
 struct Person {
-    char name;
+    char name[64];
     int age;
 };
 
 void update_structure(struct Person *p, int age, char *c) {
     p->age = age;
     printf("The name here is %s\n", c);
-    p->name = c[2];
+    strcpy(p->name, c);
 }
 
 void wrong_update(struct Person x, int i) {
@@ -19,5 +20,5 @@ int main(void) {
     struct Person mike;
     update_structure(&mike, 100, "Mike");
     // wrong_update(mike, 100); // uncomment it to see that the we couldn't change this variable without a pointer
-    printf("The age of %c is %d", mike.name, mike.age);
+    printf("The age of %s is %d", mike.name, mike.age);
 }
