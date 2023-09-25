@@ -29,16 +29,16 @@ printf("These are"
 
 ### How do `C` functions tipically handle strings?
 
-Tipically, `C` functions handles strings (i.e., `char` arrays) via `char` pointers. In other words, function declaration/prototype usually use `char *` to handle a string as its input argument. The benefit is that, once we might not know the string length in advance, using a `char` pointer gives to the function the fredoom of reading each character until it finds null character, `\0`. Therefore, if `char str[] = "Hello my string";`, you can pass either:
+Tipically, `C` functions handles strings (i.e., `char` arrays) via `char` pointers. In other words, function declaration/prototype usually use `char *` to handle a string as its input argument. The benefit is that, once we might not know the string length in advance, using a `char` pointer gives to the function the fredoom of reading each character until it finds null character, `\0`, regardless of its length. Therefore, if `char str[] = "Hello my string";`, you can pass either:
 
-- If you pass a string (i.e., a char array) (e.g., `str`): The compiler will *decay* the memory addres to its internal pointer variable, which is the memory address of its first element (i.e., `&str[0]`).
-- If you pass a `char` (e.g., `str[0]` or `c`, where `char c = 'a';`): In this case, we don't have an internal pointer variable as this variable type is not structured. Only structured types (e.g., array, structs, etc) have internal point variable (?). Therefore, the passed argument does not *decay* to any memory address and the compiler prompts an error message.
-- If you pass the memory address of one of the `char` element array (i.e., `&str[n]`, where `n` can be any `char` element position in the `str` array): The compiler will get this memory address and will assume that the string begins there. You could also pass the address of a single characters. e.g., `&c`, but that makes no since address location of the null character `\0` in the subsequent memory addresses is uncertain (single `char` characters don't have `\0` as trailing character).
-- If you pass a `char` pointer (i.e., `char *pstr = str`): The compiler will assume that the memory address stored by the pointer is the beginning of the string.
+- A string (i.e., a char array) (e.g., `str`): The compiler will **decay** the memory addres to its internal pointer variable, which is the memory address of its first element (i.e., `&str[0]`).
+- A `char` (e.g., `str[0]` or `c`, where `char c = 'a';`): In this case, we don't have an internal pointer variable as it is a [primitive data type][2]. Only [composite data types][3] (e.g., array, structs, etc) have internal point variable. Therefore, the passed argument does not **decay** to any memory address and the compiler prompts an error message.
+- The memory address of one of the `char` element array (i.e., `&str[n]`, where `n` can be any `char` element position in the `str` array): The compiler will get this memory address and will assume that the string begins there. You could also pass the address of a single characters. e.g., `&c`, but that makes no sense once the address location of the null character `\0` in the subsequent memory addresses is uncertain (single `char` characters don't have `\0` as trailing character).
+- A `char` pointer (i.e., `char *pstr = str`): The compiler will assume that the memory address stored by the pointer is the beginning of the string.
 
 Afterwards, the function reads each stored character at that memory address onwards until it finds the null character `\0`. **Therefore, in most of the cases, it is enough to work with `char` pointers instead of the string itself.**. For instance, the `%s` formater specifier in the `printf()` function expects a char pointer instead of a char array. On the other hand, keep in mind that `char *pstr ≠ char str[]`
 
-See `./char-strings-pointers`).
+See `./char-strings-pointers`.
 
 ## How to handle strings in `C++`?
 
@@ -50,3 +50,8 @@ In `C++`, it is introduced the `std::string` class, which is part of the Standar
 
 
 #### [`printf`/`scanf` `%` syntax in `C`/`C++`](https://github.com/tapyu/c-and-cpp-lessons/tree/5-pointer-reference-memory#memory-size-of-variables-in-bytes)
+
+
+[1]: https://en.wikipedia.org/wiki/Primitive_data_type
+[2]: https://stackoverflow.com/a/77174592/13998346
+[3]: https://en.wikipedia.org/wiki/Composite_data_type
