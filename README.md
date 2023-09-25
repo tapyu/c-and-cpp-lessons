@@ -21,7 +21,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{red}* \color{violet}px \space \color{green}= \space \color{yellow}\& \color{cyan}x}$</td>
     <td>${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space px \space \color{green}is \space set \space to}$
         ${\color{yellow}the \space address \space of \space \color{cyan}x}$.</td>
-    <td>This syntax is used to initialize the pointer variable. This is the unique situation that $\color{red}*$ reads $\color{red}pointer$. In all others, $\color{red}*$ will denote the dereference process. By "integer pointer", we mean that this pointer points to an address whose stored value is an integer. The syntax <code>int* px = &x;</code> can also be used as an alternative to <code>int *px = &x;</code>. Although both are commonly adopted, I prefer the latter <a href="https://stackoverflow.com/questions/14536658/pointer-syntax-in-c">because</a> <code>int* a, b;</code> produces an integer <code>a</code> and a pointer integer <code>b</code>, even though it wrongly seems that both <code>a</code> and <code>b</code> are integer pointers. However, the former is useful for casting, e.g. <code>char *char_ptr = (char*)int_ptr;</code> (see the casting branch).</td>
+    <td>This syntax is used to initialize the pointer variable. This is the unique situation that $\color{red}*$ reads $\color{red}pointer$. In all others, $\color{red}*$ will denote the dereference process. By "integer pointer", we mean that this pointer points to an address whose stored value is an integer. The syntax <code>int* px = &x;</code> can also be used as an alternative to <code>int *px = &x;</code>. Although both are commonly adopted, I prefer the latter <a href="https://stackoverflow.com/questions/14536658/pointer-syntax-in-c">because</a> <code>int* a, b;</code> produces a integer pointer <code>a</code> and an integer <code>b</code>, even though it wrongly seems that both <code>a</code> and <code>b</code> are integer pointers. However, the former is useful for casting, e.g. <code>char *char_ptr = (char*)int_ptr;</code> (see the casting branch).</td>
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{red}* \color{violet}parr \space \color{green}= \space \color{cyan}arr}$</td>
@@ -29,7 +29,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
         ${\color{cyan}the \space address \space of \space the \space first \space element \space in}$ ${\color{cyan} the \space integer \space array \space arr}$
         <br>or<br>
         ${\color{blue}Integer \space \color{red}pointer \space \color{violet}named \space parr \space \color{green}is \space set \space to}$
-        ${\color{cyan}the \space internal \space pointer \space}$ ${\color{cyan} of \space the \space variable \space arr}$.</td>
+        ${\color{cyan}the \space internal \space pointer \space of \space the \space}$ ${\color{cyan} variable \space arr}$.</td>
     <td>In this command, <code>arr</code> is some <code>int</code> array. When you use this syntax, you are telling <code>parr</code> to store the memory address of the first array element of <code>arr</code> (<code>arr[0]</code>). We call this memory address the <b>internal pointer variable</b>. All <a href="https://en.wikipedia.org/wiki/Composite_data_type">composite data types</a> (e.g., arrays, structures, etc...) have its own internal pointer, and it is always the memory address of its first element (see <code>./pointer-arithmetic/int_array.c</code>). Note that it also works for strings as they are represented as <code>char</code> arrays in <code>C</code> and therefore are also a composite data type (see <code>./pointer-arithmetic/char_array.c</code>). This syntax is equivalent to <code>int *parr = &arr[0]</code>, but it is much more concise and therefore more adopted. When the compiler uses the internal pointer of the variable, we often say that "the variable <b>decays</b> into a pointer to its first element". On the other hand, we cannot write <code>int *p = i</code> if <code>i</code> is a single <code>int</code> because it is a <a href="https://en.wikipedia.org/wiki/Primitive_data_type">primitive data type</a> and therefore it has no internal pointer variable.</td>
 </tr>
 <tr>
@@ -43,6 +43,13 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space}$
         ${\color{red}the \space stored \space value \space pointed \space by \space \color{violet}px}$.</td>
     <td>It is also a dereference, but in the other way around, that is, the value of a variable that is out of the scope in question is assigned to a local variable.</td>
+</tr>
+<tr>
+    <td>${\color{blue}int \space \color{cyan}y \space \color{green}= \space \color{violet}parr \color{orange}[n]}$</td>
+    <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space}$
+        ${\color{violet}the \space value \space in \space the \space memory \space address \space pointed \space by \space parr,}$
+        ${\color{orange}but \space shifted \space in \space n\times X bytes}$</td>
+    <td>In this expression, <code>X</code> is the memory size (in bytes) of each element in the array <code>arr</code> and <code>n</code> is any positive or negative interger value. This notation is an sintactic sugar to its <a href="https://stackoverflow.com/questions/4622461/difference-between-pointer-index-and-pointer">equivalent</a> command, <code>*(parr+n)</code>. In fact, a pointer arithmetic is performed on <code>parr</code> before dereferencing it. This syntax might be called "dereference via indexing". See the <a href="https://github.com/tapyu/c-and-cpp-lessons/tree/5-pointer-reference-memory#what-is-pointer-arithmetic">pointer arithmetic</a> section for more info.</td>
 </tr>
 <tr>
      <td>${\color{red}p->age \space \color{green}= \space \color{cyan}5}$</td>
@@ -61,14 +68,23 @@ Pointer arithmetic is a fundamental concept in programming languages like `C` an
     int arr[] = {10, 20, 30, 40};
     int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 10.
     ptr = ptr + 1; // Move ptr to the next integer (20)
+    int i = *ptr; // `i` is `20`
 ```
-The number of
 - *Subtracting an Integer from a Pointer*: You can also subtract an integer from a pointer, which has the opposite effect of moving the pointer backward in memory. Again, the size of the offset depends on the data type. For example (you could use `ptr--;` instead of `ptr = ptr - 1;`):
 ```c
     int arr[] = {10, 20, 30, 40};
     int *ptr = &arr[2]; // ptr points to the third element (30)
     ptr = ptr - 1; // Move ptr to the previous integer (20)
 ```
+
+Sometimes you want to derefence the memory address pointed by `ptr` shifted by some amount, but you don't want to modify the the memory address stored in `ptr` during this process. In that situation, you can dereference via indexing:
+```c
+int arr[] = {50, 60, 70, 80, 90, 100, 110};
+int *ptr = arr; // ptr points to the internal pointer variable of `arr`, that is, the address of its first array element, 50.
+int i = ptr[2]; // dereference via indexing: `i` is set to `70`, the memory address of `ptr` did not change
+```
+
+See `./pointer-arithmetic/dereference-via-indexing.c`.
 
 ---
 
