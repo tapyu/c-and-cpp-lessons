@@ -58,7 +58,7 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
         ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space}$
         ${\color{orange}in \space n\times X \space bytes}$
         ${\color{green}is \space set \space to \space \color{cyan}5}$</td>
-    <td>Same shit, but in the other way around. We assume that <code>parr</code> is a <code>int</code> pointer.</td>
+    <td>Same shit, but in the other way around. We assume that <code>parr</code> is an <code>int</code> pointer.</td>
 </tr>
 <tr>
      <td>${\color{red}p->age \space \color{green}= \space \color{cyan}5}$</td>
