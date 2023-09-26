@@ -83,7 +83,7 @@ The static keyword can be used in a function declaration in several different co
 ```sh
 gcc -E -o static_keyword/static_function/main.i static_keyword/static_function/main.c
 ```
-and check that, indeed, the translated unit `static_keyword/static_function/main.i` doesn't have the `static void internalFunction()` function.
+and check that, indeed, the translated unit `./static_keyword/static_function/main.i` doesn't have the `static void internalFunction()` function.
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
