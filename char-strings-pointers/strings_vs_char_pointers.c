@@ -21,11 +21,11 @@ int main(void)
 
     // The memory address, it happens
     printf("Memory addresses:\n");
-    printf("&str[0]: %p\n", &str[0]);
-    printf("str:     %p\n", str);  // same as `&str[0]`
-    printf("pstr:    %p\n", pstr); // same as `&str[0]`
-    printf("&c:      %p\n", &c);
-    printf("str2:    %p\n", str2);
+    printf("&str[0]: %p\n", (void *)&str[0]);
+    printf("str:     %p\n", (void *)str);  // same as `&str[0]`
+    printf("pstr:    %p\n", (void *)pstr); // same as `&str[0]`
+    printf("&c:      %p\n", (void *)&c);
+    printf("str2:    %p\n", (void *)str2);
 
     return 0;
 }
