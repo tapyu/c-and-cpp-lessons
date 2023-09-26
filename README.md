@@ -88,10 +88,16 @@ and check that, indeed, the translated unit `./static_keyword/static_function/ma
 
 ---
 
-### Keyword `const` (`C` and `C++`)
+### `const` keyword (`C` and `C++`)
 
 - *For pointers*: when you use a `const` pointer (e.g., `const char *ptr`), you cannot modify the characters through the pointer `ptr`. However, it does not make the pointer itself constant; you can change the pointer to point to a different memory location. Also, if `int i = 5;` and `const int *pi = &i;`, although you cannot modify `i` through `pi`, you can modify `i` directly, e.g., `i = 0;`. If we want, we can also change the memory address `pi` points to, e.g., `pi = &j;`, where `int j = 3;`. See `./const-keyword/main.c`.
 - *For any other variable type:* When the const keyword is used with a variable that is not a pointer, it creates a constant (read-only) variable.
+
+--- 
+
+### `noexcept` keyword (`C++`)
+
+TODO
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
