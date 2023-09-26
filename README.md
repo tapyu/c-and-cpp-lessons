@@ -47,7 +47,7 @@ has far fewer constraints: it can expand to any sequence of tokens, as long as t
 
 ---
 
-### **nullptr vs. NULL**
+### **nullptr (`C++`) vs. NULL (`C`)**
 
 `nullptr` and `NULL` serve similar purposes, but they have differences:
 
@@ -55,7 +55,34 @@ has far fewer constraints: it can expand to any sequence of tokens, as long as t
 - `NULL` is a macro defined in the `C` and `C++` standard libraries (typically as `(void*)0` or something similar). It is often used in `C` and older `C++` code to represent null pointers.
 - In modern `C++` code, it's recommended to use `nullptr` for null pointers because it provides better type safety. However, if you're working with legacy code or `C` libraries, you may encounter `NULL`.
 
+---
+
+### The terms `method` vs. `member function` (`C++`)
+
+Both terms, "method" and "member function," can be used to describe a function `myFunction()` from the class `MyClass`, but there is a subtle difference in their usage based on the programming language and the paradigm being used.
+
+In object-oriented programming, especially in languages like `C++` and `Java`, the term "member function" is more commonly used to describe functions that are part of a class, regardless of whether they are static or non-static. This is the more specific and widely understood term in the context of class-based object-oriented programming.
+
+On the other hand, the term "method" is a more general term that can be used in a broader sense to describe a function associated with an object or a class. It's often used in object-oriented programming languages as well, but it's not as specific as "member function."
+
+So, you can say:
+
+- "`myFunction()` is a static member function of the class `MyClass`." - This is the most precise and widely accepted terminology in `C++`.
+- "`myFunction()` is a method of the class `MyClass`." - This is a more general way to describe it, and it can be understood in the context of object-oriented programming, though it's less precise.
+
+In summary, while both terms can be used, "member function" is more specific and commonly used in the context of class-based object-oriented programming like `C++`.
+
+---
+
+### **Usage of the `static` keyword (`C` and `C++`)**
+
+The static keyword can be used in a function declaration in several different contexts, and its meaning can vary depending on where it is used:
+1. *Static Member Functions*: When you declare a member function as `static` inside a class, it means that the function belongs to the class itself rather than to any specific instance of the class. You can call a static member function using the class name, without creating an object of the class. See `./static_keyword/static_member-function.cpp`.
+1. *Static Local Variables*: Inside a function, you can declare variables as static. A static local variable retains its value between function calls. It's initialized only once, and its value persists across multiple function invocations. See `./static_keyword/static_local-variable.cpp`.
+1. *Static Functions in a Translation Unit*: If you declare a function as `static` in a `C++` source file (outside of a class), it means that the function has *internal linkage*, that is, it will only be accessible within the [translation unit][5] where it is defined, making it effectively "private" to that translation unit. On the other hand, functions declared without the `static` keyword have external linkage by default, that is, they can be accessed from other translation units. See `./static_keyword/static_function/`.
+
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter/11894098#11894098
+[5]: https://github.com/tapyu/c-and-cpp-lessons/tree/1-build-process#preprocessing
