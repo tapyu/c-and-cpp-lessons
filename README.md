@@ -86,7 +86,9 @@ gcc -E -o static_keyword/static_function/main.i static_keyword/static_function/m
 and check that, indeed, the translated unit `./static_keyword/static_function/main.i` doesn't have the `static void internalFunction()` function.
 
 
---- Keyword `const` (`C` and `C++`)
+---
+
+### Keyword `const` (`C` and `C++`)
 
 - *For pointers*: when you use a `const` pointer (e.g., `const char *ptr`), you cannot modify the characters through the pointer `ptr`. However, it does not make the pointer itself constant; you can change the pointer to point to a different memory location. Also, if `int i = 5;` and `const int *pi = &i;`, although you cannot modify `i` through `pi`, you can modify `i` directly, e.g., `i = 0;`. See `./const-keyword/main.c`.
 - *For any other variable type:* When the const keyword is used with a variable that is not a pointer, it creates a constant (read-only) variable.
