@@ -48,15 +48,15 @@ In `C` and `C++`, pointers are variables that store memory addresses as their va
     <td>${\color{blue}int \space \color{cyan}y \space \color{green}= \space \color{violet}parr \color{orange}[n]}$</td>
     <td>${\color{blue}Integer \space \color{cyan}named \space y \space \color{green}is \space set \space to \space}$
         ${\color{violet}the \space value \space in \space the \space memory \space address}$
-        ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space}$
+        ${\color{violet}pointed \space by \space parr\color{orange}, \space but \space shifted \space}$
         ${\color{orange}in \space n\times X \space bytes}$</td>
     <td>In this expression, <code>X</code> is the memory size (in bytes) of each element in the array <code>arr</code> and <code>n</code> is any positive or negative interger value. This notation is an sintactic sugar to its <a href="https://stackoverflow.com/questions/4622461/difference-between-pointer-index-and-pointer">equivalent</a> command, <code>*(parr+n)</code>. In fact, a pointer arithmetic is performed on <code>parr</code> before dereferencing it. This syntax might be called "dereference via indexing". See the <a href="https://github.com/tapyu/c-and-cpp-lessons/tree/5-pointer-reference-memory#what-is-pointer-arithmetic">pointer arithmetic</a> section for more info.</td>
 </tr>
 <tr>
     <td>${\color{violet}parr \color{orange}[n] \space \color{green}= \space \color{cyan}5}$</td>
     <td>${\color{violet}The \space value \space in \space the \space memory \space address}$
-        ${\color{violet}pointed \space by \space parr, \space \color{orange}but \space shifted \space}$
-        ${\color{orange}in \space n\times X \space bytes}$
+        ${\color{violet}pointed \space by \space parr\color{orange}, \space but \space shifted \space}$
+        ${\color{orange}in \space n\times X \space bytes,\space}$
         ${\color{green}is \space set \space to \space \color{cyan}5}$</td>
     <td>Same shit, but in the other way around. We assume that <code>parr</code> is an <code>int</code> pointer.</td>
 </tr>
@@ -384,7 +384,7 @@ Move semantics are particularly useful when dealing with objects that manage res
 
 The key components of move semantics in `C++`:
 1. *Move Constructors and Move Assignment Operators*: Classes can define move constructors and move assignment operators to specify how their resources should be moved when an object is transferred to another. These special member functions typically involve shallow copying of pointers or handles and setting the source object to a safe state.
-1. *Rvalue References*: Move semantics rely on rvalue references, which are a type of reference that binds to temporary objects (rvalues). They are denoted with double ampersands (`&&`). Rvalue references allow you to distinguish between objects that can be moved from and objects that should be copied.
+1. *Rvalue References*: An rvalue typically refers to an expression or a value that can appear on the right-hand side (RHS) of an assignment but cannot appear on the left-hand side (LHS). Rvalues are temporary values or objects that do not have a persistent memory location or identity. Move semantics rely on rvalue references, which are a type of reference that binds to these temporary objects (rvalues). They are denoted with double ampersands (`&&`). Rvalue references allow you to distinguish between objects that can be moved from and objects that should be copied.
 1. `std::move()`: The `std::move()` function is used to convert an lvalue (an object with a name) into an rvalue reference. It is often used to indicate that you intend to move from an object rather than copy it.
 
 ---
