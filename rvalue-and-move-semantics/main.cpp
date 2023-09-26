@@ -1,19 +1,51 @@
 #include <iostream>
-#include <vector>
+#include <string.h>
+
+class MyString {
+private:
+    char *str;
+
+public:
+    // Constructor that takes a C-style string (char*)
+    MyString(char* s) {
+        // Allocate memory and copy the input string
+        str = new char[strlen(s) + 1];
+        strcpy(str, s);
+    }
+
+    // Move constructor using an rvalue reference
+    MyString(MyString&& other) noexcept {
+        // Steal the ownership of the dynamically allocated memory
+        str = other.str;
+        other.str = nullptr; // Ensure the source object has no ownership
+    }
+
+    // Destructor to release dynamically allocated memory
+    ~MyString() {
+        delete[] str;
+    }
+
+    // Print the string
+    void print() {
+        std::cout << str << std::endl;
+    }
+};
 
 int main() {
-    std::vector<int> source = {1, 2, 3, 4, 5};
+    // Create a temporary MyString object (rvalue)
+    MyString temp("Hello, World!");
 
-    // Using an rvalue reference to enable move semantics
-    std::vector<int> &&rref = std::move(source);
+    // Use std::move to cast temp into an rvalue reference
+    MyString moved = std::move(temp);
 
-    // Now, 'source' is in a valid but unspecified state
-    // 'rref' has taken ownership of the contents of 'source'
+    // 'temp' is now in a valid but unspecified state
+    // 'moved' has taken ownership of the dynamically allocated memory
 
-    // Access and print elements of 'rref'
-    for (int num : rref) {
-        std::cout << num << " ";
-    }
-    
+    // Print the moved string
+    moved.print();
+
+    // Attempting to print 'temp' would result in undefined behavior
+    // because it no longer owns the memory
+
     return 0;
 }

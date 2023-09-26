@@ -101,11 +101,19 @@ Although this notation conveys the idea of an ordinary array indexing (i.e., `ar
 
 #### **What is memory allocation?**
 
-Memory allocation involves reserving a specific number of bytes in the computer's memory (RAM - Random Access Memory) for a specific purpose. This reserved space can be used to store data structures, variables, arrays, objects, and other program-related information.. It is a fundamental concept in computer programming and is crucial for managing data and resources efficiently.
+Memory allocation involves reserving a specific number of bytes in the computer's memory (RAM - Random Access Memory) for a specific purpose. This reserved space can be used to store data structures, variables, arrays, objects, and other program-related information. It is a fundamental concept in computer programming and is crucial for managing data and resources efficiently.
 
 #### **Static vs. dynamic memory allocation**
 
-Memory can be allocated either at compile-time (static memory allocation) or at runtime (dynamic memory allocation). Dynamic memory allocation, often used in languages like C and C++, allows memory to be allocated and deallocated during program execution, providing flexibility in managing memory resources. When memory is allocated dynamically, a pointer is used to keep track of the allocated memory's location.
+Static memory allocation refers to the allocation of memory for variables at compile-time or during program startup. In statically allocated memory, the size and lifetime of the memory are fixed and determined at compile-time. This means that the memory for these variables is reserved in advance and remains constant throughout the program's execution (see `./static-dynamic-memory/static_memory_allocation.c and .cpp`).
+
+Static memory allocation is useful when you know in advance the size and lifetime of the variables you need, and they don't need to change dynamically during program execution. It's suitable for situations where you have a fixed number of elements, constants, or global variables.
+
+Dynamic memory allocation, as opposed to static memory allocation, involves allocating and deallocating memory during the program's runtime. This allows you to work with data structures of varying sizes and lifetimes, making dynamic memory allocation a powerful feature.
+
+Dynamic memory allocation comes with the responsibility of explicitly releasing memory to prevent memory leaks. In `C`, you use `free()` for deallocation, and in `C++`, you use `delete` for single objects and `delete[]` for arrays. Memory management is a critical aspect when working with dynamic memory.
+
+When you allocate memory dynamically using `malloc()` in `C` or `new` in `C++`, you receive a `void*` pointer to the dynamically allocated memory block. This pointer is often referred to as a "generic" pointer because it doesn't have a specific type associated with it. The `void*` type allows flexibility because you can use it to allocate memory for objects of any type. In `C`, you need to explicitly cast it to the desired type when assigning it to a pointer variable. This pointer is then used to access and modify the data in the allocated memory.
 
 #### **What are deallocation and memory leak?**
 
@@ -367,6 +375,17 @@ Let us break it down:
 - `1197: mov    QWORD PTR [rbp-0x10],rax`: Does exactly the same as the instruction `118f`, but in the memory `[rbp-0x10]`. Note that `1193` and `1197` form our "high"-level `C` command `int &ri = i`.
 
 As you can see, pointers and the refereces are initialized in the same way. The difference between a pointer and a reference occurs after they are initialzied. The compiler manipulates them differently, applying severeal protections/restriction on the reference, which prevent us from things such as doing math with it. On the other hand, for some tasks, such restrictions enable us to use references in a more straightforward way when compared to pointers. For example, modifying a variable value by reference is much more straightforward when compared to the same solution via pointers.
+
+#### What are move semantics and rvalue references?
+
+Move semantics is a `C++` feature that allows you to efficiently **transfer ownership** of resources (such as dynamically allocated memory) from one object to another, typically **without having to create copies of the resources**. It is a feature introduced in `C++11` and later versions of the language.
+
+Move semantics are particularly useful when dealing with objects that manage resources, like dynamic memory allocation or file handles. Without move semantics, copying such objects can be expensive in terms of time and memory. Move semantics allow you to "move" the internal resources from one object to another, leaving the source object in a valid but unspecified state.
+
+The key components of move semantics in `C++`:
+1. *Move Constructors and Move Assignment Operators*: Classes can define move constructors and move assignment operators to specify how their resources should be moved when an object is transferred to another. These special member functions typically involve shallow copying of pointers or handles and setting the source object to a safe state.
+1. *Rvalue References*: Move semantics rely on rvalue references, which are a type of reference that binds to temporary objects (rvalues). They are denoted with double ampersands (`&&`). Rvalue references allow you to distinguish between objects that can be moved from and objects that should be copied.
+1. `std::move()`: The `std::move()` function is used to convert an lvalue (an object with a name) into an rvalue reference. It is often used to indicate that you intend to move from an object rather than copy it.
 
 ---
 
