@@ -79,7 +79,11 @@ In summary, while both terms can be used, "member function" is more specific and
 The static keyword can be used in a function declaration in several different contexts, and its meaning can vary depending on where it is used:
 1. *Static Member Functions*: When you declare a member function as `static` inside a class, it means that the function belongs to the class itself rather than to any specific instance of the class. You can call a static member function using the class name, without creating an object of the class. See `./static_keyword/static_member-function.cpp`.
 1. *Static Local Variables*: Inside a function, you can declare variables as static. A static local variable retains its value between function calls. It's initialized only once, and its value persists across multiple function invocations. See `./static_keyword/static_local-variable.cpp`.
-1. *Static Functions in a Translation Unit*: If you declare a function as `static` in a `C++` source file (outside of a class), it means that the function has *internal linkage*, that is, it will only be accessible within the [translation unit][5] where it is defined, making it effectively "private" to that translation unit. On the other hand, functions declared without the `static` keyword have external linkage by default, that is, they can be accessed from other translation units. See `./static_keyword/static_function/`.
+1. *Static Functions in a Translation Unit*: If you declare a function as `static` in a `C++` source file (outside of a class), it means that the function has *internal linkage*, that is, it will only be accessible within the [translation unit][5] where it is defined, making it effectively "private" to that translation unit. On the other hand, functions declared without the `static` keyword have external linkage by default, that is, they can be accessed from other translation units. See `./static_keyword/static_function/`. You can run
+```sh
+gcc -E -o static_keyword/static_function/main.i static_keyword/static_function/main.c
+```
+and check that, indeed, the translated unit `static_keyword/static_function/main.i` doesn't have the `static void internalFunction()` function.
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
