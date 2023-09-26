@@ -456,6 +456,8 @@ The key components of move semantics in `C++`:
 1. *Rvalue References*: An rvalue typically refers to an expression or a value that can appear on the right-hand side (RHS) of an assignment but cannot appear on the left-hand side (LHS). Rvalues are temporary values or objects that do not have a persistent memory location or identity. Move semantics rely on rvalue references, which are a type of reference that binds to these temporary objects (rvalues). They are denoted with double ampersands (`&&`). Rvalue references allow you to distinguish between objects that can be moved from and objects that should be copied.
 1. `std::move()`: The `std::move()` function is used to convert an lvalue (an object with a name) into an rvalue reference. It is often used to indicate that you intend to move from an object rather than copy it.
 
+See `./rvalue-and-move-semantics/`.
+
 ---
 
 Good refs:
