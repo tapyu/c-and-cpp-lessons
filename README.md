@@ -124,12 +124,16 @@ In `C++`, you can dynamically allocated integer variable with the `new` keyword 
 1. `(5)` (optional): set the stored value of dynamically allocated memory to `5`;
 1. `int *dynam_int =`: assigns this `int*` pointer to `*dynam_int`;
 
-#### **Automatic Storage Duration (ASD) vs. Dynamic Storage Duration (DSD)**
+#### **Storage duration**
+
+Storage duration in `C` and `C++` refers to the lifetime of variables and memory blocks. It determines when and how long variables or memory allocations remain valid during program execution. Understanding storage duration is crucial for managing memory and writing robust programs.
+
+There are four primary storage durations:
 
 - *Automatic Storage Duration (ASD)*:
-    - Variables with automatic storage duration are allocated memory on the stack.
-    - Memory allocation and deallocation are handled automatically by the language.
-    - These variables are typically local to a function and have a limited lifetime determined by their scope.
+    - Variables with automatic storage duration are allocated memory on the *stack*.
+    - Memory allocation and deallocation are handled automatically by the language: variables with storage duration are created when their scope is entered and destroyed when their scope is exited.
+    - Local variables without the `static` keyword have automatic storage duration a limited lifetime determined by their scope.
     - Examples include local variables and function parameters.
     ```c
         void someFunction() {
@@ -140,7 +144,45 @@ In `C++`, you can dynamically allocated integer variable with the `new` keyword 
     - Variables with dynamic storage duration are allocated on the *heap*. The heap is a region of a computer's memory managed by the operating system or a memory manager. It is used for dynamically allocated memory, which means you can request memory at runtime as needed. When you allocate memory on the heap, you are requesting for a memory that persists beyond the scope of the current function or block. This memory remains allocated until you explicitly release it. Therefore, you are responsible for releasing it when you're done using it.
     - Memory allocation and deallocation are controlled explicitly by the programmer.
     - The programmer is responsible for releasing memory when it is no longer needed to prevent *memory leaks*.
-    - In many programming languages, such as `C` and `C++`, allocating memory on the heap involves using functions like new (in `C++`) or `malloc()` (in `C`) to request memory, and using `delete` (in `C++`) or `fre(e()` (in `C`) to release it. You have to be careful to avoid *memory leaks* (not releasing memory) or accessing memory after it has been deallocated (which can lead to undefined behavior).
+    - In many programming languages, such as `C` and `C++`, allocating memory on the heap involves using functions like `new` (in `C++`) or `malloc()` (in `C`) to request memory, and using `delete` (in `C++`) or `free()` (in `C`) to release it. You have to be careful to avoid *memory leaks* (not releasing memory) or accessing memory after it has been deallocated (which can lead to undefined behavior).
+    ```c
+    int* dynamicVar = (int*)malloc(sizeof(int)); // Dynamic storage duration in C
+    *dynamicVar = 100;
+    free(dynamicVar); // Explicit deallocation
+    ```
+
+- *Static Storage Duration*
+    - Variables with static storage duration are created at program startup and persist throughout the program's execution.
+    - They are typically declared using the `static` keyword or are in the global scope (see `./static-dynamic-memory/static_storage_duration.c`).  In `C` and `C++`, variables declared outside of functions (at file scope) have static storage duration by default.
+    - Static variables have a single instance shared across all calls to the function or scope where they are declared.
+    - Variables with static storage duration are typically allocated in a special region of memory called the "data segment" or "global memory." This region is separate from the stack and the heap. The exact location within the data segment can vary depending on the platform and compiler.
+    - They retain their values between function calls.
+    ```c
+    #include <stdio.h>
+
+    int globalVar = 42; // Static storage duration, using `static` is redundant here
+
+    int main() {
+        static int localVar = 24; // Static storage duration within a function
+
+        printf("Global variable: %d\n", globalVar);
+        printf("Local static variable: %d\n", localVar);
+
+        return 0;
+    }
+    ```
+    - In this example, `globalVar` has file scope and is considered a global variable, while `localVar` has function scope but retains its value between function calls because it has static storage duration.
+- *Thread Storage Duration* (C11 and C++11 and later)
+    - A thread is the smallest unit of execution within a process. It is a fundamental concept in multithreading, which is the concurrent execution of multiple threads within the same process. Some concepts about threads:
+        - Threads are lightweight execution units that share the same memory space and resources within a process. They are smaller in scope than processes, making them efficient for multitasking.
+        - Parallel Execution: Threads allow a program to perform multiple tasks simultaneously, taking advantage of modern multicore processors. This parallelism can lead to improved performance and responsiveness in applications.
+        - Thread States: Threads can be in various states, including running, ready, blocked, and terminated. The operating system's scheduler determines which thread runs at a given time.
+        - Shared Memory: Threads within the same process share the same memory space, which allows them to access shared data and communicate with each other easily. However, this shared memory can lead to synchronization and data integrity issues that need to be carefully managed.
+        - Thread Creation: Threads are typically created and managed by the operating system or a programming language's runtime library. Programmers can create threads explicitly in their code.
+    - Thread Storage Duration is a storage duration introduced in C11 and C++11 standards to handle variables that are shared among threads.
+    - Lifetime within a Thread: Variables with thread storage duration exist for the entire duration of the thread in which they are created. When a thread terminates, its thread storage duration variables are automatically destroyed.
+    - Accessible Only Within the Thread: Thread storage duration variables are accessible only within the thread in which they are defined. Other threads cannot directly access these variables.
+
 
 #### **What are deallocation and memory leak?**
 
