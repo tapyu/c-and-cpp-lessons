@@ -124,6 +124,24 @@ In `C++`, you can dynamically allocated integer variable with the `new` keyword 
 1. `(5)` (optional): set the stored value of dynamically allocated memory to `5`;
 1. `int *dynam_int =`: assigns this `int*` pointer to `*dynam_int`;
 
+#### **Automatic Storage Duration (ASD) vs. Dynamic Storage Duration (DSD)**
+
+- *Automatic Storage Duration (ASD)*:
+    - Variables with automatic storage duration are allocated memory on the stack.
+    - Memory allocation and deallocation are handled automatically by the language.
+    - These variables are typically local to a function and have a limited lifetime determined by their scope.
+    - Examples include local variables and function parameters.
+    ```c
+        void someFunction() {
+            int x; // Automatic storage duration
+        }
+    ```
+- *Dynamic Storage Duration (DSD)*:
+    - Variables with dynamic storage duration are allocated on the *heap*. The heap is a region of a computer's memory managed by the operating system or a memory manager. It is used for dynamically allocated memory, which means you can request memory at runtime as needed. When you allocate memory on the heap, you are requesting for a memory that persists beyond the scope of the current function or block. This memory remains allocated until you explicitly release it. Therefore, you are responsible for releasing it when you're done using it.
+    - Memory allocation and deallocation are controlled explicitly by the programmer.
+    - The programmer is responsible for releasing memory when it is no longer needed to prevent *memory leaks*.
+    - In many programming languages, such as `C` and `C++`, allocating memory on the heap involves using functions like new (in `C++`) or `malloc()` (in `C`) to request memory, and using `delete` (in `C++`) or `fre(e()` (in `C`) to release it. You have to be careful to avoid *memory leaks* (not releasing memory) or accessing memory after it has been deallocated (which can lead to undefined behavior).
+
 #### **What are deallocation and memory leak?**
 
 Proper memory management also involves deallocating memory when it is no longer needed. Failure to deallocate memory can result in memory leaks, where memory is reserved but never released, leading to decreased system performance and potential program crashes.
