@@ -9,7 +9,7 @@ public:
     // Constructor that takes a C-style string (char*)
     MyString(char* s) {
         // Allocate memory and copy the input string
-        str = new char[strlen(s) + 1];
+        str = new char[strlen(s) + 1]; // Allocate memory for str with a char array whose length equals `strlen(s) + 1` (for the null character `\0`)
         strcpy(str, s);
     }
 
