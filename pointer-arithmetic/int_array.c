@@ -19,7 +19,7 @@ int main() {
     printf("Since each memory address storages 1 byte, the integer number `i[0]` occupies the memory addresses");
     char *char_pi = (char*)pi; // cast from a int pointer to a char pointer to be able to shift the memory address address in 1 byte only with each increment (1 byte is the memory size of a char)
     for (int j = 0; j < sizeof(int); j++) {
-        printf(" %p", char_pi);
+        printf(" %p", (void*)char_pi);
         if (j != sizeof(int)-1) {
             printf(",");
         } else {
@@ -33,7 +33,7 @@ int main() {
             sizeof(int));
 
     pi = pi + 1; // Move pi to the memory address of the next integer (20) (instead, you could use `pi++`)
-    printf("After the command `pi = pi + 1;`, the stored memory address of `pi` is %p, which is the beginning of the memory address of `i[1]`.", pi);
+    printf("After the command `pi = pi + 1;`, the stored memory address of `pi` is %p, which is the beginning of the memory address of `i[1]`.", (void*)pi);
 
 
 

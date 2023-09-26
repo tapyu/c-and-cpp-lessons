@@ -18,7 +18,7 @@ int main(void)
     {
         if (i < 2)
         {
-            printf("The stored memory address of ppeople is %p.\n\n", ppeople);
+            printf("The stored memory address of ppeople is %p.\n\n", (void *)ppeople);
         }
         
         ppeople->age = 0; // equivalent to `(ppeople*).age = 0;`
