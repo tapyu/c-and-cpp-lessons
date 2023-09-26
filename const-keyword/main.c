@@ -5,7 +5,7 @@ int main(void)
 {
     int iarr[] = {10, 15, 20, 25};
     int another_iarr[] = {666, 999, 1000, 0};
-    const int *piarr = iarr; // points to the internal pointer of the `iarr` variable, that is, &iarr[0]
+    const int *piarr = iarr; // points to the internal pointer of `iarr` variable, that is, &iarr[0]
 
     int len_iarr = sizeof(iarr)/sizeof(iarr[0]);
 
@@ -28,7 +28,7 @@ int main(void)
     printf("The constant pointer piarr initially points to: %p\n", (void*) piarr);
     printf("Being a const pointer means that we cannot modify the value it points to.\n"
            "However we do can modify the stored value of piarr, that is, we can modify the memory address it points to.\n");
-    piarr = another_iarr; // points to the internal pointer of the `another_iarr` variable, that is, &another_iarr[0]
+    piarr = another_iarr; // points to the internal pointer of `another_iarr` variable, that is, &another_iarr[0]
     printf("Now, the constant pointer piarr is points to: %p\n", (void*) piarr);
 
     return 0;
