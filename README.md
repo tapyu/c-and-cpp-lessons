@@ -82,7 +82,7 @@ However, under the hood, the preprocessing, compiling, assembling, and linking h
   - Resolve the *conditional compilation directives*: Using special preprocessing directives, you can include or exclude parts of the program according to various conditions. For example, `#ifdef DEBUG printf("Debugging is enabled.\n"); #endif`. Other conditional compilations are `#ifndef`, `#if`, `#elif`, `#else`. The preprocessor evaluates these conditions and determines whether the enclosed code should be included in the preprocessed output file.
   - *Line Control*: The `C` preprocessor [informs][19] the `C` compiler of the location in your source code where each token came from. A token in C can be defined as the smallest individual element of the C programming language that is meaningful to the compiler. It is the basic component of a C program. They can be Keywords (`double`, `if`, `while`, `return`, ...); Identifiers (variable and function names); Constants (`const int c_var = 20;`); Strings;  Special Symbols (`[]`, `()`, `{}`, `,`, `#`, ...); Operators (unary, binary, and ternary operators);
 - In nutshell, the preprocessor expands the code.
-- The output file is `*.i` or preprocessed file.
+- The output file is `*.i` or preprocessed file. This preprocessed file is the so-called [translation unit][22] (or more casually a compilation unit) and is the ultimate input to a `C` or `C++` compiler from which an object file is generated. Our static functions are visible only within this file.
 
 ### Example
 
@@ -272,3 +272,5 @@ You can say that the disassembled code you've shown is the assembly language rep
 [20]: https://www.airs.com/blog/archives/38
 
 [21]: https://alibabatech.medium.com/gcc-vs-clang-llvm-an-in-depth-comparison-of-c-c-compilers-899ede2be378
+
+[22]: https://en.wikipedia.org/wiki/Translation_unit_%28programming%29
