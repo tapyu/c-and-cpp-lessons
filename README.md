@@ -109,11 +109,20 @@ Static memory allocation refers to the allocation of memory for variables at com
 
 Static memory allocation is useful when you know in advance the size and lifetime of the variables you need, and they don't need to change dynamically during program execution. It's suitable for situations where you have a fixed number of elements, constants, or global variables.
 
-Dynamic memory allocation, as opposed to static memory allocation, involves allocating and deallocating memory during the program's runtime. This allows you to work with data structures of varying sizes and lifetimes, making dynamic memory allocation a powerful feature.
+Dynamic memory allocation, as opposed to static memory allocation, involves allocating and deallocating memory during the program's runtime. This allows you to work with data structures of varying sizes and lifetimes, making dynamic memory allocation a powerful feature. We manipulate dynamically allocated memories through pointers, which are used to access and modify the data in the allocated memory.
 
 Dynamic memory allocation comes with the responsibility of explicitly releasing memory to prevent memory leaks. In `C`, you use `free()` for deallocation, and in `C++`, you use `delete` for single objects and `delete[]` for arrays. Memory management is a critical aspect when working with dynamic memory.
 
-When you allocate memory dynamically using `malloc()` in `C` or `new` in `C++`, you receive a `void*` pointer to the dynamically allocated memory block. This pointer is often referred to as a "generic" pointer because it doesn't have a specific type associated with it. The `void*` type allows flexibility because you can use it to allocate memory for objects of any type. In `C`, you need to explicitly cast it to the desired type when assigning it to a pointer variable. This pointer is then used to access and modify the data in the allocated memory.
+In `C`, you can allocate memory dynamically using `malloc()`, which receives as input argument a `size_t` variable indicating the memory size you want to allocate. For instance, type `malloc(sizeof(int))` if you want to allocate a memory size with the length of an integer variable. This function will return a `void*` pointer to the beginning of the dynamically allocated memory block. This pointer is often referred to as a "generic" pointer because it doesn't have a specific type associated with it. Working with `void*` type allows flexibility because you can use it to allocate memory for objects of any type. If you want to allocate memory for an `int` variable, for exmaple, you need to explicitly cast it to `int` when assigning it to a pointer variable. Thefore, the final code becomes `int *dynam_int = (*int)malloc(sizeof(int));` (see `./static-dynamic-memory/dynamic_memory_allocation.c`):
+1. `malloc(sizeof(int))`: allocates a memory block on you RAM with the length equal to an `int` variable. It returns a `void*` pointer which points to the beginning of that memory block;
+1. `(* int)`: casts the `void*` pointer to a `int*` pointer;
+1. `int *dynam_int =`: assined the casted `int*` pointer to the `*dinam_int` poiter;
+There's no built-in mechanism for initializing the memory with a predefined value in a single step. Therefore, to set a value of the allocated memory, you must to type `*dynam_int = 5;` in another line.
+
+In `C++`, you can dynamically allocated integer variable with the `new` keyword in a more straightforward manner: `int *dynam_int = new int(5);`:
+1. `new int`: allocates a memory block on you RAM with the length equal to an `int` variable and returns an `int*` pointer that points to the beginning of that memory block;
+1. `(5)` (optional): set the stored value of dynamically allocated memory to `5`;
+1. `int *dynam_int =`: assigns this `int*` pointer to `*dynam_int`;
 
 #### **What are deallocation and memory leak?**
 

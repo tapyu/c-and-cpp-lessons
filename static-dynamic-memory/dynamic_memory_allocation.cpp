@@ -2,7 +2,7 @@
 
 int main() {
     // Dynamic memory allocation for an integer variable
-    int *x = new int;
+    int *x = new int; // you want to allocate for an integer variable with an initial value, use `int *x = new int(5)` instead
     
     if (x == nullptr) {
         // Memory allocation failed
