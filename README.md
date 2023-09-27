@@ -97,7 +97,11 @@ and check that, indeed, the translated unit `./static_keyword/static_function/ma
 
 ### `noexcept` keyword (`C++`)
 
-TODO
+The noexcept specifier in C++ is used to indicate that a particular function does not throw any exceptions. It is a way for a programmer to make a promise that a function will not propagate exceptions beyond its scope. This can be useful for various reasons:
+
+- Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. By marking a function as noexcept, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.
+- Error Handling: In some cases, you may want to handle errors within a function without propagating exceptions. Using noexcept makes it clear that the function is responsible for handling any errors it encounters without relying on exceptions.
+- Resource Management: When you work with resource management (like memory allocation or file I/O), you might want to ensure that the resource cleanup happens reliably. Using noexcept helps you avoid unexpected exceptions that could interfere with proper cleanup.
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
