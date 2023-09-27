@@ -103,6 +103,16 @@ The noexcept specifier in C++ is used to indicate that a particular function doe
 - Error Handling: In some cases, you may want to handle errors within a function without propagating exceptions. Using noexcept makes it clear that the function is responsible for handling any errors it encounters without relying on exceptions.
 - Resource Management: When you work with resource management (like memory allocation or file I/O), you might want to ensure that the resource cleanup happens reliably. Using noexcept helps you avoid unexpected exceptions that could interfere with proper cleanup.
 
+Example (the move constructor of a class):
+```cpp
+// Move constructor using an rvalue reference
+MyString(MyString&& other) noexcept {
+    // Steal the ownership of the dynamically allocated memory
+    str = other.str;
+    other.str = nullptr; // Ensure the source object has no ownership
+}
+```
+
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
