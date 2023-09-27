@@ -348,13 +348,13 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 ---
 
-# References
+# References (`C++`)
 
 ## **Reference syntax**
 
 <table>
 <tr>
-    <th colspan="3"><h2>Pointer syntax</h2></th>
+    <th colspan="3"><h2>Reference syntax</h2></th>
 </tr>
 <tr>
     <th>Code</th>
@@ -362,15 +362,115 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <th>Comments</th>
 </tr>
 <tr>
-    <td>${\color{blue}int \space \color{yellow}\& \color{violet}rx \color{green}= \color{cyan}i}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}reference \space \color{violet}named \space rx \space \color{green}is \space set \space to \space \color{cyan}the \space integer \space variable \space i}$</td>
-    <td>This syntax is used to initialize a reference variable.</td>
+    <td>${\color{blue}int \space \color{yellow}\& \color{violet}ref \color{green}= \color{cyan}i}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space i}$</td>
+    <td>This syntax is used to initialize lvalue reference variables. A lvalue reference must refer a lvalue, except by the case bellow.</td>
+</tr>
+<tr>
+    <td>${\color{blue}const \space int\color{yellow}\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
+    <td>${\color{blue}Constant \space integer \space \color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+    <td>This is the unique exception where a lvalue reference can refer to a rvalue. You can do it because <code>const</code> lvalue reference (read-only reference) can bind rvalue. Normally, a temporary variable (an rvalue) in <code>C++</code> has a limited lifetime. It is created to hold a specific value or result of an expression and is destroyed at the end of the full-expression that creates it. When you bind a <code>const</code> lvalue reference to a temporary, such as <code>const int& ref = 5</code>;, the <code>C++</code> compiler specifies that the temporary's lifetime is extended to match the lifetime of the reference variable <code>red</code>. This means that the temporary created by 5 (the rvalue) will not be destroyed at the end of the full-expression but will persist as long as the reference x is in scope. It must be noticed that, if a <code>const</code> lvalue reference is used to overload a function along with a rvalue reference for the same argument position, e.g., <code>void printName(const std::string& name)</code> and <code>void printName(std::string&& name)</code>, the C++ compiler will use <code>void printName(std::string&& name)</code> if you pass an rvalue input to it (e.g., <code>"Mike" + " Smith"</code>). See <code>./references/rvalue_vs_lvalue_func_overload.cpp</code>.</td>
+</tr>
+<tr>
+    <td>${\color{blue} \space int\color{yellow}\&\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}rvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+    <td>This is used to initialized an rvalue reference. It must always refer to an rvalue.</td>
+</tr>
+<tr>
+    <td>${\color{yellow}\& \color{violet}ref \color{green}= \color{cyan}j}$</td>
+    <td>${\color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space j}$</td>
+    <td>This is a re-referencing, that is, the lvalue reference <code>ref</code> was already initialized, and we are just changing its reference from <code>i</code> to <code>j</code> (assuming that i, j, and ref)</td>
+</tr>
+<tr>
+    <td>${\color{violet}ref \color{green} = \color{cyan}i}$
+        <br>or<br>
+        ${\color{violet}ref \color{green} = \color{cyan}5}$
+    </td>
+    <td>${\color{violet}The \space lvalue \space referred \space the \space lvalue \space reference \space ref \space \color{green}is \space set \space to \color{cyan}the \space i \space (or \space 5)}$</td>
+    <td>This syntax is used to assing by reference. This process is equivalent to the pointer-based approach <code>*pi = i;</code> or <code>*pi = 5;</code> (that is, dereference). You can assign by reference both rvalue and lvalue.</td>
 </tr>
 </table>
 
 #### **What are references?**
 
-In `C++` (and some other programming languages, but not in `C`), a reference is a mechanism that allows you to create an alias or an alternative name for an existing variable (see `./refs-vs-pointers/`).
+Reference is a mechanism that allows you to create an alias or an alternative name for variables. References interact with objects in different ways, allowing more sophisticated memory managment and resource handling techniques, such as move semantics. In `C++`, we can categorize variables into *lvalues* and *rlvaues*, which can be referenced by *lvalue references* and *rvalues references*, respectively.
+
+Lvalues are also called *locator values* because they have a variable name assigned to that value. Rvalues, on the other hand, is a temporary value that has no variable assigned to it (literals are examples of rvalues). Once lvalues have a variable name assigned to it,we can assign rvalues to it.
+
+**[Example 1][7] `./references/l_to_r.cpp`:**
+```cpp
+    int i = 10;
+```
+By running `objdump -d -Mintel references/l_to_r | less`, we get the following assembly code in the main section:
+```asm
+0000000000001129 <main>:
+    1129:       f3 0f 1e fa             endbr64 
+    112d:       55                      push   rbp
+    112e:       48 89 e5                mov    rbp,rsp
+    1131:       c7 45 fc 0a 00 00 00    mov    DWORD PTR [rbp-0x4],0xa
+    1138:       b8 00 00 00 00          mov    eax,0x0
+    113d:       5d                      pop    rbp
+    113e:       c3                      ret    
+```
+Let us break it down:
+    - `endbr64`: used for control flow enforcement technology (CET) and is usually inserted at the beginning of functions to ensure control flow integrity.
+    - `push rbp`: Save the value of the base pointer (rbp) onto the stack, typically to establish a new stack frame for the current function, typically to establish a new stack frame for the current function. The pop rbp instruction at the end of the function restores the previous base pointer value when the function exits. This mechanism helps maintain the integrity of the stack during function calls.
+    - `mov rbp, rsp`: This instruction moves the value of the stack pointer (rsp) into the base pointer (rbp). It's setting up a new stack frame for the function.
+    - `mov DWORD PTR [rbp-0x4], 0xa`: This instruction moves the value `0xa` (10 in decimal) into a 4-byte integer (`DWORD`) located at `[rbp-0x4]` (`4` bytes is the memory size of an `int`). This is essentially storing the integer value `10` in a local variable within the function.
+    - `mov eax, 0x0`: This instruction moves the value `0x0` (0 in decimal) into the `eax` register. This is often used to set the return value of a function, and in this case, it's setting the return value of main to `0`.
+    - `pop rbp`: This instruction pops the previously saved base pointer value from the stack, effectively cleaning up the stack frame before the function returns.
+    - `ret`: This is the return instruction. It tells the processor to return from the function, and the value in eax (set to 0 earlier) will be used as the return status.
+The command `mov DWORD PTR [rbp-0x4], 0xa` is effecivelly doing your `int i = 10;`. The variable `i` has a memory address (`[rbp-0x4]`) and can be accessed by the variable name `i`. Therefore, it is an **lvalue**. On the other hand, the literal `10` is the hexadecimal numeric value `0xa`. It is a **temporary value** that has no name or storage (until it is assigned to the lvalue `i`). Therefore, `10` is an **rvalue**. Literals are often rvalues.
+
+In summary, `int i = 10` is an lvalue-to-rvalue assignment. In this case
+```cpp
+int get_value() {
+    return 10;
+}
+
+int main() {
+    int i = get_value();
+}
+```
+the command `int i = get_value()` is also an lvalue-to-rvalue assignment as `get_value()` returns a temporary value (the literal `10`) that has no name or location.
+
+**Example 2 (`/.references/l_to_l.cpp`):**
+```cpp
+int i = 10;
+int a = i;
+```
+It produces
+```asm
+0000000000001129 <main>:
+    1129:       f3 0f 1e fa             endbr64 
+    112d:       55                      push   rbp
+    112e:       48 89 e5                mov    rbp,rsp
+    1131:       c7 45 f8 0a 00 00 00    mov    DWORD PTR [rbp-0x8],0xa
+    1138:       8b 45 f8                mov    eax,DWORD PTR [rbp-0x8]
+    113b:       89 45 fc                mov    DWORD PTR [rbp-0x4],eax
+    113e:       b8 00 00 00 00          mov    eax,0x0
+    1143:       5d                      pop    rbp
+    1144:       c3                      ret
+```
+The new commands are:
+- `mov    DWORD PTR [rbp-0x8],0xa`: Same thing as `mov DWORD PTR [rbp-0x4], 0xa`, but at the address `[rbp-0x8]`. It is our `int i = 10;`. We already know that `i` is a `lvalue`
+- `mov    eax,DWORD PTR [rbp-0x8]`: This instruction moves the 4-byte value located at `[rbp-0x8]` into the `eax` register. It's essentially loading the value 10 from memory into the eax register.
+- `mov    DWORD PTR [rbp-0x4],eax`: This instruction moves the value stored in the `eax` register (which is now 10) into the 4-byte memory location pointed to by `[rbp-0x4]`. `[rbp-0x4]` is another local variable or storage location within the current stack frame. The two last commands perform our `int a = i;`, that is, it pass a value from a variable that has location (`[rbp-0x8]`) and name (`i`) to another variable that are location (`[rbp-0x4]`) and name (`a`).
+
+Therefore, `int a = i;` is an lvalue-to-lvalue assignment.
+
+**Example 3 (`./references/lvalue_ref.cpp`)**:
+```cpp
+int main() {
+    int i = 0;
+    int &ri = i;
+    return 0;
+}
+```
+The command `int &ri = i` means
+
+You cannot have a rvalue-to-lvalue assignment.
+
 
 #### **References vs. Pointers**
 
@@ -473,3 +573,4 @@ Good refs:
 [4]: https://en.wikipedia.org/wiki/C_data_types#Basic_types
 [5]: https://stackoverflow.com/a/11438838/13998346
 [6]: https://en.wikipedia.org/wiki/Primitive_data_type
+[7]: https://www.youtube.com/watch?v=fbYknr-HPYE&t=718s&ab_channel=TheCherno
