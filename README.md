@@ -401,7 +401,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 Reference is a mechanism that allows you to create an alias or an alternative name for variables. References interact with objects in different ways, allowing more sophisticated memory managment and resource handling techniques, such as move semantics. In `C++`, we can categorize variables into *lvalues* and *rlvaues*, which can be referenced by *lvalue references* and *rvalues references*, respectively.
 
-Lvalues are also called *locator values* because they have a variable name assigned to that value. Rvalues, on the other hand, is a temporary value that has no variable assigned to it (literals are examples of rvalues). Once lvalues have a variable name assigned to it,we can assign rvalues to it.
+Lvalues are also called *locator values* because they have a variable name assigned to that value. Rvalues, on the other hand, is a temporary value that has no variable assigned to it. Common examples values used as rvalues are: literals, also known as pure values or prvalues, e.g., `10`; operations involving prvalues, e.g., `10 + 3`; operations involving prvalues and lvalues, e.g., `i + 3`; are often used as rvalues. Once lvalues have been assigned to a specific memory location, they can be used as targets for assignment, whereas rvalues typically represent values that are computed on the fly and are not directly addressable in memory.
 
 **[Example 1][7] `./references/l_to_r.cpp`:**
 ```cpp
