@@ -362,7 +362,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <th>Comments</th>
 </tr>
 <tr>
-    <td>${\color{blue}int \space \color{yellow}\& \color{violet}ref \color{green}= \color{cyan}i}$</td>
+    <td>${\color{blue}int\color{yellow}\& \space\color{violet}ref \color{green}= \color{cyan}i}$</td>
     <td>${\color{blue}Integer \space \color{yellow}lvalue \space reference}$
         ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space i}$</td>
     <td>This syntax is used to initialize lvalue reference variables. A lvalue reference must refer a lvalue, except by the case bellow.</td>
