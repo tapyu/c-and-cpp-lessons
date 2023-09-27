@@ -345,6 +345,20 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 </tr>
 </table>
 
+Other worthmention variables from `<stdint.h>` header in `C` and `<cstdint>` header in `C++`.
+For signed integers:
+- `int8_t`: 8-bit signed integer
+- `int16_t`: 16-bit signed integer
+- `int32_t`: 32-bit signed integer
+- `int64_t`: 64-bit signed integer
+For unsigned integers:
+- `uint8_t`: 8-bit unsigned integer
+- `uint16_t`: 16-bit unsigned integer
+- `uint32_t`: 32-bit unsigned integer
+- `uint64_t`: 64-bit unsigned integer
+
+Using these types provides clarity and consistency, especially when working on projects where cross-platform compatibility is essential or when dealing with binary data formats that require precise bit widths.
+
 
 ---
 
