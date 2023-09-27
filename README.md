@@ -365,26 +365,14 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <td>${\color{blue}int\color{yellow}\& \space\color{violet}ref \color{green}= \color{cyan}i}$</td>
     <td>${\color{blue}Integer \space \color{yellow}lvalue \space reference}$
         ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space i}$</td>
-    <td>This syntax is used to initialize lvalue reference variables. A lvalue reference must refer a lvalue, except by the case bellow.</td>
+    <td>This syntax is used to initialize lvalue reference variables. A lvalue reference must refer a lvalue, except by the case bellow. See <code>lvalue_ref.cpp</code></td>
 </tr>
 <tr>
     <td>${\color{blue}const \space int\color{yellow}\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
     <td>${\color{blue}Constant \space integer \space \color{yellow}lvalue}$
         ${\color{yellow}reference \space \color{violet}named \space ref \space \color{green}refers}$
         ${\color{cyan}the \space integer \space rvalue \space 5}$</td>
-    <td>This is the unique exception where a lvalue reference can refer to a rvalue. You can do it because <code>const</code> lvalue reference (read-only reference) can bind rvalue. Normally, a temporary variable (an rvalue) in <code>C++</code> has a limited lifetime. It is created to hold a specific value or result of an expression and is destroyed at the end of the full-expression that creates it. When you bind a <code>const</code> lvalue reference to a temporary, such as <code>const int& ref = 5</code>;, the <code>C++</code> compiler specifies that the temporary's lifetime is extended to match the lifetime of the reference variable <code>red</code>. This means that the temporary created by 5 (the rvalue) will not be destroyed at the end of the full-expression but will persist as long as the reference x is in scope. It must be noticed that, if a <code>const</code> lvalue reference is used to overload a function along with a rvalue reference for the same argument position, e.g., <code>void printName(const std::string& name)</code> and <code>void printName(std::string&& name)</code>, the C++ compiler will use <code>void printName(std::string&& name)</code> if you pass an rvalue input to it (e.g., <code>"Mike" + " Smith"</code>).</td>
-</tr>
-<tr>
-    <td>${\color{blue} \space int\color{yellow}\&\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}rvalue \space reference}$
-        ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
-    <td>This is used to initialized an rvalue reference. It must always refer to an rvalue.</td>
-</tr>
-<tr>
-    <td>${\color{yellow}\& \color{violet}ref \color{green}= \color{cyan}j}$</td>
-    <td>${\color{yellow}lvalue \space reference \space \color{violet}named \space ref}$
-        ${\color{green}refers \space \color{cyan}the \space integer \space lvalue \space j}$</td>
-    <td>This is a re-referencing, that is, the lvalue reference <code>ref</code> was already initialized, and we are just changing its reference from <code>i</code> to <code>j</code> (assuming that i, j, and ref)</td>
+    <td>This is the unique exception where a lvalue reference can refer to a rvalue. You can do it because <code>const</code> lvalue reference (read-only reference) can bind rvalue. Normally, a temporary variable (an rvalue) in <code>C++</code> has a limited lifetime. It is created to hold a specific value or result of an expression and is destroyed at the end of the full-expression that creates it. When you bind a <code>const</code> lvalue reference to a temporary, such as <code>const int& ref = 5</code>;, the <code>C++</code> compiler specifies that the temporary's lifetime is extended to match the lifetime of the reference variable <code>red</code>. This means that the temporary created by 5 (the rvalue) will not be destroyed at the end of the full-expression but will persist as long as the reference x is in scope. It must be noticed that, if a <code>const</code> lvalue reference is used to overload a function along with a rvalue reference for the same argument position, e.g., <code>void printName(const std::string& name)</code> and <code>void printName(std::string&& name)</code>, the C++ compiler will use <code>void printName(std::string&& name)</code> if you pass an rvalue input to it (e.g., <code>"Mike" + " Smith"</code>). See <code>func_overload.cpp</code>.</td>
 </tr>
 <tr>
     <td>${\color{violet}ref \color{green} = \color{cyan}i}$
@@ -395,9 +383,20 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
         ${\color{violet}reference \space ref \space \color{green}is \space set \space to \color{cyan} \space i \space (or \space 5)}$</td>
     <td>This syntax is used to assing by reference. This process is equivalent to the pointer-based approach <code>*pi = i;</code> or <code>*pi = 5;</code> (that is, dereference). You can assign by reference both rvalue and lvalue.</td>
 </tr>
+<tr>
+    <td>${\color{blue} \space int\color{yellow}\&\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}rvalue \space reference}$
+        ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+    <td>This is used to initialized an rvalue reference. It must always refer to an rvalue. See <code>rvalue_ref.cpp</code>.</td>
+</tr>
+<tr>
+    <td>${\color{violet}y \color{green}= std::move(\color{cyan}x\color{green})}$</td>
+    <td>${\color{violet}object \space named \space y \space \color{green}steals \space an \space parameter \space from \space \color{cyan}the \space object \space x}$</td>
+    <td>Move semantic: Applies the <code>move()</code> constructor method from the class of <code>x</code>. It will steal some parameter of the <code>x</code> object. See <code>./move-semantics/</code>.</td>
+</tr>
 </table>
 
-#### **What are references?**
+#### **What are lvalues and rvalues?**
 
 Reference is a mechanism that allows you to create an alias or an alternative name for variables. References interact with objects in different ways, allowing more sophisticated memory managment and resource handling techniques, such as move semantics. In `C++`, we can categorize variables into *lvalues* and *rlvaues*, which can be referenced by *lvalue references* and *rvalues references*, respectively.
 
@@ -419,13 +418,15 @@ By running `objdump -d -Mintel references/l_to_r | less`, we get the following a
     113e:       c3                      ret    
 ```
 Let us break it down:
-    - `endbr64`: used for control flow enforcement technology (CET) and is usually inserted at the beginning of functions to ensure control flow integrity.
-    - `push rbp`: Save the value of the base pointer (rbp) onto the stack, typically to establish a new stack frame for the current function, typically to establish a new stack frame for the current function. The pop rbp instruction at the end of the function restores the previous base pointer value when the function exits. This mechanism helps maintain the integrity of the stack during function calls.
-    - `mov rbp, rsp`: This instruction moves the value of the stack pointer (rsp) into the base pointer (rbp). It's setting up a new stack frame for the function.
-    - `mov DWORD PTR [rbp-0x4], 0xa`: This instruction moves the value `0xa` (10 in decimal) into a 4-byte integer (`DWORD`) located at `[rbp-0x4]` (`4` bytes is the memory size of an `int`). This is essentially storing the integer value `10` in a local variable within the function.
-    - `mov eax, 0x0`: This instruction moves the value `0x0` (0 in decimal) into the `eax` register. This is often used to set the return value of a function, and in this case, it's setting the return value of main to `0`.
-    - `pop rbp`: This instruction pops the previously saved base pointer value from the stack, effectively cleaning up the stack frame before the function returns.
-    - `ret`: This is the return instruction. It tells the processor to return from the function, and the value in eax (set to 0 earlier) will be used as the return status.
+
+- `endbr64`: used for control flow enforcement technology (CET) and is usually inserted at the beginning of functions to ensure control flow integrity.
+- `push rbp`: Save the value of the base pointer (rbp) onto the stack, typically to establish a new stack frame for the current function, typically to establish a new stack frame for the current function. The pop rbp instruction at the end of the function restores the previous base pointer value when the function exits. This mechanism helps maintain the integrity of the stack during function calls.
+- `mov rbp, rsp`: This instruction moves the value of the stack pointer (rsp) into the base pointer (rbp). It's setting up a new stack frame for the function.
+- `mov DWORD PTR [rbp-0x4], 0xa`: This instruction moves the value `0xa` (10 in decimal) into a 4-byte integer (`DWORD`) located at `[rbp-0x4]` (`4` bytes is the memory size of an `int`). This is essentially storing the integer value `10` in a local variable within the function.
+- `mov eax, 0x0`: This instruction moves the value `0x0` (0 in decimal) into the `eax` register. This is often used to set the return value of a function, and in this case, it's setting the return value of main to `0`.
+- `pop rbp`: This instruction pops the previously saved base pointer value from the stack, effectively cleaning up the stack frame before the function returns.
+- `ret`: This is the return instruction. It tells the processor to return from the function, and the value in eax (set to 0 earlier) will be used as the return status.
+
 The command `mov DWORD PTR [rbp-0x4], 0xa` is effecivelly doing your `int i = 10;`. The variable `i` has a memory address (`[rbp-0x4]`) and can be accessed by the variable name `i`. Therefore, it is an **lvalue**. On the other hand, the literal `10` is the hexadecimal numeric value `0xa`. It is a **temporary value** that has no name or storage (until it is assigned to the lvalue `i`). Therefore, `10` is an **rvalue**. Literals are often rvalues.
 
 In summary, `int i = 10` is an lvalue-to-rvalue assignment. In this case
@@ -459,23 +460,12 @@ It produces
     1144:       c3                      ret
 ```
 The new commands are:
+
 - `mov    DWORD PTR [rbp-0x8],0xa`: Same thing as `mov DWORD PTR [rbp-0x4], 0xa`, but at the address `[rbp-0x8]`. It is our `int i = 10;`. We already know that `i` is a `lvalue`
 - `mov    eax,DWORD PTR [rbp-0x8]`: This instruction moves the 4-byte value located at `[rbp-0x8]` into the `eax` register. It's essentially loading the value 10 from memory into the eax register.
 - `mov    DWORD PTR [rbp-0x4],eax`: This instruction moves the value stored in the `eax` register (which is now 10) into the 4-byte memory location pointed to by `[rbp-0x4]`. `[rbp-0x4]` is another local variable or storage location within the current stack frame. The two last commands perform our `int a = i;`, that is, it pass a value from a variable that has location (`[rbp-0x8]`) and name (`i`) to another variable that are location (`[rbp-0x4]`) and name (`a`).
 
 Therefore, `int a = i;` is an lvalue-to-lvalue assignment.
-
-**Example 3 (`./references/lvalue_ref.cpp`)**:
-```cpp
-int main() {
-    int i = 0;
-    int &ri = i;
-    return 0;
-}
-```
-The command `int &ri = i` means
-
-You cannot have a rvalue-to-lvalue assignment.
 
 
 #### **References vs. Pointers**
@@ -551,7 +541,7 @@ Let us break it down:
 
 As you can see, pointers and the refereces are initialized in the same way. The difference between a pointer and a reference occurs after they are initialzied. The compiler manipulates them differently, applying severeal protections/restriction on the reference, which prevent us from things such as doing math with it. On the other hand, for some tasks, such restrictions enable us to use references in a more straightforward way when compared to pointers. For example, modifying a variable value by reference is much more straightforward when compared to the same solution via pointers.
 
-#### What are move semantics and rvalue references?
+#### What are move semantics?
 
 Move semantics is a `C++` feature that allows you to efficiently **transfer ownership** of resources (such as dynamically allocated memory) from one object to another, typically **without having to create copies of the resources**. It is a feature introduced in `C++11` and later versions of the language.
 
@@ -559,8 +549,9 @@ Move semantics are particularly useful when dealing with objects that manage res
 
 The key components of move semantics in `C++`:
 1. *Move Constructors and Move Assignment Operators*: Classes can define move constructors and move assignment operators (`std::move()`) to specify *how their resources should be moved when an object is transferred to another*. These special member functions typically involve shallow copying of pointers or handles and setting the source object to a safe state.
-1. *Rvalue References*: An rvalue typically refers to an expression or a value that can appear on the right-hand side (RHS) of an assignment but cannot appear on the left-hand side (LHS). Rvalues are temporary values or objects that do not have a persistent memory location or identity. Move semantics rely on rvalue references, which are a type of reference that binds to these temporary objects (rvalues). They are denoted with double ampersands (`&&`). Rvalue references allow you to distinguish between objects that can be moved from and objects that should be copied.
+1. *rvalue References*: Move semantics rely on rvalue references.
 1. `std::move()`: The `std::move()` function is used to convert an lvalue (an object with a name) into an rvalue reference. It is often used to indicate that you intend to move from an object rather than copy it.
+1. After the moving the state of the previous owner becomes unspecified. It's important not to use that variable again after the move because it may contain a `nullptr` or other undefined values.  it means that the value is no longer predictable or defined after it has been moved from. However, it doesn't necessarily mean that the value will change or become some random value; it depends on the implementation and compiler.
 
 See `./rvalue-and-move-semantics/`.
 
