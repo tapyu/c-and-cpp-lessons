@@ -391,7 +391,8 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 </tr>
 <tr>
     <td>${\color{violet}y \color{green}= std::move(\color{cyan}x\color{green})}$</td>
-    <td>${\color{violet}object \space named \space y \space \color{green}steals \space an \space parameter \space from \space \color{cyan}the \space object \space x}$</td>
+    <td>${\color{violet}object \space named \space y \space \color{green}steals \space an \space parameter \space from}$
+        ${\space \color{cyan}the \space object \space x}$</td>
     <td>Move semantic: Applies the <code>move()</code> constructor method from the class of <code>x</code>. It will steal some parameter of the <code>x</code> object. See <code>./move-semantics/</code>.</td>
 </tr>
 </table>
