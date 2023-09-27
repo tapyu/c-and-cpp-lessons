@@ -370,8 +370,8 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 <tr>
     <td>${\color{blue}const \space int\color{yellow}\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
     <td>${\color{blue}Constant \space integer \space \color{yellow}lvalue}$
-        <br>
-        ${\color{yellow}reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+        ${\color{yellow}reference \space \color{violet}named \space ref \space \color{green}refers}$
+        ${\color{cyan}the \space integer \space rvalue \space 5}$</td>
     <td>This is the unique exception where a lvalue reference can refer to a rvalue. You can do it because <code>const</code> lvalue reference (read-only reference) can bind rvalue. Normally, a temporary variable (an rvalue) in <code>C++</code> has a limited lifetime. It is created to hold a specific value or result of an expression and is destroyed at the end of the full-expression that creates it. When you bind a <code>const</code> lvalue reference to a temporary, such as <code>const int& ref = 5</code>;, the <code>C++</code> compiler specifies that the temporary's lifetime is extended to match the lifetime of the reference variable <code>red</code>. This means that the temporary created by 5 (the rvalue) will not be destroyed at the end of the full-expression but will persist as long as the reference x is in scope. It must be noticed that, if a <code>const</code> lvalue reference is used to overload a function along with a rvalue reference for the same argument position, e.g., <code>void printName(const std::string& name)</code> and <code>void printName(std::string&& name)</code>, the C++ compiler will use <code>void printName(std::string&& name)</code> if you pass an rvalue input to it (e.g., <code>"Mike" + " Smith"</code>). See <code>./references/rvalue_vs_lvalue_func_overload.cpp</code>.</td>
 </tr>
 <tr>
