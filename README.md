@@ -24,7 +24,14 @@ printf("These are"
 
 ### `C` string function operators
 
-`C` provides a set of standard library functions for working with these character arrays, such as `strlen(str)` (get the length of `str`), `strcpy(dest, src)` (copy to `dest` from `src`), `strcat(str1, str2)` (concatenate `str1` and `str2`), and `printf()` with `%s` format specifier. Note that, in `C`, **you cannot directly assign a string (e.g., "Mike") to a character array (e.g., name) using the assignment operator `=`**. You need to use functions like `strcpy()` to copy a string into a character array (see `./string-manipulation-c-vs-cpp/main.c`). On the other hand, `C++` codes can handle strings in a much more efficient way (see `/.string-manipulation-c-vs-cpp/main.cpp`).
+`C` provides a set of standard library functions for working with these character arrays:
+- `strlen(str)`: get the length of `str`
+- `strcpy(dest, src)` copy to `dest` from `src`
+- `memcpy(dest, src, num)`: copy a specified `num` of bytes from `src` to `dest`
+- `strcat(str1, str2)` concatenate `str1` and `str2`
+- `printf()` with `%s` format specifier
+
+Note that, in `C`, **you cannot directly assign a string (e.g., "Mike") to a character array (e.g., name) using the assignment operator `=`**. You need to use functions like `strcpy()` to copy a string into a character array (see `./string-manipulation-c-vs-cpp/main.c`). On the other hand, `C++` codes can handle strings in a much more efficient way (see `/.string-manipulation-c-vs-cpp/main.cpp`).
 
 
 ### How do `C` functions tipically handle strings?
