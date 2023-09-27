@@ -392,7 +392,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
         ${\color{violet}ref \color{green} = \color{cyan}5}$
     </td>
     <td>${\color{violet}The \space lvalue \space referred \space the \space lvalue}$
-        ${\color{violet}reference \space ref \space \color{green}is \space set \space to \color{cyan}the \space i \space (or \space 5)}$</td>
+        ${\color{violet}reference \space ref \space \color{green}is \space set \space to \color{cyan} \space the \space i \space (or \space 5)}$</td>
     <td>This syntax is used to assing by reference. This process is equivalent to the pointer-based approach <code>*pi = i;</code> or <code>*pi = 5;</code> (that is, dereference). You can assign by reference both rvalue and lvalue.</td>
 </tr>
 </table>
