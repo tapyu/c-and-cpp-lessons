@@ -363,22 +363,27 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 </tr>
 <tr>
     <td>${\color{blue}int \space \color{yellow}\& \color{violet}ref \color{green}= \color{cyan}i}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space i}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}lvalue \space reference}$
+        ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space i}$</td>
     <td>This syntax is used to initialize lvalue reference variables. A lvalue reference must refer a lvalue, except by the case bellow.</td>
 </tr>
 <tr>
     <td>${\color{blue}const \space int\color{yellow}\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
-    <td>${\color{blue}Constant \space integer \space \color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+    <td>${\color{blue}Constant \space integer \space \color{yellow}lvalue}$
+        <br>
+        ${\color{yellow}reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
     <td>This is the unique exception where a lvalue reference can refer to a rvalue. You can do it because <code>const</code> lvalue reference (read-only reference) can bind rvalue. Normally, a temporary variable (an rvalue) in <code>C++</code> has a limited lifetime. It is created to hold a specific value or result of an expression and is destroyed at the end of the full-expression that creates it. When you bind a <code>const</code> lvalue reference to a temporary, such as <code>const int& ref = 5</code>;, the <code>C++</code> compiler specifies that the temporary's lifetime is extended to match the lifetime of the reference variable <code>red</code>. This means that the temporary created by 5 (the rvalue) will not be destroyed at the end of the full-expression but will persist as long as the reference x is in scope. It must be noticed that, if a <code>const</code> lvalue reference is used to overload a function along with a rvalue reference for the same argument position, e.g., <code>void printName(const std::string& name)</code> and <code>void printName(std::string&& name)</code>, the C++ compiler will use <code>void printName(std::string&& name)</code> if you pass an rvalue input to it (e.g., <code>"Mike" + " Smith"</code>). See <code>./references/rvalue_vs_lvalue_func_overload.cpp</code>.</td>
 </tr>
 <tr>
     <td>${\color{blue} \space int\color{yellow}\&\& \space \color{violet}ref \color{green}= \color{cyan}5}$</td>
-    <td>${\color{blue}Integer \space \color{yellow}rvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
+    <td>${\color{blue}Integer \space \color{yellow}rvalue \space reference}$
+        ${\color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space rvalue \space 5}$</td>
     <td>This is used to initialized an rvalue reference. It must always refer to an rvalue.</td>
 </tr>
 <tr>
     <td>${\color{yellow}\& \color{violet}ref \color{green}= \color{cyan}j}$</td>
-    <td>${\color{yellow}lvalue \space reference \space \color{violet}named \space ref \space \color{green}refers \space \color{cyan}the \space integer \space lvalue \space j}$</td>
+    <td>${\color{yellow}lvalue \space reference \space \color{violet}named \space ref}$
+        ${\color{green}refers \space \color{cyan}the \space integer \space lvalue \space j}$</td>
     <td>This is a re-referencing, that is, the lvalue reference <code>ref</code> was already initialized, and we are just changing its reference from <code>i</code> to <code>j</code> (assuming that i, j, and ref)</td>
 </tr>
 <tr>
@@ -386,7 +391,8 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
         <br>or<br>
         ${\color{violet}ref \color{green} = \color{cyan}5}$
     </td>
-    <td>${\color{violet}The \space lvalue \space referred \space the \space lvalue \space reference \space ref \space \color{green}is \space set \space to \color{cyan}the \space i \space (or \space 5)}$</td>
+    <td>${\color{violet}The \space lvalue \space referred \space the \space lvalue}$
+        ${\color{violet}reference \space ref \space \color{green}is \space set \space to \color{cyan}the \space i \space (or \space 5)}$</td>
     <td>This syntax is used to assing by reference. This process is equivalent to the pointer-based approach <code>*pi = i;</code> or <code>*pi = 5;</code> (that is, dereference). You can assign by reference both rvalue and lvalue.</td>
 </tr>
 </table>
