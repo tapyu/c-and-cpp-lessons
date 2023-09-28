@@ -2,15 +2,17 @@
 #include "../include/prog1.h"
 #include <stdio.h>
 
-static int my_infile_variable = 42; // local variable visible within this .c file scope
+int my_infile_variable = 42; // local variable visible within this .c file scope
 
 void print_local()
 {
     printf("Can I see this? %i\n", my_infile_variable);
+    my_infile_variable = 0;
 }
 
 int main(void)
 {
+    print_local();
     print_local();
     printf("global_variable is initially: %i\n", global_variable);
     increment_file2();
