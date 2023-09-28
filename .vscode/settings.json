@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "math.h": "c",
-        "gd.h": "c"
+        "gd.h": "c",
+        "global.h": "c",
+        "prog1.h": "c",
+        "myfunctions.h": "c",
+        "file1.h": "c"
     }
 }
