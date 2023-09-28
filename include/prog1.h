@@ -1,7 +1,8 @@
 #ifndef PROG1_H
 #define PROG1_H
 
-extern void global_func_prog1(const char* c);
+void global_func_prog1(const char* c); // it is implicitly treated as a `extern`. You can put the `extern` keyword without any problem for the sake of clarity. Although it is also correct, it is less common. Therefore the `extern` keyword is commonly used for global variables only
+
 extern int global_var_prog1;
 // static int my_infile_var1; // You should never declare `static` functions/variables in the header file as they are intended to have internal linkage rather than being accessible by other source files. The purpose of a header file like prog1.h is to declare functions, variables, and other declarations that are meant to be shared and used across multiple source files. Since my_infile_var1 is intended to be private to the translation unit (from the source file) where it is defined, you should not expose its prototype in the header file. Instead, only declare functions with external linkage (functions/variables that are meant to be used across multiple source files) in header files. Functions/variables with internal linkage (what is, with the static keyword) should be declared solely in the source file where they are defined, and they won't be visible or accessible from other source files. By not declaring my_infile_var1 in the header file, you're following the principle of information hiding and encapsulation, ensuring that it remains private to its translation unit and is not accidentally accessed or misused from other parts of your program. Even you want to break this rule, the my_infile_var1 variable won't work correctly (try to uncomment it and see that it is wrongly defined to 0 in file1.c)
 
