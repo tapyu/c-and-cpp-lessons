@@ -22,6 +22,17 @@ public:
         memcpy(m_data, "copied!", m_size);
     }
 
+    MyString(MyString&& other) noexcept
+    {
+        printf("Moved!\n");
+        // associate `MyString("Cherno")` to m_data and m_size
+        m_data = other.m_data;
+        m_size = other.m_size;
+
+        other.m_data = nullptr; // setting the original data to nullptr to, when the destroyer of `MyString("Cherno")` get called, it does not destroy the value we just stole!
+        other.m_size = 0;
+    }
+
     void print_name()
     {
         printf("%s\n", m_data);
@@ -30,7 +41,7 @@ public:
     ~MyString()
     {
         printf("Destroyed!\n");
-        delete m_data;
+        delete[] m_data;
     }
 private:
     char* m_data;
@@ -41,7 +52,12 @@ class Entity
 {
     public:
         Entity(const MyString& name)
-            : m_name(name) // it calls the MyString(const MyString& other) constructor! It is a problem because we are literally allocating unnecessary memory on the heap,
+            : m_name(name) // without `MyString&& name`, it would call the MyString(const MyString& other) constructor! It would be a problem because we are literally allocating unnecessary memory on the heap by copying the content of `name` in a new variable.
+        {
+        }
+
+        Entity(MyString&& name) // constructor overload
+            : m_name(std::move(name)) // now, with this constructor whose argument is a rvalue reference, we call the `MyString(MyString&& other)` constructor
         {
         }
 
@@ -56,7 +72,7 @@ class Entity
 
 int main()
 {
-    Entity entity(MyString("Cherno"));
+    Entity entity(MyString("Cherno")); // without `Entity(MyString&& name)`, the rvalue `MyString("Cherno")` is created in this line command and would be passed by reference to `Entity(const MyString& name)`. `: m_name(name)` would call the `MyString(const MyString& other)` constructor and a new variable would've be created. That is undesirable as we would have an unecessary duplicated data. With move semantics, we can move the rvalue `MyString("Cherno")` instead of copying it!
     entity.print_name();
     return 0;
 }
