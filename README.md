@@ -72,19 +72,6 @@ So, you can say:
 
 In summary, while both terms can be used, "member function" is more specific and commonly used in the context of class-based object-oriented programming like `C++`.
 
----
-
-### **Usage of the `static` keyword (`C` and `C++`)**
-
-The static keyword can be used in a function declaration in several different contexts, and its meaning can vary depending on where it is used:
-1. *Static Member Functions*: When you declare a member function as `static` inside a class, it means that the function belongs to the class itself rather than to any specific instance of the class. You can call a static member function using the class name, without creating an object of the class. See `./static_keyword/static_member-function.cpp`.
-1. *Static Local Variables*: Inside a function, you can declare variables as static. A static local variable retains its value between function calls. It's initialized only once, and its value persists across multiple function invocations. See `./static_keyword/static_local-variable.cpp`.
-1. *Static Functions in a Translation Unit*: If you declare a function as `static` in a `C++` source file (outside of a class), it means that the function has *internal linkage*, that is, it will only be accessible within the [translation unit][5] where it is defined, making it effectively "private" to that translation unit. On the other hand, functions declared without the `static` keyword have external linkage by default, that is, they can be accessed from other translation units. See `./static_keyword/static_function/`. You can run
-```sh
-gcc -E -o static_keyword/static_function/main.i static_keyword/static_function/main.c
-```
-and check that, indeed, the translated unit `./static_keyword/static_function/main.i` doesn't have the `static void internalFunction()` function.
-
 
 ---
 
@@ -97,7 +84,7 @@ and check that, indeed, the translated unit `./static_keyword/static_function/ma
 
 ### `noexcept` keyword (`C++`)
 
-The noexcept specifier in C++ is used to indicate that a particular function does not throw any exceptions. It is a way for a programmer to make a promise that a function will not propagate exceptions beyond its scope. This can be useful for various reasons:
+The noexcept specifier in C++ is used to indicate that a particular function does not throw any exceptions. It is a way for a programmer to make a **promise** that a function will not propagate exceptions beyond its scope. This can be useful for various reasons:
 
 - Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. By marking a function as noexcept, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.
 - Error Handling: In some cases, you may want to handle errors within a function without propagating exceptions. Using noexcept makes it clear that the function is responsible for handling any errors it encounters without relying on exceptions.
@@ -117,4 +104,3 @@ MyString(MyString&& other) noexcept {
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter/11894098#11894098
-[5]: https://github.com/tapyu/c-and-cpp-lessons/tree/1-build-process#preprocessing
