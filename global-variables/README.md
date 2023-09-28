@@ -15,4 +15,9 @@ For each program, one (and only one) source file defines the variable. Similarly
 
 The extern keyword is not required in the header file because it's common practice for header files to contain declarations, and declarations are implicitly treated as `extern`. I use the keyword `extern` in front of function declarations in headers for consistency — to match the `extern` in front of variable declarations in headers. Many people prefer not to use `extern` in front of function declarations; the compiler doesn't care
 
+
+#### Guidelines
+
+- A header file only contains `extern` declarations of variables — never `static` or unqualified variable definitions.
+
 [1]: https://stackoverflow.com/questions/1410563/what-is-the-difference-between-a-definition-and-a-declaration/1411005#1411005
