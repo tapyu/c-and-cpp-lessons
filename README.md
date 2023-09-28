@@ -62,30 +62,7 @@ A good project file structure in C/C++ can help organize your code, make it more
 
 It's essential to choose a structure that fits your project's size and complexity. Smaller projects may not need as many directories, while larger projects may require additional directories for organization. Consistency in file naming and structure is key, especially when working with others or sharing your code.
 
----
-
-## Example
-![](./assets/example.png)
-
-### Performing it manually
-
-To compile `tip`, run:
-```
-gcc -c -o build/gd.o src/gd.c
-gcc -c -o build/tip.o src/tip.c
-gcc -o bin/tip build/tip.o build/gd.o
-```
-
-To compile `geom`, run:
-```
-gcc -c -o build/gd.o src/gd.c
-gcc -c -o build/geom.o src/geom.c
-gcc -o bin/geom build/gd.o build/geom.o -lm
-```
-
-### Performing it by using `./Makefile`
-
-Just run `make`.
+See examples.
 
 
 [1]: https://www.youtube.com/watch?v=GExnnTaBELk
