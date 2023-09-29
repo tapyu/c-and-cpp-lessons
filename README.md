@@ -100,6 +100,13 @@ MyString(MyString&& other) noexcept {
 }
 ```
 
+---
+
+### How to use `enum` and `enum class`
+
+Enums, short for enumerations, are used in programming to represent a set of named integer constants. They provide a convenient way to make code more readable, maintainable, and self-documenting by giving meaningful names to values. See `./enums/`.
+
+
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
