@@ -80,26 +80,6 @@ In summary, while both terms can be used, "member function" is more specific and
 - *For pointers*: when you use a `const` pointer (e.g., `const char *ptr`), you cannot modify the characters through the pointer `ptr`. However, it does not make the pointer itself constant; you can change the pointer to point to a different memory location. Also, if `int i = 5;` and `const int *pi = &i;`, although you cannot modify `i` through `pi`, you can modify `i` directly, e.g., `i = 0;`. If we want, we can also change the memory address `pi` points to, e.g., `pi = &j;`, where `int j = 3;`. See `./const-keyword/main.c`.
 - *For any other variable type:* When the const keyword is used with a variable that is not a pointer, it creates a constant (read-only) variable.
 
---- 
-
-### `noexcept` keyword (`C++`)
-
-The noexcept specifier in C++ is used to indicate that a particular function does not throw any exceptions. It is a way for a programmer to make a **promise** that a function will not propagate exceptions beyond its scope. This can be useful for various reasons:
-
-- Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. By marking a function as noexcept, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.
-- Error Handling: In some cases, you may want to handle errors within a function without propagating exceptions. Using noexcept makes it clear that the function is responsible for handling any errors it encounters without relying on exceptions.
-- Resource Management: When you work with resource management (like memory allocation or file I/O), you might want to ensure that the resource cleanup happens reliably. Using noexcept helps you avoid unexpected exceptions that could interfere with proper cleanup.
-
-Example (the move constructor of a class):
-```cpp
-// Move constructor using an rvalue reference
-MyString(MyString&& other) noexcept {
-    // Steal the ownership of the dynamically allocated memory
-    str = other.str;
-    other.str = nullptr; // Ensure the source object has no ownership
-}
-```
-
 ---
 
 ### How to use `enum` and `enum class`
