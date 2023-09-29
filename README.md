@@ -36,6 +36,16 @@ The `noexcept` specifier in `C++` is used to indicate that a particular function
 
 Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. *By marking a function as `noexcept`, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.*
 
+Example:
+```cpp
+// Move constructor using an rvalue reference
+MyString(MyString&& other) noexcept {
+    // Steal the ownership of the dynamically allocated memory
+    str = other.str;
+    other.str = nullptr; // Ensure the source object has no ownership
+}
+```
+
 
 ### **The use of std::cerr (C++)**
 
