@@ -34,7 +34,9 @@
 
 The `noexcept` specifier in `C++` is used to indicate that a particular function does not throw any exceptions. It is a way for a programmer to make a **promise** that a function will not propagate exceptions beyond its scope.
 
-Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. *By marking a function as `noexcept`, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.*
+- Performance: Exception handling can have a performance cost, especially when exceptions are thrown frequently. *By marking a function as `noexcept`, you inform the compiler that it doesn't need to generate additional code for exception handling, which can result in faster execution.*
+- Error Handling: In some cases, you may want to handle errors within a function without propagating exceptions. Using noexcept makes it clear that the function is responsible for handling any errors it encounters without relying on exceptions.
+- Resource Management: When you work with resource management (like memory allocation or file I/O), you might want to ensure that the resource cleanup happens reliably. Using noexcept helps you avoid unexpected exceptions that could interfere with proper cleanup.
 
 Example:
 ```cpp
