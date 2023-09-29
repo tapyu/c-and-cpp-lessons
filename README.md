@@ -106,6 +106,9 @@ MyString(MyString&& other) noexcept {
 
 Enums, short for enumerations, are used in programming to represent a set of named integer constants. They provide a convenient way to make code more readable, maintainable, and self-documenting by giving meaningful names to values. See `./enums/`.
 
+- `enum` values can be used without explicit casting in most contexts.
+- `enum class` (also called scoped enum) require explicit casting when used in contexts where an integral value is expected
+
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
