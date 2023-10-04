@@ -1,7 +1,5 @@
 # Build process
 
-vamo ver?
-
 <p align="center">
   <img src="assets/general-build-process.jpg" alt="All the build/compilation process">
 </p>
