@@ -63,32 +63,31 @@ Overall, the choice between using a shared library or a static library depends o
 
 A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously. A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies. However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
 
-#### **When I include the header file by using the directive `#include` in my project, how does the system know where to find it?**
+#### **Header file paths**
 
-When you include a header file using the #include directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
-1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are predefined and include paths like `/usr/include` on Linux and macOS or `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include` on Windows, depending on your development environment.
+When you include a header file using the `#include` directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
+1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are:
+    - On *Linix* and *MacOS*: `/usr/lib/gcc/x86_64-linux-gnu/11/include`, `/usr/local/include`, `/usr/include/x86_64-linux-gnu`, and `/usr/include`. You can check these paths by [running][1]
+    ```shell
+        eval $(gcc -print-prog-name=cc1plus) -v
+    ```
+    for `C++`, and
+    ```shell
+      eval $(gcc -print-prog-name=cpp) -v
+    ```
+    for `C`. For instance, you can check that `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
+    - On Windows (depending on your development environment): `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include`.
 1. *User-Defined Paths*: If the header file is not found in the system directories, the compiler checks additional paths that you can specify. These paths can be set in several ways:
     1. *Command-Line Options*: You can use command-line options to specify include directories with the `-I` flag (e.g., `-I/path/to/includes`).
     1. *Environment Variables*: Some compilers allow you to set environment variables (e.g., `CPLUS_INCLUDE_PATH` or `CPATH`) to specify additional include paths.
     1. *IDE or Build System Settings*: Integrated development environments (IDEs) like Visual Studio or build systems like CMake allow you to configure include directories in project settings or configuration files.
-1. *Relative Paths*: If you include a header with a relative path (e.g., `#include` "`myheader.h`"), the compiler looks for the header file relative to the location of the source file that includes it.
-1. *Library-Specific Paths*: Some libraries may have their own include paths that you need to configure separately when using those libraries. (?)
+1. *Relative Paths*: If you include a header with a relative path (e.g., `#include "myheader.h"`), the compiler looks for the header file relative to the location of the source file that includes it.
+1. *Library-Specific Paths*: Some libraries may have their own include paths (outside the standard library header file) that you need to configure separately when using those libraries.
 
-To find from where your system look for the header files, [run][1]:
-```shell
-    eval $(gcc -print-prog-name=cc1plus) -v
-```
-for `C++`, and
-```shell
-  eval $(gcc -print-prog-name=cpp) -v  
-```
-for `C`. For instance, you can check that `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
-
-To see all the recursive header filer depencency, you can [run][2]:
+You can also check the header file dependency tree that is being used in a souce file by [running][2]:
 ```shell
     g++ -MM -H main.cpp
 ```
-where `main.cpp` is the main `C++` file in your project.
 
 #### **How the header files are associated with the their respective libraries files (which can be in a different path)?**
 
@@ -187,7 +186,7 @@ Now, let's compile and use these files to create both a static and shared librar
     - Before running `./program_shared` for the shared library, you must check whether the path of your shared library (`libmylib_shared.so`) is within the `LD_LIBRARY_PATH` environment variable. Setting the LD_LIBRARY_PATH environment variable is often necessary when you want to run an executable that depends on shared libraries that are not in the standard library search paths. This environment variable tells the dynamic linker where to find those libraries at runtime. If it is not set, you can run `export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)` and then run `./program_shared`. Otherwise, you will get the error "./program_shared: error while loading shared libraries: libmylib_shared.so: cannot open shared object file: No such file or directory". This shows the fundamental difference between static and shared (or dynamic) library: shared library is loaded and linked dynamically at runtime when the program is executed. If it is not found by the linker, the program doesn't run.
 
 
-[1]: https://stackoverflow.com/questions/344317/where-does-gcc-look-for-c-and-c-header-files/344525#344525
+[1]: https://stackoverflow.com/a/344525/13998346
 [2]: https://stackoverflow.com/a/18593344/13998346
 [3]: https://www.quora.com/When-should-one-build-libraries-for-personal-C-projects
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter
