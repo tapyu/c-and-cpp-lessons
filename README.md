@@ -115,6 +115,7 @@ Whenever you see a set of classes (or whatever) that fulfill a more general need
 
 On Linux, you can obtain more `C`/`C++` libraries via
 1. Package manager: Most Linux distributions provide a package manager (e.g., APT for Debian/Ubuntu, YUM/DNF for Red Hat/Fedora, Pacman for Arch Linux) that allows you to easily install software packages, including libraries.
+    - On Ubuntu, you can search on https://packages.ubuntu.com/
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
 
 ---
