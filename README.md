@@ -89,7 +89,7 @@ You can also check the header file dependency tree that is being used in a souce
     g++ -MM -H main.cpp
 ```
 
-#### **How the header files are associated with the their respective libraries files (which can be in a different path)?**
+#### **Header files and librabries linking**
 
 The process of associating header files with their respective libraries is not handled in the preprocessing phase but rather in the linking phase. The linker can solve it in several ways:
 
