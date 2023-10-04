@@ -69,11 +69,11 @@ When you include a header file using the `#include` directive in your C++ projec
 1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are:
     - On *Linix* and *MacOS*: `/usr/lib/gcc/x86_64-linux-gnu/11/include`, `/usr/local/include`, `/usr/include/x86_64-linux-gnu`, and `/usr/include`. You can check these paths by [running][1]
     ```shell
-        eval $(gcc -print-prog-name=cc1plus) -v
+    eval $(gcc -print-prog-name=cc1plus) -v
     ```
     for `C++`, and
     ```shell
-      eval $(gcc -print-prog-name=cpp) -v
+    eval $(gcc -print-prog-name=cpp) -v
     ```
     for `C`. For instance, you can check that `/usr/include/c++/11/cstdio` is indeed in your `C++` system path. If so, the system reads from this file whenever you type the `#include cstdio`directive.
     - On Windows (depending on your development environment): `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include`.
