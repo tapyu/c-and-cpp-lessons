@@ -413,7 +413,7 @@ Using these types provides clarity and consistency, especially when working on p
 
 #### **What are lvalues and rvalues?**
 
-Reference is a mechanism that allows you to create an alias or an alternative name for variables. References interact with objects in different ways, allowing more sophisticated memory managment and resource handling techniques, such as move semantics. In `C++`, we can categorize variables into *lvalues* and *rlvaues*, which can be referenced by *lvalue references* and *rvalues references*, respectively.
+Reference is a mechanism that allows you to create an alias or an alternative name for variables. References interact with objects in different ways, allowing more sophisticated memory managment and resource handling techniques, such as move semantics. In `C++`, we can categorize variables into [*lvalues* and *rlvaues*][8], which can be referenced by *lvalue references* and *rvalues references*, respectively.
 
 Lvalues are also called *locator values* because they have a variable name assigned to that value. Rvalues, on the other hand, is a temporary value that has no variable assigned to it. Common examples values used as rvalues are: literals, also known as pure values or prvalues, e.g., `10`; operations involving prvalues, e.g., `10 + 3`; operations involving prvalues and lvalues, e.g., `i + 3`; are often used as rvalues. Once lvalues have been assigned to a specific memory location, they can be used as targets for assignment, whereas rvalues typically represent values that are computed on the fly and are not directly addressable in memory.
 
@@ -586,3 +586,4 @@ Good refs:
 [5]: https://stackoverflow.com/a/11438838/13998346
 [6]: https://en.wikipedia.org/wiki/Primitive_data_type
 [7]: https://www.youtube.com/watch?v=fbYknr-HPYE&t=718s&ab_channel=TheCherno
+[8]: https://www.youtube.com/watch?v=XS2JddPq7GQ&t=809s
