@@ -481,7 +481,6 @@ The new commands are:
 
 Therefore, `int a = i;` is an lvalue-to-lvalue assignment.
 
-
 #### **References vs. Pointers**
 
 In `C`, which has no references, you primarily work with pointers to achieve similar functionality to what references provide in `C++`. In other words, there is an overlap in the functionalities provided by them. Certain things can be done by using either pointer or references (see `./refs-vs-pointers/ref-pointer-equivalency.cpp`). However, there are fundamental differences beween both:
