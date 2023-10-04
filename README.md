@@ -586,4 +586,4 @@ Good refs:
 [5]: https://stackoverflow.com/a/11438838/13998346
 [6]: https://en.wikipedia.org/wiki/Primitive_data_type
 [7]: https://www.youtube.com/watch?v=fbYknr-HPYE&t=718s&ab_channel=TheCherno
-[8]: https://www.youtube.com/watch?v=XS2JddPq7GQ&t=809s
+[8]: https://www.youtube.com/watch?v=XS2JddPq7GQ
