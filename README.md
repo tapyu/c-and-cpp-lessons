@@ -183,7 +183,6 @@ There are four primary storage durations:
     - Lifetime within a Thread: Variables with thread storage duration exist for the entire duration of the thread in which they are created. When a thread terminates, its thread storage duration variables are automatically destroyed.
     - Accessible Only Within the Thread: Thread storage duration variables are accessible only within the thread in which they are defined. Other threads cannot directly access these variables.
 
-
 #### **What are deallocation and memory leak?**
 
 Proper memory management also involves deallocating memory when it is no longer needed. Failure to deallocate memory can result in memory leaks, where memory is reserved but never released, leading to decreased system performance and potential program crashes.
