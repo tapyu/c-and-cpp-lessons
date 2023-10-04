@@ -1,10 +1,31 @@
 #include <stdio.h>
 
 int main() {
-    int i[] = {10, 20, 30, 40};
+    int i[] = {888, 888, 888, 888};
     int *pi = i; // pi points to the internal pointer of the variable `i`, that is, the address of its first array element, 10.
     int d = 5;
     // int *pd = d; // you cannot do it as `d` has no internal since it is a primitive data type
+
+    printf("Before, the i vector is {");
+    for(int j = 0; j < sizeof(i)/sizeof(int); j++) {
+        if (j != (sizeof(i)/sizeof(int)) - 1) {
+        printf("%i, ", i[j]);
+        } else {
+            printf("%i}\n", i[j]);
+        }
+    }
+    *pi = 0; // pi is dereferencing i[0]
+
+    printf("Now,    the i vector is {");
+    for(int j = 0; j < sizeof(i)/sizeof(int); j++) {
+        if (j == 0){
+            printf("%i  , ", i[j]);
+        } else if (j != (sizeof(i)/sizeof(int)) - 1) {
+        printf("%i, ", i[j]);
+        } else {
+            printf("%i}\n\n", i[j]);
+        }
+    }
 
     printf("The internal pointer of the int array is                      : %p\n"
            "The address of the first int array element is                 : %p\n"
