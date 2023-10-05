@@ -37,6 +37,9 @@ A more detailed comparision between `gcc` and `clang` can be found in [here][21]
 Although there are many `C`/`C++` compilers out there, their options/flags are stardarized. The main options are:
 <table>
 <tr>
+  <th colspan="2"><h2>Most used options</h2></th>
+</tr>
+<tr>
   <th>Option</th>
   <th>Description</th>
 </tr>
@@ -49,8 +52,39 @@ Although there are many `C`/`C++` compilers out there, their options/flags are s
   <td>Include debugging information in the generated executable. It adds debugging symbols to the binary, which can be extremely helpful for debugging and analyzing your program when it encounters issues or crashes.</td>
 <tr>
 <tr>
-  <td><code>-Wall</code>, <code>-Wextra</code></td>
-  <td>Enable a variety of warning messages during compilation. They are part of a set of compiler warning options that can help you catch potential issues and improve the quality of your code.</td>
+  <td><code>-Wall</code></td>
+  <td>Enables most commonly used warning messages.</td>
+</tr>
+<tr>
+  <td><code>-Wextra</code></td>
+  <td>Enables some additional warning messages not covered by <code>-Wall</code>.</td>
+</tr>
+<tr>
+  <td><code>-Wunused</code></td>
+  <td>Warn about unused variables, functions, etc.</td>
+</tr>
+<tr>
+  <td><code>-Wuninitialized</code></td>
+  <td>Warn if a local variable is used without being initialized.</td>
+</tr>
+<tr>
+  <td><code>-Wformat</code></td>
+  <td>Check calls to <code>printf</code> and <code>scanf</code>, etc., for format string issues.</td>
+</tr>
+<tr>
+  <th colspan="2"><h2>Not so used</h2></th>
+</tr>
+<tr>
+  <td><code>-Werror</code></td>
+  <td>Treats all warning messages as errors.</td>
+</tr>
+<tr>
+  <td><code>-Wconversion</code></td>
+  <td>Warn about implicit type conversions that may lose data. This can catch potential bugs related to type conversions.</td>
+</tr>
+<tr>
+  <td><code>-Wshadow</code></td>
+  <td>Warn when a local variable shadows another variable. It helps avoid unintended variable shadowing.</td>
 </tr>
 </table>
 
