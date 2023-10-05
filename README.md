@@ -98,7 +98,7 @@ You can also check the header file dependency tree that is being used in a souce
     ```
     ldconfig -v
     ```
-    command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.**When a library is in one of the standard library search paths, you don't need to explicitly use the -L option to indicate the path to the library. The linker will automatically search these standard paths**.
+    command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.**When a library is in one of the standard library search paths, you don't need to explicitly use the `-L` option to indicate the path to the library. The linker will automatically search these standard paths**.
 1. *Explicit linking*: For third-party libraries or libraries not in the standard system library paths, you should use the `-l` flag followed by the library name without the `lib` prefix and the `.a` or `.so` extension. For example, in `g++ main.cpp -L. -lmylib_shared -o program_shared`, the `-L.` option is a compiler flag that specifies the directory path where the linker should search for libraries specified by the `-l` option.
 1. *Implicit Linking*: Some libraries may be implicitly linked when you use certain compiler options or language features. For example, when you use OpenMP directives in your code (`#pragma omp`), the OpenMP runtime library is typically linked automatically.
 
