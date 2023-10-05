@@ -18,7 +18,7 @@ Build process is a multi-stage process that includes
 
 The key step is the compilation phase, where the source code is analyzed, optimized, and translated into an intermediate representation known as assembly code (for `C`) or object code (for `C++`). The software that perform these processes tasks are called *compiler* (although compiling is just one of the steps performed by the compiler).
 
-#### **What are the main `C`/`C++` compilers?**
+#### **What are the main `C`/`C++` compilers and debuggers?**
 
 - GCC (GNU Compiler Collection): One of the most widely used open-source compilers, GCC supports a variety of programming languages, including `C` and `C++`. It's available on multiple platforms, making it a popular choice for `C`/`C++` development. Both `gcc` and `g++` are part of the GCC suite and are commonly used to compile `C` and `C++` programs on various platforms, including Unix-like systems (Linux, macOS, BSD), as well as Windows through tools like MinGW or MSYS2. MinGW is a port of the GCC (GNU Compiler Collection) for Windows. It provides a GCC-based development environment on Windows. Developers who prefer GCC and a more Unix-like development experience often use MinGW on Windows.
   - `gcc`: The GNU `C` Compiler, which primarily compiles `C` code.
