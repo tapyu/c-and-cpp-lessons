@@ -54,7 +54,10 @@ Legend:
 
 # `CMake`
 
-TODO: https://www.youtube.com/watch?v=kekw7eGb8Mw&t=75s&ab_channel=sudocpp
+TODO:
+
+https://www.youtube.com/watch?v=kekw7eGb8Mw&t=75s&ab_channel=sudocpp
+https://softwareengineering.stackexchange.com/a/278792/435466
 
 [1]: https://stackoverflow.com/a/18291580/13998346
 [2]: https://en.wikipedia.org/wiki/GNU_Autotools
