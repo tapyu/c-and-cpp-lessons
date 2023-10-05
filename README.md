@@ -95,10 +95,10 @@ You can also check the header file dependency tree that is being used in a souce
 
 1. *`C++` Standard Libraries*: They are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
 1. *Standard library search paths*: The default library search path on a Linux system typically includes a set of standard directories where the linker (`ld`) looks for libraries when you compile and link your programs. There paths [are][6]: `/lib`, `/usr/lib`, `/lib32`,  `/usr/lib32`, `/lib64`, `/usr/lib64`, `/usr/local/lib`, `/opt/<package>/lib` (some software packages are installed in the `/opt/` directory). These directories are specified in the system's dynamic linker configuration and are usually stored in the `/etc/ld.so.conf` file and the files within the `/etc/ld.so.conf.d/` directory. You can view them using the
-```
-ldconfig -v
-```
-command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.**When a library is in one of the standard library search paths, you don't need to explicitly use the -L option to indicate the path to the library. The linker will automatically search these standard paths**.
+    ```
+    ldconfig -v
+    ```
+    command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.**When a library is in one of the standard library search paths, you don't need to explicitly use the -L option to indicate the path to the library. The linker will automatically search these standard paths**.
 1. *Explicit linking*: For third-party libraries or libraries not in the standard system library paths, you should use the `-l` flag followed by the library name without the `lib` prefix and the `.a` or `.so` extension. For example, in `g++ main.cpp -L. -lmylib_shared -o program_shared`, the `-L.` option is a compiler flag that specifies the directory path where the linker should search for libraries specified by the `-l` option.
 1. *Implicit Linking*: Some libraries may be implicitly linked when you use certain compiler options or language features. For example, when you use OpenMP directives in your code (`#pragma omp`), the OpenMP runtime library is typically linked automatically.
 
