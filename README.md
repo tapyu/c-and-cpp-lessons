@@ -55,3 +55,5 @@ As for complexity, the difficulty of learning Expect depends on your familiarity
 TCL, or Tool Command Language, is a scripting language that was designed with a focus on simplicity and ease of use. It is commonly used for various purposes, including scripting, embedded applications, and as a command language for applications. TCL is often pronounced as "tickle."
 
 TCL is commonly used in applications that require scripting capabilities, such as graphical user interface (GUI) development, testing frameworks, and automation tools. One of its notable uses is as the scripting language for the Expect tool, which is used for automating interactions with other programs.
+
+See here an example: https://gitlab.com/pdfgrep/pdfgrep/-/tree/master/testsuite?ref_type=heads
