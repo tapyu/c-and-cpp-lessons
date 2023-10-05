@@ -1,6 +1,6 @@
 **What is a build automation tool?**
 
-A build automation tool is a software tool or system designed to automate the process of converting a software code into executable programs or libraries. The primary purpose of a build automation tool is to streamline and simplify the often complex and error-prone process of building software, especially in larger projects with multiple source files and dependencies.
+A [build automation tool][2] is a software tool or system designed to automate the process of converting a software code into executable programs or libraries. The primary purpose of a build automation tool is to streamline and simplify the often complex and error-prone process of building software, especially in larger projects with multiple source files and dependencies.
 
 **What are the main taks done by an automation tool?**
 
@@ -25,7 +25,7 @@ A build automation tool is a software tool or system designed to automate the pr
 
 # `Autotools`
 
-[Autotools][3] is part of the GNU toolchain and is widely used in many free software and open source packages. Its component tools are free software, licensed under the GNU General Public License with special license exceptions permitting its use with proprietary software.
+[Autotools][2] is part of the GNU toolchain and is widely used in many free software and open source packages. Its component tools are free software, licensed under the GNU General Public License with special license exceptions permitting its use with proprietary software.
 
 Autotools consists of the GNU utility programs `autoconf`, `automake`, and `libtool`. Other related tools frequently used alongside it include GNU's make program, GNU `gettext`, `pkg-config`, and `gcc`, the GNU Compiler Collection, also called GCC.
 
