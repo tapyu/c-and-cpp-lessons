@@ -72,6 +72,10 @@ Although there are many `C`/`C++` compilers out there, their options/flags are s
   <td>Check calls to <code>printf</code> and <code>scanf</code>, etc., for format string issues.</td>
 </tr>
 <tr>
+  <td><code>-std=<ins>std</ins></code></td>
+  <td>specify the language standard to which the program should conform. For C++, you can use <code>-std=c++11</code> to specify that your code should conform to the C++11 standard, or <code>-std=c++14</code> for C++14, and so on. The <code>-std=c++17</code> flag is used for the C++17 standard, and <code>-std=c++20</code> for C++20. Using the correct <code>-std</code> flag is important to ensure that your code is compatible with the features and syntax defined in a particular version of the C/C++ standard.</td>
+<tr>
+<tr>
   <th colspan="2"><h2>Not so used</h2></th>
 </tr>
 <tr>
