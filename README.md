@@ -82,15 +82,16 @@ In summary, while both terms can be used, "member function" is more specific and
 
 ---
 
-### How to use `enum` and `enum class`
-
-Enums, short for enumerations, are used in programming to represent a set of named integer constants. They provide a convenient way to make code more readable, maintainable, and self-documenting by giving meaningful names to values. See `./enums/`.
+### `enum` (`C`/`C++`) vs. `enum class` (`C++`)
 
 - `enum` values can be used without explicit casting in most contexts.
 - `enum class` (also called scoped enum) require explicit casting when used in contexts where an integral value is expected
+
+**Conclusion**: For `C++`, `enum class` should be preferred because they cause fewer surprises that could potentially lead to bugs.
 
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
 [3]: https://stackoverflow.com/questions/25860850/what-is-the-difference-between-f-and-lf-in-c
 [4]: https://stackoverflow.com/questions/11893996/why-does-the-order-of-l-option-in-gcc-matter/11894098#11894098
+[5]: https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
