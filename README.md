@@ -98,9 +98,10 @@ Although there are many `C`/`C++` compilers out there, their options/flags are s
 <tr>
   <td><code>-D<ins>MACRO</ins></code></td>
   <td>Define a preprocessor macro. For instance, in <code>gcc -DDEBUG my_program.c -o my_program</code>,<code>-DDEBUG</code> option defines a macro named <code>DEBUG</code>. This means that, during the compilation process, the preprocessor will replace occurrences of DEBUG in your source code with the specified value, which is typically 1. If you don't provide a value after <code>-D</code>, the macro is defined with a value of 1 by default. You can use this technique to conditionally include or exclude portions of code based on whether a certain macro is defined. For instance, you might have something like:
-<code>#ifdef DEBUG
-        // Debug-specific code here
-      #endif
+<code>
+#ifdef DEBUG
+  // Debug-specific code here
+#endif
 </code>
     So, if you compile your program with -DDEBUG, the code within the #ifdef DEBUG block will be included; otherwise, it will be excluded. This is a common practice for enabling or disabling debugging statements or features in your code without modifying the source directly.</td>
 </tr>
