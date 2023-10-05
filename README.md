@@ -80,6 +80,22 @@ Although there are many `C`/`C++` compilers out there, their options/flags are s
   <td>Specify a directory to be searched for header files. It adds the given directory to the list of places to look for header files during compilation. For multiple directories, you must use <code>-I<ins>path</ins></code> multiple times.</td>
 </tr>
 <tr>
+  <td><code>-M</code></td>
+  <td>Generates a list of makefile dependencies suitable for use with <code>make</code>.</td>
+</tr>
+<tr>
+  <td><code>-MM</code></td>
+  <td>Similar to <code>-M</code>, but it doesn't include system header files.</td>
+</tr>
+<tr>
+  <td><code>-MF <ins>path/to/file</ins></code></td>
+  <td>Specifies the name of the file to write the dependencies to.</td>
+</tr>
+<tr>
+  <td><code>-MT <ins>target</ins></code></td>
+  <td>Specifies the name of the target to consider when looking for dependencies.</td>
+</tr>
+<tr>
   <th colspan="2"><h2>Not so used</h2></th>
 </tr>
 <tr>
