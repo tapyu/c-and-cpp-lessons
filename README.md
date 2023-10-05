@@ -49,7 +49,7 @@ Although there are many `C`/`C++` compilers out there, their options/flags are s
 </tr>
 <tr>
   <td><code>-g</code></td>
-  <td>Include debugging information in the generated executable. It adds debugging symbols to the binary, which can be extremely helpful for debugging and analyzing your program when it encounters issues or crashes.</td>
+  <td>Include debugging information in the generated executable. It adds debugging symbols to the binary, which can be extremely helpful for debugging and analyzing your program when it encounters issues or crashes. <b> You can only debug a compiled executable if add debugging informantion in it by using this flag at compile time</b>.</td>
 <tr>
 <tr>
   <td><code>-Wall</code></td>
