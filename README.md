@@ -114,8 +114,14 @@ Whenever you see a set of classes (or whatever) that fulfill a more general need
 #### **How to get more `C`/`C++` libraries?**
 
 On Linux, you can obtain more `C`/`C++` libraries via
-1. Package manager: Most Linux distributions provide a package manager (e.g., APT for Debian/Ubuntu, YUM/DNF for Red Hat/Fedora, Pacman for Arch Linux) that allows you to easily install software packages, including libraries.
-    - On Ubuntu, you can search on https://packages.ubuntu.com/
+1. Package manager: Most Linux distributions provide a package manager (e.g., `apt` for Debian/Ubuntu, `yum`/`dnf` for Red Hat/Fedora, `pacman` for Arch Linux) that allows you to easily install software packages, including libraries.
+    - On Ubuntu:
+        - You can search on https://packages.ubuntu.com/ for a header file or a library and find out which Ubuntu package contain it. [For instance][9], by searching for `poppler`, you can find that the Ubuntu package [`libpoppler-cpp-dev`][8] contains `cpp/poppler-document.h`, which is required in the project. Alternatively, you can use the terminal (if `apt-file` is not present, you must `apt-get` it)
+        ```
+        ❯ apt-file -x search 'cpp/poppler-document.h'
+        libpoppler-cpp-dev: /usr/include/poppler/cpp/poppler-document.h
+        ```
+        to find out which package contains that file. The command `dpkg -L libpoppler-cpp-dev` shows all files in this packages.
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
 
 ---
@@ -194,3 +200,5 @@ Now, let's compile and use these files to create both a static and shared librar
 [5]: https://youtu.be/GExnnTaBELk?t=941
 [6]: https://unix.stackexchange.com/a/22937/480687
 [7]: https://www.youtube.com/watch?v=tOQZlD-0Scc&ab_channel=LowLevelLearning
+[8]: https://packages.ubuntu.com/kinetic/amd64/libpoppler-cpp-dev/filelist
+[9]: https://stackoverflow.com/questions/77226416/how-to-know-the-linux-package-name-i-need-to-install-in-order-to-get-a-missing-c
