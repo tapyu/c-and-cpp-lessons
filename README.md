@@ -125,7 +125,7 @@ On Linux, you can obtain more `C`/`C++` libraries via
         ❯ apt-file -x search 'cpp/poppler-document.h'
         libpoppler-cpp-dev: /usr/include/poppler/cpp/poppler-document.h
         ```
-        to find out which package contains that file. The command `dpkg -L libpoppler-cpp-dev` shows all files in this packages.
+        to find out which package contains that file. The command `dpkg -L libpoppler-cpp-dev` shows all files in this packages. `pkg-config --list-all` can also do that, but the package is named as it is in the `.pc` (pkg-config) file, [see here][10].
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
 
 ---
@@ -206,3 +206,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [7]: https://www.youtube.com/watch?v=tOQZlD-0Scc&ab_channel=LowLevelLearning
 [8]: https://packages.ubuntu.com/kinetic/amd64/libpoppler-cpp-dev/filelist
 [9]: https://stackoverflow.com/questions/77226416/how-to-know-the-linux-package-name-i-need-to-install-in-order-to-get-a-missing-c
+[10]: https://stackoverflow.com/a/16702644/13998346
