@@ -66,7 +66,7 @@ A shared library is often referred to as a runtime library because it is loaded 
 #### **Header file paths**
 
 When you include a header file using the `#include` directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
-1. *Standard Library Header Files' paths*: The compiler first looks in its system directories for standard library headers. These directories are:
+1. *Standard Header File search paths*: The compiler first looks in its system directories for standard header file search paths. These directories are:
     - On *Linix* and *MacOS*: You can check these paths by [running][1], for `C++`:
     ```shell
     eval $(gcc -print-prog-name=cc1plus) -v
@@ -82,7 +82,7 @@ When you include a header file using the `#include` directive in your C++ projec
     1. *Environment Variables*: Some compilers allow you to set environment variables (e.g., `CPLUS_INCLUDE_PATH` or `CPATH`) to specify additional include paths.
     1. *IDE or Build System Settings*: Integrated development environments (IDEs) like Visual Studio or build systems like CMake allow you to configure include directories in project settings or configuration files.
 1. *Relative Paths*: If you include a header with a relative path (e.g., `#include "myheader.h"`), the compiler looks for the header file relative to the location of the source file that includes it.
-1. *Library-Specific Paths*: Some libraries may have their own include paths (outside the standard library header file) that you need to configure separately when using those libraries.
+1. *Library-Specific Paths*: Some libraries may have their own include paths (outside the standard header file search paths) that you need to configure separately when using those libraries.
 
 You can also check the header file dependency tree that is being used in a souce file by [running][2]:
 ```shell
@@ -91,10 +91,14 @@ You can also check the header file dependency tree that is being used in a souce
 
 #### **Linking between a header file and its library**
 
-The process of associating header files with their respective libraries is not handled in the preprocessing phase but rather in the linking phase. The linker can solve it in several ways:
+**In general, it's not possible to directly determine the library linked to a specific header file name**. The open-source project must specify which 3th party libraries (non-standard libraries) are being used. You must install these libraries, either by using the package manager of distro (if the lib is available there) or installing the lib from the source code. The installed library must be explicitly or implicitly linked, or it must be in the standard system library paths. The process of linking header files with their respective libraries is not handled in the preprocessing phase but rather in the linking phase. The linker can solve it in several ways:
 
 1. *`C++` Standard Libraries*: They are typically bundled with the `g++` compiler. When you install `g++` or any other `C++` compiler, it includes the necessary standard libraries required to compile and link `C++` programs. These libraries are an integral part of the compiler distribution. Therefore, they don't exist as a separate shared library file on your system and you won't find it by looking for a .so (shared library) file.
-1. *Standard system library paths*: The default library search path on a Linux system typically includes a set of standard directories where the linker (`ld`) looks for libraries when you compile and link your programs. There paths [are][6]: `/lib`, `/usr/lib`, `/lib32`,  `/usr/lib32`, `/lib64`, `/usr/lib64`, `/usr/local/lib`, `/opt/<package>/lib` (some software packages are installed in the `/opt/` directory). These directories are specified in the system's dynamic linker configuration and are usually stored in the `/etc/ld.so.conf` file and the files within the `/etc/ld.so.conf.d/` directory. You can view them using the `ldconfig -v` command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.
+1. *Standard library search paths*: The default library search path on a Linux system typically includes a set of standard directories where the linker (`ld`) looks for libraries when you compile and link your programs. There paths [are][6]: `/lib`, `/usr/lib`, `/lib32`,  `/usr/lib32`, `/lib64`, `/usr/lib64`, `/usr/local/lib`, `/opt/<package>/lib` (some software packages are installed in the `/opt/` directory). These directories are specified in the system's dynamic linker configuration and are usually stored in the `/etc/ld.so.conf` file and the files within the `/etc/ld.so.conf.d/` directory. You can view them using the
+    ```
+    ldconfig -v
+    ```
+    command. The `ldconfig` command also updates the linker's cache to include any new libraries installed in these paths. The paths in the `LD_LIBRARY_PATH` environment variable is also included in the standard system library paths.**When a library is in one of the standard library search paths, you don't need to explicitly use the `-L` option to indicate the path to the library. The linker will automatically search these standard paths**.
 1. *Explicit linking*: For third-party libraries or libraries not in the standard system library paths, you should use the `-l` flag followed by the library name without the `lib` prefix and the `.a` or `.so` extension. For example, in `g++ main.cpp -L. -lmylib_shared -o program_shared`, the `-L.` option is a compiler flag that specifies the directory path where the linker should search for libraries specified by the `-l` option.
 1. *Implicit Linking*: Some libraries may be implicitly linked when you use certain compiler options or language features. For example, when you use OpenMP directives in your code (`#pragma omp`), the OpenMP runtime library is typically linked automatically.
 
