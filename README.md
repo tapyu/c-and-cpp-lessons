@@ -125,7 +125,9 @@ On Linux, you can obtain more `C`/`C++` libraries via
         ❯ apt-file -x search 'cpp/poppler-document.h'
         libpoppler-cpp-dev: /usr/include/poppler/cpp/poppler-document.h
         ```
-        to find out which package contains that file. The command `dpkg -L libpoppler-cpp-dev` shows all files in this packages. `pkg-config --list-all` can also do that, but the package is named as it is in the `.pc` (pkg-config) file, [see here][10].
+        to find out which package contains that file.
+        - You can run `dpkg --list` to get all installed packages, in addition to its description and the architecture. `pkg-config --list-all` can also do that, but the package is named as it is in the `.pc` (pkg-config) file, [see here][10].
+        - The command `dpkg -L libpoppler-cpp-dev` shows all files in the `libpoppler-cpp-dev` package.
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
 
 ---
