@@ -23,11 +23,9 @@ There isn't a single "most used" testing framework for C/C++, as the choice of a
   - Supports assertions, fixtures, and subcases.
   - Designed to be fast and efficient.
 
-TODO:
-
-https://yurigeronimus.medium.com/guide-for-choosing-a-test-framework-for-your-c-project-2a7741b53317
-
-https://www.reddit.com/r/cpp/comments/4e9afx/most_popular_c_unit_testing_frameworks/
+More info:
+- https://yurigeronimus.medium.com/guide-for-choosing-a-test-framework-for-your-c-project-2a7741b53317
+- https://www.reddit.com/r/cpp/comments/4e9afx/most_popular_c_unit_testing_frameworks/
 
 ## DejaGNU
 
