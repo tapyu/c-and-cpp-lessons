@@ -111,6 +111,7 @@ Although the name of the header file may give a clue as to which library is bein
     2. Musl libc: Musl is a lightweight and fast C library designed for embedded systems and minimalistic environments. Some Linux distributions, such as Alpine Linux, use Musl libc as an alternative to glibc.
     3. uClibc: uClibc is another lightweight C library designed for embedded systems. It aims to provide a smaller footprint than glibc, making it suitable for resource-constrained environments.
     4. Bionic: Bionic is the C library used by the Android operating system. It is a customized implementation tailored for Android-specific requirements.
+
 While these libraries implement the same standard functions specified by the ISO C standard, there can be some variations in behavior or additional features. In practice, the specific C library used often depends on the operating system and the choices made by the developers or maintainers of that system. **Many compilers, by default, automatically link your program with the C Standard Library**, that is, you don't need to pass the `-l` or `-L` option. Header files associated to the C Standard Library are usually `stdio.h`, `stdlib.h`, etc. **While the C Standard Library was historically provided as a static library, on many modern systems, including Linux, it is often implemented as a shared library.**
 1. *Default library search paths*: At compile time and runtime, the linker must solve the linking of static and shared libraries, respectively. In both cases, the default library search path on a Linux system typically [are][6]: `/lib`, `/usr/lib`, `/lib32`,  `/usr/lib32`, `/lib64`, `/usr/lib64`, `/usr/local/lib`, `/opt/<package>/lib` (some software packages are installed in the `/opt/` directory). These directories are specified in the system's dynamic linker configuration and are usually stored in the `/etc/ld.so.conf` file and the files within the `/etc/ld.so.conf.d/` directory. You can view them using the
     ```
@@ -147,6 +148,8 @@ On Linux, you can obtain more `C`/`C++` libraries via
         - You can run `dpkg --list` to get all installed packages, in addition to its description and the architecture. `pkg-config --list-all` can also do that, but the package is named as it is in the `.pc` (pkg-config) file, [see here][10].
         - The command `dpkg -L libpoppler-cpp-dev` shows all files in the `libpoppler-cpp-dev` package.
 1. Some libraries may not be available as pre-packaged binaries in your distribution's repositories. In such cases, you can download the source code for the library and compile it yourself. The process generally involves running `./configure`, `make`, and `make install` commands.
+
+#### [How to find out/discover more C/C++ libraries][11]
 
 ---
 ## Example: creating static and shared libraries
@@ -228,3 +231,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [9]: https://stackoverflow.com/questions/77226416/how-to-know-the-linux-package-name-i-need-to-install-in-order-to-get-a-missing-c
 [10]: https://stackoverflow.com/a/16702644/13998346
 [Static binaries are very seldom nowadays]: https://www.reddit.com/r/linux/comments/6pkzf5/static_and_dynamic_binaries/
+[11]: https://www.reddit.com/r/cpp_questions/comments/17mor5v/comment/k7mqam1/?context=3
