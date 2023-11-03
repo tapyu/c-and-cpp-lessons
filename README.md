@@ -63,6 +63,19 @@ Overall, the choice between using a shared library or a static library depends o
 
 A shared library is often referred to as a runtime library because it is loaded and linked dynamically at runtime when the program is executed. It provides functionality that can be accessed by multiple programs simultaneously. A static library, on the other hand, is often referred to as a development library because it is used during the development and compilation phase of a program. It contains precompiled code that is linked directly into the executable at compile time, making the program self-contained and independent of external dependencies. However, it's important to note that these terms can sometimes be used interchangeably or with different interpretations depending on the context. The key distinction is that shared libraries are dynamically linked at runtime, while static libraries are statically linked at compile time.
 
+#### **Static binary vs. dynamic binary**
+
+Static linking involves including all library code into the executable at compile time. When you have a static binary, all the code needed to run the program is contained within a single executable file, that is, the executable is self-contained. This means that the program doesn't rely on external shared libraries at runtime. Advantages include ease of distribution (no external dependencies) and potentially slightly faster startup times. However, [static binaries are very seldom nowadays]. they have their use in special cases (like the tools in your initial ramdisk that doesn't have the infrastructure to support dynamic libraries) but other than that are not really in use and pretty much impossible to create for more complex programs due to plenty of libraries not supporting static linking.
+
+Dynamic linking involves linking to shared libraries (or dynamic link libraries, DLLs) at runtime. When you have a dynamic binary, the executable is smaller, and the necessary library code is loaded into memory when the program starts or when the specific library function is called. This allows for more efficient memory usage when multiple programs use the same shared library. Changes to the shared library are reflected across all programs using it without recompiling them. Advantages of dynamic binaries are that libraries can be reused between different running applications,so they need less space and memory.
+
+| Static Binary | Dynamic Binary |
+| ---------|----------|
+| Larger executable size. | Smaller executable size. |
+| No external dependencies. | External dependencies on shared libraries. |
+| Potentially faster startup time. | Increased startup time. |
+| Potentially easier distribution. | Easier to update shared libraries without recompiling every binary. |
+
 #### **Header file paths**
 
 When you include a header file using the `#include` directive in your C++ project, the system or the compiler follows a predefined search path to locate the header file. Here's how it typically works:
@@ -209,3 +222,4 @@ Now, let's compile and use these files to create both a static and shared librar
 [8]: https://packages.ubuntu.com/kinetic/amd64/libpoppler-cpp-dev/filelist
 [9]: https://stackoverflow.com/questions/77226416/how-to-know-the-linux-package-name-i-need-to-install-in-order-to-get-a-missing-c
 [10]: https://stackoverflow.com/a/16702644/13998346
+[Static binaries are very seldom nowadays]: https://www.reddit.com/r/linux/comments/6pkzf5/static_and_dynamic_binaries/
