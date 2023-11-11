@@ -91,7 +91,7 @@ In summary, while both terms can be used, "member function" is more specific and
 
 ---
 
-### `auto` keyword
+### `auto` keyword (`C++`)
 
 The auto keyword in C++ is useful when you want the compiler to automatically deduce the data type of a variable based on its initializer.
 
@@ -101,7 +101,7 @@ Using the auto keyword does not make C++ dynamically typed. C++ is still a stati
 
 Example:
 
-```C++
+```cpp
 #include <iostream>
 #include <vector>
 
