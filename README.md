@@ -89,6 +89,34 @@ In summary, while both terms can be used, "member function" is more specific and
 
 **Conclusion**: For `C++`, `enum class` should be preferred because they cause fewer surprises that could potentially lead to bugs.
 
+---
+
+### `auto` keyword
+
+The auto keyword in C++ is useful when you want the compiler to automatically deduce the data type of a variable based on its initializer.
+
+The readability benefits of auto are often more apparent in situations involving complex types. For instance, if you were working with iterators of a templated container, the actual type might be quite lengthy and complex. Using auto allows the compiler to determine the type for you, reducing verbosity and making the code more concise. The readability benefits of auto are often more apparent in situations involving complex types, iterators from template classes, or when dealing with iterators in range-based for loops where the actual type may not be immediately obvious.
+
+Using the auto keyword does not make C++ dynamically typed. C++ is still a statically-typed language. When you use auto, you are employing type inference at compile-time. The compiler deduces the type of the variable based on its initializer, but once the type is determined, it is fixed during compilation.In dynamically-typed languages, types are determined at runtime, and variables can change their type during the program's execution. In C++, with auto, you're getting a form of type inference without sacrificing the static typing characteristic of the language.
+
+Example:
+
+```C++
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<std::pair<int, std::string>> keyValuePairs = {{1, "apple"}, {2, "banana"}, {3, "cherry"}};
+
+    // Using auto to simplify the iterator type
+    for (auto it = keyValuePairs.begin(); it != keyValuePairs.end(); ++it) {
+        std::cout << "Key: " << it->first << ", Value: " << it->second << std::endl;
+    }
+
+    return 0;
+}
+```
+
 
 [1]: https://stackoverflow.com/questions/693788/is-it-better-to-use-c-void-arguments-void-foovoid-or-not-void-foo
 [2]: https://stackoverflow.com/questions/6393776/what-is-the-difference-between-a-macro-and-a-const-in-c
