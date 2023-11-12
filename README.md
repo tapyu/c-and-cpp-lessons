@@ -40,6 +40,8 @@ has far fewer constraints: it can expand to any sequence of tokens, as long as t
 1. [For][3] `printf()` -> Arguments of type `float` are promoted to `double` so both `%f` and `%lf` are used for double.
 1. For `scanf()` -> `%f` for float and `%lf` for double.
 
+**Conclusion**: `%f` -> `float`, `%lf` -> `double` (which makes sense since `double` is a double precision floating-point, hence a "long float").
+
 ---
 
 ### **Why does the order of the `-l` option matter in the `gcc`/`g++` commands? (`C` and `C++`)**
