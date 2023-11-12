@@ -124,6 +124,8 @@ In `C++`, you can dynamically allocated integer variable with the `new` keyword 
 1. `(5)` (optional): set the stored value of dynamically allocated memory to `5`;
 1. `int *dynam_int =`: assigns this `int*` pointer to `*dynam_int`;
 
+However, Using new and delete directly is error-prone and can lead to memory leaks and other issues if not handled carefully. The modern C++ best practice is to prefer smart pointers (`std::unique_ptr` and `std::shared_ptr`). They automatically manage the memory and reduce the risk of memory leaks, dangling pointers, and other common pitfalls associated with manual memory management. Therefore, it's advisable to use smart pointers whenever possible and resort to manual memory management only when you have a compelling reason to do so and understand the associated risks.
+
 #### **Storage duration**
 
 Storage duration in `C` and `C++` refers to the lifetime of variables and memory blocks. It determines when and how long variables or memory allocations remain valid during program execution. Understanding storage duration is crucial for managing memory and writing robust programs.
