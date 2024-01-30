@@ -320,7 +320,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <td>4 bytes (32 bits) of memory on 32-bit systems, or 8 bytes (64 bits) of memory on 64-bit systems.</td>
     <td><code>%p</code></td>
     <td></td>
-    <td>A void pointer (e,g,<code>void* p</code>) is a generic pointer that lacks type information about the data it points. It can point to objects of any data type. The <code>%p</code> is used to refer to this type of variable in <code>prinf</code>/<code>scanf</code>. In practice, however, we usually use a typed pointer (e,g,<code>int* p</code>). Therefore, to use <code>%p</code>, we fist cast from a typed pointer to a void pointer, e.g., <code>int i = 5; int* i = &i; printf("Hi %p", (void*)pi)</code></td>
+    <td>A void pointer (e,g,<code>void* p</code>) is a generic pointer that lacks type information about the data it points. It can point to objects of any data type. The <code>%p</code> is used to refer to this type of variable in <code>prinf</code>/<code>scanf</code>. In practice, however, we usually use a typed pointer (e,g,<code>int* p</code>). Therefore, to use <code>%p</code>, we fist cast from a typed pointer to a void pointer, e.g., <code>int i = 5; int* pi = &i; printf("Hi %p", (void*)pi)</code></td>
 </tr>
 <tr>
     <th colspan="5"><h3><code>C++</code>-only data types</h3></th>
