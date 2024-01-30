@@ -105,7 +105,7 @@ Memory in a computer system is organized into discrete units called memory locat
 
 Each memory address and is usually represented in hexadecimal, e.g., `0x7ffe100ee504`, where the prefix `0x` indicates that it is a hexadecimal number.
 
-> NOTE: In a 64-bits memory architecture, each address contains 16 hex digits. However, the `C`/`C++` compiler [suppress](https://stackoverflow.com/a/7190827/13343959) the leading `0`'s when printing it out. Therefore, the full memory address would be `0x00007ffe100ee504`.
+> NOTE: In a 64-bits memory architecture, each address contains 16 hex digits. However, the `C`/`C++` compiler [suppress](https://stackoverflow.com/a/7190827/13343959) the leading `0`'s when printing it out. Therefore, the full memory address is actually `0x00007ffe100ee504`.
 
 #### **What is memory allocation?**
 
