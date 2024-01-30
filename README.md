@@ -187,7 +187,7 @@ There are four primary storage durations:
 
 #### **What are deallocation and memory leak?**
 
-Proper memory management also involves deallocating memory when it is no longer needed. Failure to deallocate memory can result in memory leaks, where memory is reserved but never released, leading to decreased system performance and potential program crashes.
+A proper memory management also involves deallocating memory when it is no longer needed. Failure to deallocate memory can result in memory leaks, where memory is reserved but never released, leading to decreased system performance and potential program crashes.
 
 #### **What are memory safety and garbage collector?**
 
