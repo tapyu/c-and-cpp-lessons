@@ -314,11 +314,11 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <td>An unsigned integer type that is used for representing the sizes of objects in memory. It is often used when dealing with memory allocation, arrays, and indexing. The <code>size_t</code> type is guaranteed to be able to represent the size of the largest object that can exist in the memory of the system.</td>
 </tr>
 <tr>
-    <td>Any pointer type</td>
+    <td><code>void*</code></td>
     <td>4 bytes (32 bits) of memory on 32-bit systems, or 8 bytes (64 bits) of memory on 64-bit systems.</td>
     <td><code>%p</code></td>
     <td></td>
-    <td>It can be a memory address of any-type variable, and you can pass it by accessing the value stored (i.e., the memory address) of a pointer that points to it, or you can access its memory address directly (e.g., <code>&x</code>, where <code>x</code> is any variable type).</td>
+    <td>A void pointer (e,g,<code>void* p</code>) is a generic pointer that lacks type information about the data it points. It can point to objects of any data type. The <code>%p</code> is used to refer to this type of variable in <code>prinf</code>/<code>scanf</code>. In practice, however, we usually use a typed pointer (e,g,<code>int* p</code>). Therefore, to use <code>%p</code>, we fist cast from a typed pointer to a void pointer, e.g., <code>int i = 5; int* i = &i; printf("Hi %p", (void*)pi)</code></td>
 </tr>
 <tr>
     <th colspan="5"><h3><code>C++</code>-only data types</h3></th>
