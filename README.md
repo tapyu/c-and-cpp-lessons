@@ -99,6 +99,8 @@ Although this notation conveys the idea of an ordinary array indexing (i.e., `ar
 
 # Memory
 
+##
+
 #### **What is memory allocation?**
 
 Memory allocation involves reserving a specific number of bytes in the computer's memory (RAM - Random Access Memory) for a specific purpose. This reserved space can be used to store data structures, variables, arrays, objects, and other program-related information. It is a fundamental concept in computer programming and is crucial for managing data and resources efficiently.
@@ -195,7 +197,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
 
 ## Memory size of variables (in bytes)
 
-*The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`). See `./memory-size-variables/main.c`.
+*The memory size of common data types in C can vary depending on the compiler and the target system's architecture*. However, there are standard data types with specified **minimum size** requirements in the `C` language standard. The sizes of unsigned types are typically the same as their signed counterparts on most systems and compilers (e.g., `unsigned int` typically uses at least 2 bytes, just like `int`). See `./memory/variables-memory-size.c`.
 
 <table>
 <tr>
