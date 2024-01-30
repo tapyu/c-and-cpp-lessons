@@ -303,7 +303,7 @@ Ensuring that allocated memory is used correctly and avoiding issues like buffer
     <td><code>long double</code></td>
     <td>At least 10 bytes (80 bits) on some systems.</td>
     <td><code>%Lf</code>, <code>%LF</code>, <code>%Lg</code>, <code>%LG</code>, <code>%Le</code>, <code>%LE</code>, <code>%La</code>, <code>%LA</code></td>
-    <td><code>L</code>, <code>l<code></td>
+    <td><code>L</code>, <code>l</code>code></td>
     <td></td>
 </tr>
 <tr>
