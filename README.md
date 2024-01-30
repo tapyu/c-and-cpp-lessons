@@ -99,7 +99,7 @@ Although this notation conveys the idea of an ordinary array indexing (i.e., `ar
 
 # Memory
 
-## Memory address
+#### Memory address
 
 Memory in a computer system is organized into discrete units called memory locations or addresses. The number of unique memory addresses that a system can generate is determined by the size of its memory address bus. The size of each memory location is often measured in bits, and the most common unit of storage is the byte, consisting of [**8 bits**](https://stackoverflow.com/questions/77167771/shouldnt-the-increasing-of-the-stored-memory-address-of-a-pointer-depend-on-the) (see `pointer-arithmetic/` examples).
 
