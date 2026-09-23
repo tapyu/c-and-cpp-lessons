@@ -239,6 +239,63 @@ int main() {
 
 **[With a union][7], you're only supposed to use one of the elements**, because they're all stored at the same address. This makes it useful when you want to store something that could be one of several types. A struct, on the other hand, has a separate memory location for each of its elements and they all can be used at once (see `./union_vs_struct/`).
 
+
+```c
+union foo {
+  int a;   // use EITHER a or b. Can't use both as foo.a foo.b refer
+  char b;  // to the same address memory and defining both affect each other
+} foo;
+
+struct bar {
+  int a;   // can use both a and b simultaneously
+  char b;
+} bar;
+
+union foo x;
+x.a = 3; // OK
+x.b = 'c'; // NO! this affects the value of x.a!
+
+struct bar y;
+y.a = 3; // OK
+y.b = 'c'; // 
+```
+
+The union is large enough to hold its largest member. Here:
+```c
+sizeof(union foo) == 4
+```
+Both a and b start at the same address:
+```
+union storage: 4 bytes
+
+byte 0  byte 1  byte 2  byte 3
+┌──────┬──────┬──────┬──────┐
+│      │      │      │      │
+└──────┴──────┴──────┴──────┘
+↑
+a uses all 4 bytes
+
+↑
+b uses only byte 0
+```
+So if:
+```
+x.a = 3;
+```
+on a typical little-endian machine, memory might be:
+```
+03 00 00 00
+```
+Then:
+```
+x.b = 'c';   // 0x63
+```
+changes only the first byte:
+```
+63 00 00 00
+```
+The remaining 3 bytes are untouched. So the union does not resize depending on the member. It reserves enough space for the largest member, and smaller members simply use part of that same storage.
+
 ### Lambda function (`C++` after C++11)
 
 In C++, a lambda function (often referred to as a lambda expression) is an anonymous function that you can define inline within the code where it's needed. Lambda functions were introduced in C++11 and have since become a powerful feature for writing concise and readable code, especially in situations where a small, temporary function is needed without the overhead of a formal function declaration.
